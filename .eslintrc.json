@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["google"],
+  "overrides": [
+    {
+      "files": ["**/*.spec.js"],
+      "env": {
+        "mocha": true
+      }
+    }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "quotes": ["error", "single"],
+    "no-var": "error",
+    "semi": "error",
+    "indent": ["error", 2],
+    "no-multi-spaces": "error",
+    "linebreak-style": ["error", "windows"],
+    "max-len": ["error", 100],
+    "object-curly-spacing": ["error", "always"],
+    "space-before-function-paren": ["error", "never"],
+    "prettier": {
+      "space-before-function-paren": ["error", "never"]
+    }
+  }
+}
