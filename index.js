@@ -2,7 +2,7 @@ const MilitaryPlane = require('./Planes/MilitaryPlane');
 const PassengerPlane = require('./Planes/PassengerPlane');
 const Airport = require('./Airport');
 const MilitaryType = require('./models/MilitaryType');
-const experimentalPlane = require('./Planes/experimentalPlane');
+const ExperimentalPlane = require('./Planes/ExperimentalPlane');
 const ExperimentalTypes = require('./models/ExperimentalTypes');
 const ClassificationLevel = require('./models/ClassificationLevel');
 
@@ -23,8 +23,8 @@ const ClassificationLevel = require('./models/ClassificationLevel');
         new MilitaryPlane({model:'F-15', maxSpeed:1500, maxFlightDistance:12000, maxLoadCapacity:10000, militaryType:MilitaryType.TYPE_FIGHTER}),
         new MilitaryPlane({model:'F-22', maxSpeed:1550, maxFlightDistance:13000, maxLoadCapacity:11000, militaryType:MilitaryType.TYPE_FIGHTER}),
         new MilitaryPlane({model:'C-130 Hercules', maxSpeed:650, maxFlightDistance:5000, maxLoadCapacity:110000, militaryType:MilitaryType.TRANSPORT}),
-        new experimentalPlane({model:'Bell X-14', maxSpeed:277, maxFlightDistance:482, maxLoadCapacity:500, type:ExperimentalTypes.HIGH_ALTITUDE,classificationLevel:ClassificationLevel.SECRET}),
-        new experimentalPlane({model:'Ryan X-13 Vertijet', maxSpeed:560, maxFlightDistance:307, maxLoadCapacity:500, type:ExperimentalTypes.VTOL,classificationLevel:ClassificationLevel.TOP_SECRET})
+        new ExperimentalPlane({model:'Bell X-14', maxSpeed:277, maxFlightDistance:482, maxLoadCapacity:500, type:ExperimentalTypes.HIGH_ALTITUDE,classificationLevel:ClassificationLevel.SECRET}),
+        new ExperimentalPlane({model:'Ryan X-13 Vertijet', maxSpeed:560, maxFlightDistance:307, maxLoadCapacity:500, type:ExperimentalTypes.VTOL,classificationLevel:ClassificationLevel.TOP_SECRET})
     ];
 
     let airport = new Airport(planes);

@@ -1,6 +1,6 @@
 const Plane = require('./Plane');
 
-class experimentalPlane   extends Plane
+class ExperimentalPlane   extends Plane
 {
 
     constructor(planeInformation)  {
@@ -61,4 +61,4 @@ class experimentalPlane   extends Plane
     }
 }
 
-module.exports = experimentalPlane
+module.exports = ExperimentalPlane
