@@ -1,7 +1,7 @@
 const PassengerPlane = require('./Planes/PassengerPlane');
 const MilitaryPlane = require('./Planes/MilitaryPlane');
 const MilitaryType = require('./models/militaryType');
-const experimentalPlane = require('./Planes/experimentalPlane');
+const ExperimentalPlane = require('./Planes/ExperimentalPlane')
 
 class Airport {
 
@@ -28,8 +28,7 @@ class Airport {
 
     getTransportMilitaryPlanes(){
         let transportMilitaryPlanes = [];
-        let militaryPlanes = this.getMilitaryPlanes();
-        militaryPlanes.forEach((plane) => {
+        this.getMilitaryPlanes().forEach((plane) => {
             if(plane.getMilitaryType() == MilitaryType.TYPE_TRANSPORT) transportMilitaryPlanes.push(plane)
         })
         return transportMilitaryPlanes;
@@ -38,8 +37,7 @@ class Airport {
 
     getBomberMilitaryPlanes(){
         let bomberMilitaryPlanes = [];
-        let militaryPlanes = this.getMilitaryPlanes();
-        militaryPlanes.forEach((plane) => {
+        this.getMilitaryPlanes().forEach((plane) => {
             if(plane.getMilitaryType() == MilitaryType.BOMBER) bomberMilitaryPlanes.push(plane)
         })
         return bomberMilitaryPlanes;
@@ -51,10 +49,12 @@ class Airport {
 
     sortPlanesByMaxDistance() {
         this.planes.sort((currentPlane, preventPlane) => (currentPlane.getMaxFlightDistance() > preventPlane.getMaxFlightDistance()) ? 1 : -1);
+        return this
     }
 
     sortPlanesByMaxSpeed() {
         this.planes.sort((currentPlane, preventPlane) => (currentPlane.getMaxSpeed() > preventPlane.getMaxSpeed()) ? 1 : -1);
+        return this
     }
 
     sortPlanesByMaxLoadCapacity() {
