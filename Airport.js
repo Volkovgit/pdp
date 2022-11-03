@@ -58,7 +58,8 @@ class Airport {
     }
 
     sortPlanesByMaxLoadCapacity() {
-        this.planes.sort((currentPlane, preventPlane) => (currentPlane.getMinLoadCapacity() > preventPlane.getMinLoadCapacity()) ? 1 : -1);
+        this.planes.sort((currentPlane, preventPlane) => (currentPlane.getMaxLoadCapacity() > preventPlane.getMaxLoadCapacity()) ? 1 : -1);
+        return this
     }
 
     getPlanes() {
