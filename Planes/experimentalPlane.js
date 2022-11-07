@@ -4,10 +4,9 @@ class ExperimentalPlane   extends Plane
 {
 
     constructor(planeInformation)  {
-        const {model, maxSpeed, maxFlightDistance, maxLoadCapacity, type, classificationLevel} = {...planeInformation}
-        super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this.type = type;
-        this.classificationLevel = classificationLevel;
+        super(planeInformation.model, planeInformation.maxSpeed, planeInformation.maxFlightDistance, planeInformation.maxLoadCapacity);
+        this.type = planeInformation.type;
+        this.classificationLevel = planeInformation.classificationLevel;
     }
 
 
