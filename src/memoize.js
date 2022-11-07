@@ -3,7 +3,7 @@ module.exports = (func) => {
   if (typeof func != 'function') return undefined;
   return (...args) => {
     if (args.length == 0) return null;
-    const key = args[0];
+    const key = JSON.stringify(args);
     if (key in cache) {
       return cache[key];
     } else {

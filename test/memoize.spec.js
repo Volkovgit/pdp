@@ -89,7 +89,7 @@ describe('Memoize', function () {
 
     it('Return correct value from function with many arguments', () => {
       expect(memoizedSummElements(1, 2, 3, 4, 5)).to.equal(15);
-      sinon.assert.calledOnce(summElementsSpy);
+      expect(memoizedSummElements(1, 3, 4, 5, 6)).to.equal(19);
     });
 
     it('Function with identical arguments called once and return one value', () => {
