@@ -65,9 +65,6 @@ class Airport {
     return this;
   }
 
-  getPlanes() {
-    return this.planes;
-  }
 
   static print(planes) {
     return JSON.stringify(planes);

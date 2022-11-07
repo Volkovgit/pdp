@@ -6,9 +6,7 @@ class Plane {
     this.maxLoadCapacity = planeInformation.maxLoadCapacity;
   }
 
-  getModel() {
-    return this.model;
-  }
+
 
   getMaxSpeed() {
     return this.maxSpeed;

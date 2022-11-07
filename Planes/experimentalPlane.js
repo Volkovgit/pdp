@@ -7,13 +7,6 @@ class ExperimentalPlane extends Plane {
     this.classificationLevel = planeInformation.classificationLevel;
   }
 
-  get maxLoadCapacity() {
-    return this._maxLoadCapacity;
-  }
-
-  set maxLoadCapacity(value) {
-    this._maxLoadCapacity = value;
-  }
 }
 
 module.exports = ExperimentalPlane;
