@@ -33,7 +33,6 @@ describe('Airport', () => {
             new ExperimentalPlane({model:'Bell X-14', maxSpeed:277, maxFlightDistance:482, maxLoadCapacity:500, type:ExperimentalTypes.HIGH_ALTITUDE,classificationLevel:ClassificationLevel.SECRET}),
             new ExperimentalPlane({model:'Ryan X-13 Vertijet', maxSpeed:560, maxFlightDistance:307, maxLoadCapacity:500, type:ExperimentalTypes.VTOL,classificationLevel:ClassificationLevel.SECRETTOP_SECRET})
         ];
-        planeWithMaxPassengerCapacity = planes[2];
         airport = new Airport(planes);
     })
     
@@ -45,6 +44,7 @@ describe('Airport', () => {
     });
 
     it('should return passenger plane with max capacity', () => {
+        planeWithMaxPassengerCapacity = planes[2];
         let expectedPlaneWithMaxPassengersCapacity = airport.getPassengerPlaneWithMaxPassengersCapacity();
         assert.deepEqual(expectedPlaneWithMaxPassengersCapacity,planeWithMaxPassengerCapacity);
     });
