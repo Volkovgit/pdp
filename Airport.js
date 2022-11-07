@@ -26,13 +26,13 @@ class Airport {
 
   getTransportMilitaryPlanes() {
     return this.getMilitaryPlanes().filter(
-      (plane) => plane.getMilitaryType() == MilitaryType.TYPE_TRANSPORT
+      (plane) => plane.getMilitaryType() === MilitaryType.TYPE_TRANSPORT
     );
   }
 
   getBomberMilitaryPlanes() {
     return this.getMilitaryPlanes().filter(
-      (plane) => plane.getMilitaryType() == MilitaryType.BOMBER
+      (plane) => plane.getMilitaryType() === MilitaryType.BOMBER
     );
   }
 
