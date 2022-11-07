@@ -2,12 +2,7 @@ const Plane = require("./Plane");
 
 class ExperimentalPlane extends Plane {
   constructor(planeInformation) {
-    super(
-      planeInformation.model,
-      planeInformation.maxSpeed,
-      planeInformation.maxFlightDistance,
-      planeInformation.maxLoadCapacity
-    );
+    super(planeInformation);
     this.type = planeInformation.type;
     this.classificationLevel = planeInformation.classificationLevel;
   }
