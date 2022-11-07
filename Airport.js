@@ -16,30 +16,24 @@ class Airport {
     return this.planes.filter((plane) => plane instanceof MilitaryPlane);
   }
 
-  // сделать через this.getPassengerPlanes().reduce((prev, current) => {// your code});
   getPassengerPlaneWithMaxPassengersCapacity() {
-    return this.getPassengerPlanes().reduce((prev,current)=>{
-        if(prev.getPassengersCapacity()>current.getPassengersCapacity()) return prev
-        return current
+    return this.getPassengerPlanes().reduce((prev, current) => {
+      if (prev.getPassengersCapacity() > current.getPassengersCapacity())
+        return prev;
+      return current;
     });
   }
 
   getTransportMilitaryPlanes() {
-    let transportMilitaryPlanes = [];
-    this.getMilitaryPlanes().forEach((plane) => {
-      if (plane.getMilitaryType() == MilitaryType.TYPE_TRANSPORT)
-        transportMilitaryPlanes.push(plane);
-    });
-    return transportMilitaryPlanes;
+    return this.getMilitaryPlanes().filter(
+      (plane) => plane.getMilitaryType() == MilitaryType.TYPE_TRANSPORT
+    );
   }
 
   getBomberMilitaryPlanes() {
-    let bomberMilitaryPlanes = [];
-    this.getMilitaryPlanes().forEach((plane) => {
-      if (plane.getMilitaryType() == MilitaryType.BOMBER)
-        bomberMilitaryPlanes.push(plane);
-    });
-    return bomberMilitaryPlanes;
+    return this.getMilitaryPlanes().filter(
+      (plane) => plane.getMilitaryType() == MilitaryType.BOMBER
+    );
   }
 
   getExperimentalPlanes() {
