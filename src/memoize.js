@@ -1,6 +1,6 @@
 module.exports = (func) => {
   const cache = {};
-  if (typeof func != 'function') return undefined;
+  if (typeof func != 'function') return null;
   return (...args) => {
     if (args.length == 0) return null;
     const key = JSON.stringify(args);
