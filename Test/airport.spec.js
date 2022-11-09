@@ -38,8 +38,7 @@ describe('Airport', () => {
     
 
     it('should return Planes with only transport type', () => {
-        let transportMilitaryPlanes = airport.getTransportMilitaryPlanes();
-        const allTransportAreMilitaryTransportPlanes = transportMilitaryPlanes.every(plane=>plane.getMilitaryType() === MilitaryType.TYPE_TRANSPORT)
+        const allTransportAreMilitaryTransportPlanes = airport.getTransportMilitaryPlanes().every(plane=>plane.getMilitaryType() === MilitaryType.TYPE_TRANSPORT)
         assert.equal(allTransportAreMilitaryTransportPlanes,true);
     });
 
@@ -56,14 +55,12 @@ describe('Airport', () => {
     })
 
     it('should return Planes with only BOMBER type', () => {
-        let bomberMilitaryPlanes  = airport.getBomberMilitaryPlanes ();
-        const allTransportAreMilitaryBomberPlanes = bomberMilitaryPlanes.every(plane=>plane.getMilitaryType() === MilitaryType.TYPE_BOMBER)
+        const allTransportAreMilitaryBomberPlanes = airport.getBomberMilitaryPlanes().every(plane=>plane.getMilitaryType() === MilitaryType.TYPE_BOMBER)
         assert.equal(allTransportAreMilitaryBomberPlanes,true);
     })
 
     it('Experimental planes dont be UNCLASSIFIED', () => {
-        let experimentalPlanes  = airport.getExperimentalPlanes();
-        const allExperimentalPlanesHasClassification = experimentalPlanes.every(plane=>plane.classificationLevel !== ClassificationLevel.UNCLASSIFIED)
+        const allExperimentalPlanesHasClassification = airport.getExperimentalPlanes().every(plane=>plane.classificationLevel !== ClassificationLevel.UNCLASSIFIED)
         assert.equal(allExperimentalPlanesHasClassification,true);
     });
 
