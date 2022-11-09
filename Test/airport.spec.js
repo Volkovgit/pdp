@@ -57,7 +57,7 @@ describe('Airport', () => {
 
     it('should return Planes with only BOMBER type', () => {
         let bomberMilitaryPlanes  = airport.getBomberMilitaryPlanes ();
-        const allTransportAreMilitaryBomberPlanes = bomberMilitaryPlanes.every(plane=>plane.getMilitaryType() === MilitaryType.BOMBER)
+        const allTransportAreMilitaryBomberPlanes = bomberMilitaryPlanes.every(plane=>plane.getMilitaryType() === MilitaryType.TYPE_BOMBER)
         assert.equal(allTransportAreMilitaryBomberPlanes,true);
     })
 

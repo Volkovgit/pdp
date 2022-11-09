@@ -32,7 +32,7 @@ class Airport {
 
   getBomberMilitaryPlanes() {
     return this.getMilitaryPlanes().filter(
-      (plane) => plane.getMilitaryType() === MilitaryType.BOMBER
+      (plane) => plane.getMilitaryType() === MilitaryType.TYPE_BOMBER
     );
   }
 
