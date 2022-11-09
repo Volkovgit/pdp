@@ -50,17 +50,17 @@ describe('Airport', () => {
 
 
     it('should sort all plane by MaxLoadCapacity', () => {
-        const allNextPlaneMaxLoadCapacityIsHigherThanCurrent = !!airport.sortPlanesByMaxLoadCapacity().reduce((prevResult, currentItem) => prevResult !== false && currentItem.getMaxLoadCapacity() >= prevResult.getMaxLoadCapacity() && currentItem);
+        const allNextPlaneMaxLoadCapacityIsHigherThanCurrent = !!airport.sortPlanesByMaxLoadCapacity().reduce((prevResult, currentItem) => prevResult !== false && currentItem.getMaxLoadCapacity() >= prevResult.getMaxLoadCapacity() && currentItem) && airport.sortPlanesByMaxLoadCapacity().length>0;
         assert.equal(allNextPlaneMaxLoadCapacityIsHigherThanCurrent,true);
     })
 
     it('should return Planes with only BOMBER type', () => {
-        const allTransportAreMilitaryBomberPlanes = airport.getBomberMilitaryPlanes().every(plane=>plane.getMilitaryType() === MilitaryType.TYPE_BOMBER)
+        const allTransportAreMilitaryBomberPlanes = airport.getBomberMilitaryPlanes().every(plane=>plane.getMilitaryType() === MilitaryType.TYPE_BOMBER) && airport.getBomberMilitaryPlanes().length>0
         assert.equal(allTransportAreMilitaryBomberPlanes,true);
     })
 
     it('Experimental planes dont be UNCLASSIFIED', () => {
-        const allExperimentalPlanesHasClassification = airport.getExperimentalPlanes().every(plane=>plane.classificationLevel !== ClassificationLevel.UNCLASSIFIED)
+        const allExperimentalPlanesHasClassification = airport.getExperimentalPlanes().every(plane=>plane.classificationLevel !== ClassificationLevel.UNCLASSIFIED) && airport.getExperimentalPlanes().length>0
         assert.equal(allExperimentalPlanesHasClassification,true);
     });
 
