@@ -50,7 +50,7 @@ describe('Airport', () => {
 
 
     it('should sort all plane by MaxLoadCapacity', () => {
-        const allNextPlaneMaxLoadCapacityIsHigherThanCurrent = !!airport.sortPlanesByMaxLoadCapacity().planes.reduce((prevResult, currentItem) => prevResult !== false && currentItem.getMaxLoadCapacity() >= prevResult.getMaxLoadCapacity() && currentItem);
+        const allNextPlaneMaxLoadCapacityIsHigherThanCurrent = !!airport.sortPlanesByMaxLoadCapacity().reduce((prevResult, currentItem) => prevResult !== false && currentItem.getMaxLoadCapacity() >= prevResult.getMaxLoadCapacity() && currentItem);
         assert.equal(allNextPlaneMaxLoadCapacityIsHigherThanCurrent,true);
     })
 

@@ -41,28 +41,25 @@ class Airport {
   }
 
   sortPlanesByMaxDistance() {
-    this.planes.sort((currentPlane, preventPlane) =>
+    return this.planes.sort((currentPlane, preventPlane) =>
       currentPlane.getMaxFlightDistance() > preventPlane.getMaxFlightDistance()
         ? 1
         : -1
     );
-    return this;
   }
 
   sortPlanesByMaxSpeed() {
-    this.planes.sort((currentPlane, preventPlane) =>
+    return this.planes.sort((currentPlane, preventPlane) =>
       currentPlane.getMaxSpeed() > preventPlane.getMaxSpeed() ? 1 : -1
     );
-    return this;
   }
 
   sortPlanesByMaxLoadCapacity() {
-    this.planes.sort((currentPlane, preventPlane) =>
+    return this.planes.sort((currentPlane, preventPlane) =>
       currentPlane.getMaxLoadCapacity() > preventPlane.getMaxLoadCapacity()
         ? 1
         : -1
     );
-    return this;
   }
 
 
