@@ -1,12 +1,12 @@
 const assert = require('chai').assert;
 
-const MilitaryPlane = require('../Planes/MilitaryPlane');
-const PassengerPlane = require('../Planes/PassengerPlane');
-const Airport = require('../Airport');
-const MilitaryType = require('../models/MilitaryType');
-const ExperimentalPlane = require('../Planes/ExperimentalPlane');
-const ExperimentalTypes = require('../models/ExperimentalTypes');
-const ClassificationLevel = require('../models/ClassificationLevel');
+const MilitaryPlane = require('../Planes/militaryPlane');
+const PassengerPlane = require('../Planes/passengerPlane');
+const Airport = require('../airport');
+const MilitaryType = require('../models/militaryType');
+const ExperimentalPlane = require('../Planes/experimentalPlane');
+const ExperimentalTypes = require('../models/experimentalTypes');
+const ClassificationLevel = require('../models/classificationLevel');
 
 describe('Airport', () => {
     let airport;
