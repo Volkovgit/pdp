@@ -67,6 +67,8 @@ describe('Memoize', function () {
     it('Is not equal to the original function', () => {
       expect(memoize(addTen)).to.be.a('function').and.to.not.equal(addTen);
       expect(memoize(summElements)).to.be.a('function').and.to.not.equal(summElements);
+      // eslint-disable-next-line max-len, prettier/prettier
+      expect(memoize(welcomeUserFromContext)).to.be.a('function').and.to.not.equal(welcomeUserFromContext);
     });
 
     it('Returns correct values in case of the consequent calls with identical arguments', () => {
