@@ -121,7 +121,10 @@ describe('Memoize', function () {
       };
       expect(memoizedWelcomeUserFromContext(referenceObject)).to.equal('Hi John');
       expect(memoizedWelcomeUserFromContext(referenceObject)).to.equal('Hi John');
-      sinon.assert.calledOnce(spyWelcomeUserFromContext);
+      referenceObject.name = 'Bob';
+      expect(memoizedWelcomeUserFromContext(referenceObject)).to.equal('Hi Bob');
+      expect(memoizedWelcomeUserFromContext(referenceObject)).to.equal('Hi Bob');
+      sinon.assert.callCount(spyWelcomeUserFromContext, 2);
     });
   });
 });
