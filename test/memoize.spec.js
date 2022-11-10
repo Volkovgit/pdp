@@ -1,135 +1,125 @@
+/* eslint-disable space-before-function-paren */
 const { expect } = require('chai');
 const memoize = require('../src/memoize');
 const sinon = require('sinon');
 
-describe('memoize', () => {
-  it('should be a function', () => {
-      expect(memoize).to.be.a('function');
+describe('Memoize', function () {
+  it('Should be a function', () => {
+    expect(memoize).to.be.a('function');
   });
 
-  it('should return undefined if no function provided', () => {
-      [undefined, null, 123, {}].forEach((arg) => {
-          expect(memoize(arg)).to.be.an('null');
-      });
+  it('Should return null if no function provided', () => {
+    [undefined, 123, '123', [], {}].forEach((param) => {
+      expect(memoize(param)).to.be.a('null');
+    });
   });
 
-  it('should return some function if function was provided', () => {
-      expect(memoize(() => {})).to.be.a('function');
+  it('Should return function if function provided', () => {
+    const functionResult = memoize(Array.prototype.forEach);
+    const expectedResult = 'function';
+    expect(functionResult).to.be.a(expectedResult);
   });
 
-  describe('should return chached function that', () => {
-      function abs(...xs) {
-          const power = xs.map(x => x * x).reduce((sum, x) => sum + x);
-          return Math.round(Math.sqrt(power));
-      }
+  describe('Cashed function', () => {
+    /**
+     * Функция возращает число увеличенное на 10
+     * @return {number}
+     * @param {number} x
+     */
+    function addTen(x) {
+      return x + 10;
+    }
 
-      function grep(pattern, ...items) {
-          if (!(pattern instanceof RegExp)) { // Special case
-              return null;
-          }
-          return items.map(String).filter(item => pattern.test(item));
-      }
+    /**
+     * Считает сумму переданных элементов
+     * @return {any}
+     * @param {any} args
+     */
+    function summElements(...args) {
+      const result = args.reduce((sum, el) => sum + el);
+      return result;
+    }
 
-      let absSpy;
-      let grepSpy;
-      let memoizedAbs;
-      let memoizedGrep;
+    /**
+     * Приветствие пользователя с получением имени из контекста
+     * @return {string}
+     */
+    function welcomeUserFromContext() {
+      return this.hi();
+    }
 
-      beforeEach(() => {
-          absSpy = sinon.spy(abs);
-          memoizedAbs = memoize(absSpy);
-          grepSpy = sinon.spy(grep);
-          memoizedGrep = memoize(grepSpy);
-      });
+    let addTenSpy;
+    let memoizedSummElements;
+    let memoizedAddTen;
+    let summElementsSpy;
+    let spyWelcomeUserFromContext;
+    let memoizedWelcomeUserFromContext;
 
-      it('is not equal to the original function', () => {
-          expect(memoize(abs))
-              .to.be.a('function')
-              .and.to.not.equal(abs);
-      });
+    beforeEach(() => {
+      addTenSpy = sinon.spy(addTen);
+      memoizedAddTen = memoize(addTenSpy);
+      summElementsSpy = sinon.spy(summElements);
+      memoizedSummElements = memoize(summElementsSpy);
+      spyWelcomeUserFromContext = sinon.spy(welcomeUserFromContext);
+      memoizedWelcomeUserFromContext = memoize(spyWelcomeUserFromContext);
+    });
 
-      it('delegates calls to the target function', () => {
-          expect(memoizedAbs(0, 1)).to.equal(1);
-          expect(memoizedAbs(3, 4)).to.equal(5);
-          expect(memoizedGrep(/\d+/, 'abc', '123', 'def')).to.deep.equal(['123']);
-      });
+    it('Is not equal to the original function', () => {
+      expect(memoize(addTen)).to.be.a('function').and.to.not.equal(addTen);
+      expect(memoize(summElements)).to.be.a('function').and.to.not.equal(summElements);
+    });
 
-      // it('delegates calls preserving context', () => {
-      //     const ctx = {};
-      //     expect(ctx::memoizedAbs(0, 1)).to.equal(1);
-      //     sinon.assert.calledOn(absSpy, ctx);
-      // });
+    it('Returns correct values in case of the consequent calls with identical arguments', () => {
+      expect(memoizedAddTen(7)).to.equal(17); // #1
+      expect(memoizedAddTen(3)).to.equal(13); // #2
+      expect(memoizedAddTen(3)).to.equal(13); // #2
+      expect(memoizedAddTen(4)).to.equal(14); // #3
+      expect(memoizedAddTen(4)).to.equal(14); // #3
+      expect(memoizedAddTen(3)).to.equal(13); // #2
+      expect(memoizedAddTen(4)).to.equal(14); // #3
+      expect(memoizedAddTen(7)).to.equal(17); // #1
+      sinon.assert.callCount(addTenSpy, 3);
+    });
 
-      it('returns correct values in case of the consequent calls with identical arguments', () => {
-          expect(memoizedAbs(7)).to.equal(7); // #1
-          expect(memoizedAbs(3, 4)).to.equal(5); // #2
-          expect(memoizedAbs(3, 4)).to.equal(5); // #2
-          expect(memoizedAbs(4, 3)).to.equal(5); // #3
-          expect(memoizedAbs(4, 3)).to.equal(5); // #3
-          expect(memoizedAbs(3, 4)).to.equal(5); // #2
-          expect(memoizedAbs(4, 3)).to.equal(5); // #3
-          expect(memoizedAbs(7)).to.equal(7); // #1
-          sinon.assert.callCount(absSpy, 3);
-      });
+    it('Function called once', () => {
+      expect(memoizedAddTen(7)).to.equal(17); // #1
+      expect(memoizedAddTen(7)).to.equal(17); // #1
+      expect(memoizedAddTen(7)).to.equal(17); // #1
+      sinon.assert.calledOnce(addTenSpy);
+    });
 
-      it('caches empty result as legal value', () => {
-          expect(memoizedGrep(undefined)).to.be.a('null');
-          expect(memoizedGrep(undefined)).to.be.a('null');
-          sinon.assert.calledOnce(grepSpy);
-      });
+    it('Return correct value from function with many arguments', () => {
+      expect(memoizedSummElements(1, 2, 3, 4, 5)).to.equal(15);
+      sinon.assert.calledOnce(summElementsSpy);
+    });
 
-      it('caches results of the consequent calls with identical arguments', () => {
-          expect(memoizedAbs(3, 4)).to.equal(5); // #1
-          sinon.assert.calledWith(absSpy, 3, 4);
-          sinon.assert.calledOnce(absSpy);
-          absSpy.resetHistory();
-          expect(memoizedAbs(3, 4)).to.equal(5); // #2
-          sinon.assert.notCalled(absSpy);
-      });
+    it('Function with identical arguments called once and return one value', () => {
+      expect(memoizedSummElements(1, 2, 3, 4, 5)).to.equal(15);
+      expect(memoizedSummElements(1, 2, 3, 4, 5)).to.equal(15);
+      expect(memoizedSummElements(1, 2, 3, 4, 5)).to.equal(15);
+      expect(memoizedSummElements(1, 2, 3, 4, 5)).to.equal(15);
+      sinon.assert.calledOnce(summElementsSpy);
+    });
 
-      it('uses all arguments to compute cache key', () => {
-          const N = 10;
-          for (let n = 1; n <= N; n += 1) {
-              const args = range(n);
-              memoizedAbs(...args);
-              sinon.assert.calledWith(absSpy, ...args);
-              sinon.assert.callCount(absSpy, n);
-          }
-          absSpy.resetHistory();
-          for (let n = 1; n <= N; n += 1) {
-              memoizedAbs(...range(n));
-          }
-          sinon.assert.notCalled(absSpy);
+    it('Caches results of the consequent calls with identical arguments', () => {
+      expect(memoizedAddTen(1)).to.equal(11); // #1
+      sinon.assert.calledWith(addTenSpy, 1);
+      sinon.assert.calledOnce(addTenSpy);
+      addTenSpy.resetHistory();
+      expect(memoizedAddTen(1)).to.equal(11); // #2
+      sinon.assert.notCalled(addTenSpy);
+    });
 
-          function range(n) {
-              return n > 0 ? [n, ...range(n - 1)] : [];
-          }
-      });
-
-      it('uses complicated enough key generator to distinguish different types', () => {
-          const args1 = [/\d+/, '1', 2, true];
-          expect(memoizedGrep(...args1)).to.deep.equal(['1', '2']); // #1
-          sinon.assert.calledWith(grepSpy, ...args1);
-          sinon.assert.calledOnce(grepSpy);
-          const args2 = [/\d+/, 1, '2', true];
-          expect(memoizedGrep(...args2)).to.deep.equal(['1', '2']); // #2
-          sinon.assert.calledWith(grepSpy, ...args2);
-          sinon.assert.calledTwice(grepSpy);
-          grepSpy.resetHistory();
-          expect(memoizedGrep(...args2)).to.deep.equal(['1', '2']); // #2
-          sinon.assert.notCalled(grepSpy);
-      });
-
-      it('uses complicated enough key generator to preserve argument order', () => {
-          expect(memoizedAbs(4, 3)).to.equal(5); // #1
-          sinon.assert.calledWith(absSpy, 4, 3);
-          sinon.assert.calledOnce(absSpy);
-          expect(memoizedAbs(3, 4)).to.equal(5); // #2
-          sinon.assert.calledWith(absSpy, 3, 4);
-          sinon.assert.calledTwice(absSpy);
-          absSpy.resetHistory();
-          expect(memoizedAbs(3, 4)).to.equal(5); // #2
-          sinon.assert.notCalled(absSpy);
-      });
+    it('Should return value from this', () => {
+      const referenceObject = {
+        name: 'John',
+        hi() {
+          return 'Hi ' + this.name;
+        },
+      };
+      expect(memoizedWelcomeUserFromContext(referenceObject)).to.equal('Hi John');
+      expect(memoizedWelcomeUserFromContext(referenceObject)).to.equal('Hi John');
+      sinon.assert.calledOnce(spyWelcomeUserFromContext);
+    });
   });
 });
