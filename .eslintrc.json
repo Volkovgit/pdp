@@ -24,9 +24,10 @@
     "indent": ["error", 2],
     "no-multi-spaces": "error",
     "linebreak-style": ["error", "windows"],
-    "max-len": ["error", 100],
+    "max-len": ["warn", 100],
     "object-curly-spacing": ["error", "always"],
     "space-before-function-paren": ["error", "never"],
-    "prettier/prettier": ["error", { "singleQuote": true }]
+    "prettier/prettier": "warn",
+    "require-jsdoc":"warn"
   }
 }
