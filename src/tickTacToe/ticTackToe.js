@@ -1,12 +1,16 @@
 const board = require('./Board');
 const userInput = require('./userInput');
+const ticTacToeConst = require('./tickTackToeConstant')
 
-function ticTacToe() {
+function ticTacToe(user) {
   const boardObj = board();
   const input = userInput();
+  const countPartType = user.length === 2 ? ticTacToeConst.TWO_PLAYER : ticTacToeConst.SINGLE_GAME;
   return {
+    partType: countPartType,
     boardObj,
     input,
+    user,
     startGame() {
       this.boardObj.printBoard();
       this.input.userInputCoordinates('Введите координаты').then((data) => {
@@ -26,5 +30,3 @@ function ticTacToe() {
 }
 
 module.exports = ticTacToe;
-
-ticTacToe().startGame();

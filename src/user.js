@@ -1,9 +1,9 @@
 function user(){
-    const randomId = Math.random()
+    const randomId = Math.round(Math.random()*100000000);
     return {
         id:randomId,
-        userName,
-        userScope
+        userName:'',
+        userScope:0
     }
 }
 
