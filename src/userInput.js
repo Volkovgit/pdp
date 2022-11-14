@@ -1,28 +1,15 @@
-const readline = require('readline');
+const readline = require('readline/promises');
 
-function userInput() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  const userInputObject = {
-    rl,
-    input() {
-      function callbackFunction(text) {
-        const promise = new Promise((res, rej) => {
-          const answer = rl.question(`${text}`, (input) => {
-            res(input);
-            rl.close();
-          });
-        });
-        return promise;
-      }
-      return callbackFunction;
-    },
-  };
-
-  return userInputObject;
+function userInput(){
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  async function userInput(){
+    const answer = await rl.question('What do you think of Node.js? ');
+    rl.close();
+    return answer
+  }
+  return {
+    input:userInput
+  }
 }
 
-
-module.exports = userInput;
+module.exports = userInput
