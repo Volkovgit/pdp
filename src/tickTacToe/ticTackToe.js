@@ -10,15 +10,18 @@ function ticTacToe() {
     startGame() {
       this.boardObj.printBoard();
       this.input.userInputCoordinates('Введите координаты').then((data) => {
-        if (this.boardObj.checkElementIsEmpty(data)) {
-          this.boardObj.setElementToBoard(data, 'x');
-        } else {
-          console.log('\nЭта клетка уже занята. Выберите другую');
-        }
+        this.checkElementAndSetInBoard(data);
         if (this.boardObj.hasEmptyElement()) this.startGame();
         else this.boardObj.printBoard();
       });
-    }
+    },
+    checkElementIsEmptyAndSetInBoard(data) {
+      if (this.boardObj.checkElementIsEmpty(data)) {
+        this.boardObj.setElementToBoard(data, 'x');
+      } else {
+        console.log('\nЭта клетка уже занята. Выберите другую');
+      }
+    },
   };
 }
 
