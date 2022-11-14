@@ -1,36 +1,25 @@
 const Board = require('./Board');
 const userInput = require('./userInput');
-const inputValidator = require('./inputValidator');
 
-function Game() {
+function TicTacToe() {
   const boardObj = Board();
-  const validator = inputValidator();
   const input = userInput();
-  async function userInputCoordinates(text) {
-    return await input.input(`${text} `).then((data) => {
-      try {
-        return validator.validationInputCoordinates(data);
-      } catch (error) {
-        console.log(error);
-        return userInputCoordinates(text);
-      }
-    });
-  }
-
   return {
     boardObj,
-    validator,
     input,
     startGame() {
       this.boardObj.printBoard();
-      this.userInputCoordinates('Введите координаты').then(data=>{
-        this.boardObj.setElementToBoard(data,'x')
-        this.startGame()
-      })
-    },
-    userInputCoordinates
+      this.input.userInputCoordinates('Введите координаты').then((data) => {
+        if (this.boardObj.checkElementIsEmpty(data)) {
+          this.boardObj.setElementToBoard(data, 'x');
+        } else {
+          console.log('\nЭта клетка уже занята. Выберите другую');
+        }
+        if (this.boardObj.hasEmptyElement()) this.startGame();
+        else this.boardObj.printBoard();
+      });
+    }
   };
 }
 
-
-Game().startGame();
+TicTacToe().startGame();
