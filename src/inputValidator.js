@@ -1,27 +1,30 @@
 function inputValidator() {
-  const inputValidatorObject = {
-    normalizeInput(str) {
-      str = testObj.stringToArr(str);
-      str = testObj.deleteSpaces(str);
-      str = testObj.strArrToNumber(str);
-      str = testObj.deleteNonNumers(str);
-      return str
-    },
-    _stringToArr(str) {
-      return str.split('');
-    },
-    _deleteSpaces(arr) {
-      return arr.filter((el) => el != ' ');
-    },
-    _deleteNonNumers(arr) {
-      return arr.filter((el) => !isNaN(el));
-    },
-    _strArrToNumber(arr) {
-      return arr.map((el) => Number(el));
-    },
+  const normalizeInputBoardCoordinate = (str) => {
+    return str
+      .split('')
+      .filter((el) => el != ' ')
+      .filter((el) => !isNaN(el))
+      .map((el) => Number(el));
+  };
+  const countArgumentsBoardInputCoordinates = (arr) => {
+    if (arr.length != 2) return false;
+    return true;
+  };
+  const checkValuesLessThanThreeAndAboveZero = (arr) => {
+    return arr.every(el=>(el<=3 && el>0))
   };
 
-  return inputValidatorObject;
+
+  const validationInputCoordinates = (str) => {
+    const inputCoordinatesArray = normalizeInputBoardCoordinate(str);
+    if (!countArgumentsBoardInputCoordinates(inputCoordinatesArray)) throw new Error('Введены не цифры или значений болье 2');
+    if (!checkValuesLessThanThreeAndAboveZero(inputCoordinatesArray)) throw new Error('Выход за пределы доски');
+    return inputCoordinatesArray;
+  };
+
+  return {
+    validationInputCoordinates,
+  };
 }
 
-module.exports = inputValidator;
+module.exports = inputValidator

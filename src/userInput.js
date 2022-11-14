@@ -1,8 +1,8 @@
 const readline = require('readline/promises');
 
-function userInput(text){
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-  async function userInput(){
+function userInput(){
+  async function userInput(text){
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
     const answer = await rl.question(`${text}`);
     rl.close();
     return answer
