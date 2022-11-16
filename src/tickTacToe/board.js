@@ -9,8 +9,9 @@ function Board() {
       return this.board;
     },
     printBoard() {
-      this.board.forEach((row) => {
-        console.log('|', row.join(' | '), '|');
+      console.log('__|_1_|_2_|_3_|')
+      this.board.forEach((row,index) => {
+        console.log(`${index+1}_|`, row.join(' | '), '|');
       });
     },
     setElementToBoard(coordinates, elem) {

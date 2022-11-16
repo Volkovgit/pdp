@@ -11,17 +11,20 @@ function ticTacToe(user) {
     boardObj,
     input,
     user,
+    currentUser:true,
     startGame() {
+      console.log(this.currentUser?'Ходят крестики':'Ходят нолики');
       this.boardObj.printBoard();
       this.input.userInputCoordinates('Введите координаты').then((data) => {
-        this.checkElementAndSetInBoard(data);
+        this.checkElementIsEmptyAndSetInBoard(data);
         if (this.boardObj.hasEmptyElement()) this.startGame();
         else this.boardObj.printBoard();
       });
     },
     checkElementIsEmptyAndSetInBoard(data) {
       if (this.boardObj.checkElementIsEmpty(data)) {
-        this.boardObj.setElementToBoard(data, 'x');
+        this.boardObj.setElementToBoard(data, this.currentUser?'x':'o');
+        this.currentUser = !this.currentUser
       } else {
         console.log('\nЭта клетка уже занята. Выберите другую');
       }
@@ -30,3 +33,6 @@ function ticTacToe(user) {
 }
 
 module.exports = ticTacToe;
+
+
+// ticTacToe([1,2]).startGame()
