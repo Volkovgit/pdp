@@ -1,8 +1,8 @@
-function inputStrategy() {
+function validator() {
   this.input = function () {};
 }
 
-function inputValidator() {
+function validateInputCoordinates() {
   const normalizeInputBoardCoordinate = (str) => {
     return str
       .split('')
@@ -30,8 +30,9 @@ function inputValidator() {
 }
 
 
-inputValidator.prototype = new inputStrategy();
-inputValidator.prototype.constructor = inputValidator;
+validateInputCoordinates.prototype = new validator();
+console.log(validateInputCoordinates.prototype);
+validateInputCoordinates.prototype.constructor = validateInputCoordinates;
 
 function Context(strategy) {
   this.input1 = function (str) {
@@ -39,6 +40,6 @@ function Context(strategy) {
   };
 }
 
-const checkTestContext = new Context(new inputValidator());
+const checkTestContext = new Context(new validateInputCoordinates());
 
 console.log(checkTestContext.input1('1 1'));
