@@ -9,14 +9,27 @@ function ticTacToe(users) {
     boardObj,
     inputCoorinates,
     users,
-    currentUser:true,
+    currentUser: true,
     startGame() {
-      console.log(this.currentUser == users[0]?'Ходят крестики':'Ходят нолики');
+      console.log('\n');
       this.boardObj.printBoard();
+      console.log(this.currentUser == users[0] ? 'Ходят крестики' : 'Ходят нолики');
       this.inputCoorinates.input('Введите координаты ').then((data) => {
         try {
-          this.checkElementIsEmptyAndSetInBoard(data)
-          if (this.boardObj.hasEmptyElement()) this.startGame();
+          this.checkElementIsEmptyAndSetInBoard(data);
+          if (this.boardObj.checkDidIWin(this.currentUser ? 'x' : 'o')){
+            console.log(`Победили ${this.currentUser ? 'крестики' : 'нолики'}`);
+            this.boardObj.printBoard();
+          }
+          else {
+            this.currentUser = !this.currentUser;
+            if (this.boardObj.hasEmptyElement()) this.startGame();
+            else{
+              console.log('\nНичья');
+            }
+          }
+
+          
         } catch (error) {
           console.log(error);
         }
@@ -24,8 +37,7 @@ function ticTacToe(users) {
     },
     checkElementIsEmptyAndSetInBoard(data) {
       if (this.boardObj.checkElementIsEmpty(data)) {
-        this.boardObj.setElementToBoard(data, this.currentUser?'x':'o');
-        this.currentUser = !this.currentUser
+        this.boardObj.setElementToBoard(data, this.currentUser ? 'x' : 'o');
       } else {
         console.log('\nЭта клетка уже занята. Выберите другую');
       }
@@ -35,5 +47,4 @@ function ticTacToe(users) {
 
 module.exports = ticTacToe;
 
-
-ticTacToe([1,2]).startGame()
+ticTacToe([1, 2]).startGame();

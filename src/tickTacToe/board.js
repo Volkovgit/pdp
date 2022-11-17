@@ -1,5 +1,9 @@
+const checkWinner = require('./checkWinner')
+
 function Board() {
+  const checker = new checkWinner();
   return {
+    checker,
     board: [
       [' ', ' ', ' '],
       [' ', ' ', ' '],
@@ -11,7 +15,7 @@ function Board() {
     printBoard() {
       console.log('__|_1_|_2_|_3_|')
       this.board.forEach((row,index) => {
-        console.log(`${index+1}_|`, row.join(' | '), '|');
+        console.log(`${index+1} |`, row.join(' | '), '|');
       });
     },
     setElementToBoard(coordinates, elem) {
@@ -23,6 +27,9 @@ function Board() {
     checkElementIsEmpty(coordinates) {
       return this.board[coordinates[0] - 1][coordinates[1] - 1]===' '
     },
+    checkDidIWin(elem){
+      return this.checker.check(this.board,elem)
+    }
   };
 }
 
