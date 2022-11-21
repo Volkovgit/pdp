@@ -1,42 +1,58 @@
+const user = require('../user');
 const board = require('./Board');
 const coordinatesInput = require('./coordinatesInput');
-// const ticTacToeConst = require('./tickTackToeConstant');
+const inputer = require('./inputContainer');
 
-function ticTacToe(users) {
+function ticTacToe(...args) {
   const boardObj = board();
-  const inputCoorinates = coordinatesInput();
+  const inputCoorinates = new inputer(coordinatesInput());
   return {
     boardObj,
     inputCoorinates,
-    users,
-    currentUser: true,
+    users: args,
+    currentUser: args[0],
     winner: null,
+    gameStarted: false,
     async startGame() {
+      this.printPlayer()
       console.log('\n');
-      console.log(this.currentUser == users[0] ? 'Ходят крестики' : 'Ходят нолики');
+      console.log(this.checkCurrentUser() ? 'Ходят крестики' : 'Ходят нолики');
       this.boardObj.printBoard();
-      const inputData = await this.inputCoorinates.input('Введите координаты ')
+      const inputData = await this.inputCoorinates.input('Введите координаты');
       this.checkElementIsEmptyAndSetInBoard(inputData);
       if (this.checkEndOfGameAndWin()) return this.startGame();
       return this.winner;
     },
+    printPlayer() {
+      if (!this.gameStarted) {
+        console.log(`Крестики: игрок ${this.users[0].userName}\nНолики: игрок ${this.users[1].userName}`);
+        this.gameStarted = true;
+      }
+    },
     checkEndOfGameAndWin() {
-      if (this.boardObj.checkDidIWin(this.currentUser ? 'x' : 'o')) {
-        console.log(`Победили ${this.currentUser ? 'крестики' : 'нолики'}`);
+      if (this.boardObj.checkDidIWin(this.checkCurrentUser() ? 'x' : 'o')) {
+        console.log(`Победили ${this.currentUser == this.users[0] ? 'крестики' : 'нолики'}`);
         this.boardObj.printBoard();
-        this.winner = (this.currentUser ? 'крестики' : 'нолики');
+        this.winner = this.currentUser;
         return false;
       } else {
-        this.currentUser = !this.currentUser;
+        this.setNewCurrentUser();
         if (this.boardObj.hasEmptyElement()) return true;
         else {
           console.log('\nНичья');
         }
       }
     },
+    checkCurrentUser() {
+      return this.currentUser.id == this.users[0].id;
+    },
+    setNewCurrentUser() {
+      if (this.checkCurrentUser()) this.currentUser = this.users[1];
+      else this.currentUser = this.users[0];
+    },
     checkElementIsEmptyAndSetInBoard(data) {
       if (this.boardObj.checkElementIsEmpty(data)) {
-        this.boardObj.setElementToBoard(data, this.currentUser ? 'x' : 'o');
+        this.boardObj.setElementToBoard(data, this.checkCurrentUser() ? 'x' : 'o');
       } else {
         console.log('\nЭта клетка уже занята. Выберите другую');
       }
@@ -46,6 +62,8 @@ function ticTacToe(users) {
 
 module.exports = ticTacToe;
 
-const test = ticTacToe([1, 2]);
-test.startGame().then((data) => console.log('check',data));
-// console.log(test.getWinner());
+const user1 = user('First');
+const user2 = user('Second');
+
+const test = ticTacToe(user1, user2);
+test.startGame().then((data) => console.log(data));

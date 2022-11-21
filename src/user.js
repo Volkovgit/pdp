@@ -1,8 +1,8 @@
-function user(){
+function user(name){
     const randomId = Math.round(Math.random()*100000000);
     return {
         id:randomId,
-        userName:'',
+        userName:name,
         userScope:0
     }
 }

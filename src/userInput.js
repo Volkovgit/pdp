@@ -1,4 +1,8 @@
-function inputValidator() {
+const inputStream = require('./tickTacToe/inputStream');
+
+function userNameInput() {
+  const inputString = inputStream();
+
   const validationInputUserName = (str) => {
     const regexpOnlyNumbersLettersUnderscore = /^\d{0,}\w{0,}_{0,}$/;
     if (!regexpOnlyNumbersLettersUnderscore.test(str))
@@ -11,12 +15,20 @@ function inputValidator() {
     return true;
   };
 
-  
-
+  async function input(text) {
+    return await inputString.stringInput(`${text} `).then((data) => {
+      try {
+        validationInputUserName(data);
+        return data;
+      } catch (error) {
+        console.log(error);
+        return input(text);
+      }
+    });
+  }
   return {
-    validationInputCoordinates,
-    validationInputUserName,
+    input,
   };
 }
 
-module.exports = inputValidator;
+module.exports = userNameInput;

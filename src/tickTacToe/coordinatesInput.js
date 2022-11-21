@@ -22,7 +22,7 @@ function coordinatesInput() {
       .map((el) => Number(el));
   };
 
-  async function input(text) {
+  return async function input(text) {
     return await inputString.stringInput(`${text} `).then((data) => {
       try {
         validationInputCoordinates(data);
@@ -34,9 +34,6 @@ function coordinatesInput() {
     });
   }
 
-  return {
-    input,
-  };
 }
 
 module.exports = coordinatesInput;
