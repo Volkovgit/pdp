@@ -1,4 +1,6 @@
+const inputParent = require('../consoleInput');
 const inputStream = require('./inputStream');
+
 
 function coordinatesInput() {
   const inputString = inputStream();
