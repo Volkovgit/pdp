@@ -1,5 +1,5 @@
+const inputer = require('../inputer');
 const inputParent = require('../inputParent');
-const inputStream = require('./inputStream');
 
 
 function coordinatesInput() {
@@ -26,10 +26,5 @@ function coordinatesInput() {
 }
 
 coordinatesInput.prototype = inputParent.prototype
-
-
-const test = new coordinatesInput();
-test.input('blabla','errorMsg',1,/\d/);
-
 
 module.exports = coordinatesInput;

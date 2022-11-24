@@ -1,8 +1,8 @@
 const inputer = function(strategy){
     this.strategy = strategy
 }
-inputer.prototype.input = function(text = 'Введите что нибудь') {
-    return this.strategy(text);
+inputer.prototype.input = function(...args) {
+    return this.strategy.input(...args);
 };
 
 module.exports = inputer;
