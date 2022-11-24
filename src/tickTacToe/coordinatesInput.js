@@ -1,41 +1,35 @@
-const inputParent = require('../consoleInput');
+const inputParent = require('../inputParent');
 const inputStream = require('./inputStream');
 
 
 function coordinatesInput() {
-  const inputString = inputStream();
-
-  const validationInputCoordinates = (str) => {
-    const regexpOnlyTwoNumbersAboveZeroLessThree = /^[1,2,3]\s{0,}[1,2,3]$/;
-    if (!regexpOnlyTwoNumbersAboveZeroLessThree.test(str))
-      throw new Error(
-        JSON.stringify({
-          message: 'некорректные числа. Введите 2 числа от 1 до 3 через пробел',
-          code: 1,
-        }),
-      );
-    return true;
-  };
-
-  const normalizeInputBoardCoordinate = (str) => {
+  inputParent.call(this)
+  this.normalizeInputBoardCoordinate =  function (str){
     return str
       .split('')
       .filter((el) => el != ' ')
       .map((el) => Number(el));
   };
 
-  return async function input(text) {
-    return await inputString.stringInput(`${text} `).then((data) => {
+  this.input = async function(inputHeader,errorMsg,errorCode,regexp){
+    return await this.inputString.stringInput(`${inputHeader} `).then((string) => {
       try {
-        validationInputCoordinates(data);
-        return normalizeInputBoardCoordinate(data);
+        this.validateInputString(string,errorMsg,errorCode,regexp);
+        return this.normalizeInputBoardCoordinate(string);
       } catch (error) {
         console.log(error);
-        return input(text);
+        return this.input(inputHeader,errorMsg,errorCode,regexp);
       }
     });
   }
 
 }
+
+coordinatesInput.prototype = inputParent.prototype
+
+
+const test = new coordinatesInput();
+test.input('blabla','errorMsg',1,/\d/);
+
 
 module.exports = coordinatesInput;

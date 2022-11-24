@@ -2,9 +2,9 @@ const board = require('./Board');
 const coordinatesInput = require('./coordinatesInput');
 const inputer = require('../inputer');
 
-function ticTacToe(...args) {
+function ticTacToe() {
   const boardObj = board();
-  const inputCoorinates = new inputer(coordinatesInput());
+  const inputCoorinates = new inputer(new coordinatesInput());
   return {
     boardObj,
     inputCoorinates,
