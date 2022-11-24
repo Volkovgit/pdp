@@ -1,15 +1,15 @@
 const inputStream = require('./tickTacToe/inputStream');
 
-function userNameInput() {
+function consoleInput() {
   const inputString = inputStream();
 
-  const validationInputUserName = (str) => {
-    const regexpOnlyNumbersLettersUnderscore = /^\d{0,}\w{0,}_{0,}$/;
-    if (!regexpOnlyNumbersLettersUnderscore.test(str))
+  const validationInputUserName = (inputHeader,errorMsg = null,errorCode = 0,regexp = /^\d{0,}\w{0,}_{0,}$/) => {
+    const regexpOnlyNumbersLettersUnderscore = regexp;
+    if (!regexpOnlyNumbersLettersUnderscore.test(inputHeader))
       throw new Error(
         JSON.stringify({
-          message: 'Некорректное имя. Для ввода разрешены буквы, числа, нижнее подчеркивание',
-          code: 2,
+          message: errorMsg,
+          code: errorCode,
         }),
       );
     return true;
@@ -31,4 +31,4 @@ function userNameInput() {
   };
 }
 
-module.exports = userNameInput;
+module.exports = consoleInput;

@@ -1,7 +1,6 @@
-const user = require('../user');
 const board = require('./Board');
 const coordinatesInput = require('./coordinatesInput');
-const inputer = require('./inputContainer');
+const inputer = require('../inputer');
 
 function ticTacToe(...args) {
   const boardObj = board();
@@ -20,7 +19,7 @@ function ticTacToe(...args) {
       this.boardObj.printBoard();
       const inputData = await this.inputCoorinates.input('Введите координаты');
       this.checkElementIsEmptyAndSetInBoard(inputData);
-      if (this.checkEndOfGameAndWin()) return this.startGame();
+      if (this.checkEndOfGame()) return this.startGame();
       return this.winner;
     },
     printPlayer() {
@@ -29,7 +28,7 @@ function ticTacToe(...args) {
         this.gameStarted = true;
       }
     },
-    checkEndOfGameAndWin() {
+    checkEndOfGame() {
       if (this.boardObj.checkDidIWin(this.checkCurrentUser() ? 'x' : 'o')) {
         console.log(`Победили ${this.currentUser == this.users[0] ? 'крестики' : 'нолики'}`);
         this.boardObj.printBoard();
@@ -61,9 +60,3 @@ function ticTacToe(...args) {
 }
 
 module.exports = ticTacToe;
-
-const user1 = user('First');
-const user2 = user('Second');
-
-const test = ticTacToe(user1, user2);
-test.startGame().then((data) => console.log(data));
