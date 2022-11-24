@@ -9,20 +9,19 @@ function ticTacToe() {
     boardObj,
     inputCoorinates,
     currentUser: true,
-    gameStarted: false,
     async startGame() {
-      console.log('\n');
-      console.log(this.currentUser ? 'Ходят крестики' : 'Ходят нолики');
-      this.boardObj.printBoard();
+      this.printTextAndBoard(`${this.currentUser ? 'Ходят крестики' : 'Ходят нолики'}`)
       const inputData = await this.inputCoorinates.input('Введите координаты','Введены некорректные данные. Введите 2 числа от 1 до 3',1,/\d\s{0,}\d/);
       this.checkElementIsEmptyAndSetInBoard(inputData);
       if (this.checkEndOfGame()) return this.startGame();
     },
+    printTextAndBoard(text){
+      console.log(`\n${text}`);
+      this.boardObj.printBoard();
+    },
     checkEndOfGame() {
       if (this.boardObj.checkDidIWin(this.currentUser ? 'x' : 'o')) {
-        console.log('\n');
-        console.log(`Победили ${this.currentUser ? 'крестики' : 'нолики'}`);
-        this.boardObj.printBoard();
+        this.printTextAndBoard(`Победили ${this.currentUser ? 'крестики' : 'нолики'}`)
         return false;
       } else {
         this.currentUser = !this.currentUser;
