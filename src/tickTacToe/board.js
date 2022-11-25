@@ -1,6 +1,6 @@
 const checkWinner = require('./checkWinner')
 
-function Board() {
+function board() {
   const checker = new checkWinner();
   return {
     checker,
@@ -33,4 +33,4 @@ function Board() {
   };
 }
 
-module.exports = Board;
+module.exports = board;
