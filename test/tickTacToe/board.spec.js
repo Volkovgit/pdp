@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const board = require('../../src/tickTacToe/Board');
 
-describe('board class', () => {
+describe('board', () => {
   let boardClass;
   beforeEach(() => {
     boardClass = new board();

@@ -1,4 +1,6 @@
-const game = require('./src/game');
 const gameEnum = require('./src/gamesEnum');
+const ticTacToe = require('./src/tickTacToe/ticTackToe');
 
-game(gameEnum.TicTackToe).startGame()
+
+const newGame = new ticTacToe()
+newGame.startGame()
