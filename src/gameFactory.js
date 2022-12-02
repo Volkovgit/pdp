@@ -1,13 +1,13 @@
 const gameEnum = require('./gamesEnum');
 const ticTacToe = require('./tickTacToe/ticTackToe');
 
-function game(gameType) {
+function gameFactory(gameType) {
   switch (gameType) {
     case gameEnum.TicTackToe:
       return new ticTacToe();
     default:
-      break;
+      return null
   }
 }
 
-module.exports = game;
+module.exports = gameFactory;

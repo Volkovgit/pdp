@@ -1,9 +1,7 @@
-const consoleInput = require("./src/consoleInput");
-const inputer = require("./src/inputer");
+const ticTacToe = require("./src/tickTacToe/ticTackToe");
+
+ticTacToe
 
 
-const newInput = new inputer(new consoleInput)
-newInput.input('Введите что то',(answer) => {
-  console.log('--',answer)
-})
-console.log();
+const test = new ticTacToe()
+console.log(test instanceof ticTacToe);

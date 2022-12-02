@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const consoleInput = require('../../src/consoleInput');
-const inputer = require('../../src/inputer');
+const consoleInput = require('../src/consoleInput');
+const inputer = require('../src/inputer');
 
 describe('consoleInput', () => {
   let inputFromConsole;
