@@ -1,7 +1,7 @@
 const readline = require('readline');
 
-function inputStream(){
-  this.stringInput= function(text,callback){
+function consoleInput(){
+  this.input= function(text,callback){
     const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
     rl.question(`${text}`, (input) => {
       rl.close();
@@ -10,4 +10,4 @@ function inputStream(){
   }
 }
 
-module.exports = inputStream
+module.exports = consoleInput

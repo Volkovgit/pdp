@@ -1,57 +1,65 @@
 const board = require('./Board');
-const coordinatesInput = require('./coordinatesInput');
 const inputer = require('../inputer');
-
-const inputStream = require('../inputStream');
+const consoleInput = require('../consoleInput');
 
 function ticTacToe() {
-  const boardObj = board();
-  const inputCoorinates = new inputStream();
-  let currentUser = false;
-  this.startGame = function () {
-    function printTextAndBoard(text) {
-      console.log(`${text ? text : ''}`);
-      boardObj.printBoard();
-    }
-    function checkInputStringByRegexp(regexp, string) {
-      return regexp.test(string);
-    }
-    function normalizeInputBoardCoordinate(str) {
-      return str
-        .split('')
-        .filter((el) => el != ' ')
-        .map((el) => Number(el));
-    }
-    function checkElementIsEmpty(coordinates) {
-      return boardObj.checkElementIsEmpty(coordinates);
-    }
-    function checkEndOfGame() {
-      return boardObj.checkDidIWin(currentUser ? 'x' : 'o');
-    }
-    function loop() {
-      if (!checkEndOfGame()) {
-        printTextAndBoard();
-        inputCoorinates.stringInput('Введите координаты ', function (answer) {
-          if (!checkInputStringByRegexp(/^[123]\s{0,}[123]$/, answer)) {
+  this.boardObj = board();
+  this.newInput = new inputer(new consoleInput());
+  this.currentUser = true;
+  this.printTextAndBoard = (text) => {
+    console.log(`${text ? text : ''}`);
+    this.boardObj.printBoard();
+  };
+  this.checkInputStringByRegexp = (regexp, string) => {
+    return regexp.test(string);
+  };
+  this.normalizeInputBoardCoordinate = (str) => {
+    return str
+      .split('')
+      .filter((el) => el != ' ')
+      .map((el) => Number(el));
+  };
+  this.checkElementIsEmpty = (coordinates) => {
+    return this.boardObj.checkElementIsEmpty(coordinates);
+  };
+  this.checkEndOfGame = () => {
+    return this.boardObj.checkDidIWin(this.currentUser ? 'x' : 'o');
+  };
+  this.getCurrentPlayer = () => {
+    return this.currentUser ? 'крестики' : 'нолики';
+  };
+  this.startGame = () => {
+    const loop = () => {
+      console.log(this);
+      if (!this.boardObj.hasEmptyElement()) {
+        this.printTextAndBoard(`Ничья ${this.getCurrentPlayer()}`);
+      } else if (!this.checkEndOfGame()) {
+        this.printTextAndBoard();
+        console.log(`Ходят ${this.getCurrentPlayer()}`);
+        this.newInput.input('Введите координаты ', (answer) => {
+          if (!this.checkInputStringByRegexp(/^[123]\s{0,}[123]$/, answer)) {
             console.log('Должны быть введены 2 числа от 1 до 3');
             loop(answer);
           } else {
-            let coordinates = normalizeInputBoardCoordinate(answer);
-            currentUser = !currentUser
-            if (checkElementIsEmpty(coordinates)) {
-              boardObj.setElementToBoard(coordinates, currentUser ? 'x' : 'o');
-              loop(answer);
+            let coordinates = this.normalizeInputBoardCoordinate(answer);
+            if (this.checkElementIsEmpty(coordinates)) {
+              this.boardObj.setElementToBoard(coordinates, this.currentUser ? 'x' : 'o');
+              if (!this.checkEndOfGame()) {
+                this.currentUser = !this.currentUser;
+                loop(answer);
+              } else {
+                this.printTextAndBoard(`Победили ${this.getCurrentPlayer()}`);
+              }
             } else {
               console.log('\nЭта клетка уже занята. Выберите другую');
               loop(answer);
             }
           }
         });
+      } else if (this.checkEndOfGame()) {
+        this.printTextAndBoard(`Победили ${this.getCurrentPlayer()}`);
       }
-      else{
-        printTextAndBoard(`Победили ${currentUser?'крестики':'нолики'}`);
-      }
-    }
+    };
     loop();
   };
 }
