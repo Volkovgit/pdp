@@ -1,10 +1,11 @@
 const { expect } = require('chai');
 const board = require('../../src/tickTacToe/Board');
+const checkWinner = require('../../src/tickTacToe/ticTacToeWinnerChecker');
 
 describe('board', () => {
   let boardClass;
   beforeEach(() => {
-    boardClass = new board(3);
+    boardClass = new board(3,new checkWinner());
   });
   it('Should return object', () => {
     expect(boardClass).to.be.an('object');
@@ -12,8 +13,8 @@ describe('board', () => {
   it("Should create array with NxN length", () => {
     const oneLengthArray = [[' ']]
     const tenLengthArray = [[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']]
-    const boardWithOneLength = new board(1)
-    const boardWithTenLength = new board(10)
+    const boardWithOneLength = new board(1,checkWinner)
+    const boardWithTenLength = new board(10,checkWinner)
     expect(boardWithOneLength.getBoard()).to.deep.equal(oneLengthArray);
     expect(boardWithTenLength.getBoard()).to.deep.equal(tenLengthArray);
   });

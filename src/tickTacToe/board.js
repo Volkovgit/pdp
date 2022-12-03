@@ -1,12 +1,10 @@
-const checkWinner = require('./checkWinner');
-
-function board(length) {
+function board(length,winChecker) {
   function boardGenerator(){
     return Array.apply(null, Array(length)).map((el) => {
       return Array.apply(null,Array(length)).map((el) => ' ')
     });
   }
-  this.checker = new checkWinner();
+  this.checker = winChecker;
   this.board = boardGenerator(length);
   this.getBoard = function () {
     return this.board;

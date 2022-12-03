@@ -1,9 +1,11 @@
 const board = require('./Board');
 const inputer = require('../inputer');
 const consoleInput = require('../consoleInput');
+const checkWinner = require('./ticTacToeWinnerChecker');
+
 
 function ticTacToe() {
-  this.boardObj = new board(3);
+  this.boardObj = new board(3,checkWinner);
   this.newInput = new inputer(new consoleInput());
   this.currentUser = true;
   this.printTextAndBoard = (text) => {
