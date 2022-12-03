@@ -4,7 +4,7 @@ function board(length,winChecker) {
       return Array.apply(null,Array(length)).map((el) => ' ')
     });
   }
-  this.checker = winChecker;
+  this.checker = new winChecker();
   this.board = boardGenerator(length);
   this.getBoard = function () {
     return this.board;
