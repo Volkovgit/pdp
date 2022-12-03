@@ -4,17 +4,18 @@ const board = require('../../src/tickTacToe/Board');
 describe('board', () => {
   let boardClass;
   beforeEach(() => {
-    boardClass = new board();
+    boardClass = new board(3);
   });
   it('Should return object', () => {
     expect(boardClass).to.be.an('object');
   });
-  it("Should return 3x3 matrix with ' ' elements on initialize", () => {
-    expect(boardClass.getBoard()).to.deep.equal([
-      [' ', ' ', ' '],
-      [' ', ' ', ' '],
-      [' ', ' ', ' '],
-    ]);
+  it("Should create array with NxN length", () => {
+    const oneLengthArray = [[' ']]
+    const tenLengthArray = [[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']]
+    const boardWithOneLength = new board(1)
+    const boardWithTenLength = new board(10)
+    expect(boardWithOneLength.getBoard()).to.deep.equal(oneLengthArray);
+    expect(boardWithTenLength.getBoard()).to.deep.equal(tenLengthArray);
   });
   it('Should set element to board by coordinates', () => {
     const initializeBoard = [

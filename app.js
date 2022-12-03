@@ -1,5 +1,5 @@
-const game = require('./src/game');
+const gameFactory = require('./src/gameFactory');
 const gameEnum = require('./src/gamesEnum');
 
-const newGame = new game(gameEnum.TicTackToe)
+const newGame = new gameFactory(gameEnum.TicTackToe)
 newGame.startGame()

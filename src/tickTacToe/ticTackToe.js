@@ -3,7 +3,7 @@ const inputer = require('../inputer');
 const consoleInput = require('../consoleInput');
 
 function ticTacToe() {
-  this.boardObj = board();
+  this.boardObj = new board(3);
   this.newInput = new inputer(new consoleInput());
   this.currentUser = true;
   this.printTextAndBoard = (text) => {
@@ -30,7 +30,6 @@ function ticTacToe() {
   };
   this.startGame = () => {
     const loop = () => {
-      console.log(this);
       if (!this.boardObj.hasEmptyElement()) {
         this.printTextAndBoard(`Ничья ${this.getCurrentPlayer()}`);
       } else if (!this.checkEndOfGame()) {
