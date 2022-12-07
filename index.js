@@ -13,6 +13,7 @@ navRadioButtons.forEach((radio) =>
 
 function insertElementsIntoHtmlContainer(tagName, elements) {
   const container = document.getElementsByClassName(`${tagName}`)[0];
+  console.log(elements);
   elements.forEach((element) => {
     container.appendChild(element);
   });
@@ -40,11 +41,11 @@ function createSidebarMenuContainer() {
 }
 
 function createSidebarMenuElements(menuHeaderList) {
-  menuHeaderList.map((menuHeader) => {
+  return menuHeaderList.map((menuHeader, index) => {
     const div = document.createElement("div");
     div.className = "sidebar_btn_item";
-    div.innerHTML = `<input id="radio-4" type="radio" name="radio2" value="1" checked />
-    <label for="radio-4">${menuHeader}</label>`;
+    div.innerHTML = `<input id="radio-${index}" type="radio" name="radio2" value="${index}" checked />
+    <label for="radio-${index}">${menuHeader}</label>`;
     return div;
   });
 }
@@ -59,5 +60,8 @@ function sidebarCreator() {
     "Vertical navigation sample",
   ];
   insertHtmlIntoBeginContainer(createSidebarMenuContainer(), ".main");
-  //   insertElementsIntoHtmlContainer('sidebar_container',createSidebarMenuElements(menuList))
+  insertElementsIntoHtmlContainer(
+    "sidebar_container",
+    createSidebarMenuElements(menuList)
+  );
 }
