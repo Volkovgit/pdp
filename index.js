@@ -1,5 +1,9 @@
 const navRadioButtons = document.querySelectorAll('input[name="nav_radio"]');
 
+const firstPageContent = [
+  "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque fugiat quisquam, maiores autem eos reprehenderit obcaecati laboriosam qui cumque repudiandae magnam cum in aliquid tempore, cupiditate quidem. Odio dolorum odit quod aspernatur libero explicabo omnis at maxime eligendi eum, voluptates, enim culpa exercitationem iure voluptate possimus eos veritatis ratione maiores fugit consequatur facere delectus! Accusantium eligendi incidunt repellendus animi deleniti facilis ullam quam cupiditate harum at, ad adipisci delectus porro mollitia. Voluptatum ipsa ea maiores tempore asperiores unde totam ducimus deserunt delectus, non blanditiis iste repudiandae vitae ad porro? Hic odit voluptas officiis! Praesentium, dolore alias. Rerum alias quam architecto.</p>",
+];
+
 const secondPageContent = [
   '<h2 class="header">Level 2 Heading</h2>',
   '<p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, dolorum. Reiciendis, repellat nobis? Numquam vero quis perferendis laboriosam alias, unde doloremque exercitationem voluptatem sequi, veniam porro omnis animi veritatis distinctio.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, dolorum. Reiciendis, repellat nobis? Numquam vero quis perferendis laboriosam alias</p>',
@@ -7,24 +11,31 @@ const secondPageContent = [
   "<ul><li>Basic List Sample</li><li>Basic List Sample</li><li>Basic List Sample</li><li>Basic List Sample</li><li>Basic List Sample</li><li>Basic List Sample</li><li>Basic List Sample</li></ul>",
 ];
 
-const firstPageContent = [
+const firdPageContent = [
+  '<h2 class="header">Level 2 Heading</h2>',
   "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque fugiat quisquam, maiores autem eos reprehenderit obcaecati laboriosam qui cumque repudiandae magnam cum in aliquid tempore, cupiditate quidem. Odio dolorum odit quod aspernatur libero explicabo omnis at maxime eligendi eum, voluptates, enim culpa exercitationem iure voluptate possimus eos veritatis ratione maiores fugit consequatur facere delectus! Accusantium eligendi incidunt repellendus animi deleniti facilis ullam quam cupiditate harum at, ad adipisci delectus porro mollitia. Voluptatum ipsa ea maiores tempore asperiores unde totam ducimus deserunt delectus, non blanditiis iste repudiandae vitae ad porro? Hic odit voluptas officiis! Praesentium, dolore alias. Rerum alias quam architecto.</p>",
+  '<h2 class="header">Level 2 Heading</h2>',
 ];
+
+document.addEventListener("DOMContentLoaded", addContentOnPage(document.querySelector('input[name="nav_radio"]:checked').value));
 
 navRadioButtons.forEach((radio) =>
   radio.addEventListener("change", function (event) {
-    let item = event.target.value;
-    deleteChildrenFromDOMelement(".content_container");
-    deleteElementFromHtml(".sidebar_container");
-    if (item == "2") {
-      sidebarCreator();
-      contentCreator(secondPageContent);
-    } 
-    if (item == "1") {
-      contentCreator(firstPageContent);
-    }
+    let pageNumber = event.target.value;
+    addContentOnPage(pageNumber);
   })
 );
+
+function addContentOnPage(pageNumber) {
+  deleteChildrenFromDOMelement(".content_container");
+  deleteElementFromHtml(".sidebar_container");
+  if (pageNumber == "1") contentCreator(firstPageContent);
+  if (pageNumber == "2") {
+    sidebarCreator();
+    contentCreator(secondPageContent);
+  }
+  if (pageNumber == "3") contentCreator(firdPageContent);
+}
 
 function contentCreator(contentForPage) {
   insertElementsIntoHtmlContainer(
