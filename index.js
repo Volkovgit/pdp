@@ -26,19 +26,30 @@ const sideBarMenuList = [
   "Vertical navigation sample",
 ];
 
-document.addEventListener(
-  "DOMContentLoaded",
+document.addEventListener("DOMContentLoaded", () => {
+  hideHamburgerMenu(
+    document.querySelector('input[name="nav_radio"]:checked').value
+  );
   addContentOnPage(
     document.querySelector('input[name="nav_radio"]:checked').value
-  )
-);
+  );
+});
 
 navRadioButtons.forEach((radio) =>
   radio.addEventListener("change", function (event) {
     let pageNumber = event.target.value;
     addContentOnPage(pageNumber);
+    hideHamburgerMenu(pageNumber);
   })
 );
+
+function hideHamburgerMenu(pageNumber) {
+  const hamburgerMenu = document.querySelector(".hamburger");
+  hamburgerMenu.classList.remove("disp-grid");
+  hamburgerMenu.classList.remove("disp-none");
+  if (pageNumber == "2") hamburgerMenu.classList.add("disp-grid");
+  else hamburgerMenu.classList.add("disp-none");
+}
 
 function addContentOnPage(pageNumber) {
   deleteChildrenFromDOMelement(".content_container");

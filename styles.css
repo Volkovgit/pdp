@@ -160,21 +160,30 @@ footer {
   }
 }
 
+
+.disp-grid{
+  display: grid;
+}
+
+.disp-none{
+  display: none;
+}
+
 .hamburger {
   background-color: white;
-  display: none;
-  height: 5px;
+  /* display: none; */
+  height: 7px;
 }
 .hamburger div{
-  height: 5px;
+  height: 7px;
 }
 @media screen and (max-width: 768px) {
   .hamburger {
     width: 100%;
-    display: grid;
     grid-template-columns: auto auto auto;
   }
   .hamburger_btn {
+    display: block;
     text-align: center;
     cursor: pointer;
     border: none;
@@ -183,3 +192,5 @@ footer {
     width: 100%;
   }
 }
+
+
