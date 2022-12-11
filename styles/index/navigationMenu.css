@@ -1,0 +1,48 @@
+nav {
+  width: 100%;
+  background-color: #383838;
+  color: white;
+}
+
+nav div {
+  display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+  }
+}
+
+.nav_btn_item {
+  text-align: center;
+}
+
+.nav_btn_item label {
+  display: block;
+  cursor: pointer;
+  line-height: 30px;
+  border: none;
+  padding: 0px 15px;
+  border-right: none;
+  user-select: none;
+  font-weight: 100;
+  font-family: Arial;
+  font-size: 14px;
+}
+@media screen and (max-width: 768px) {
+  .nav_btn_item label {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.nav_btn_item input[type="radio"] {
+  display: none;
+}
+
+input[name="nav_radio"]:checked + label {
+  background-color: white;
+  color: black;
+}
