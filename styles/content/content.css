@@ -1,3 +1,7 @@
+p{
+  height:100%
+}
+
 .hamburger {
   background-color: white;
   /* display: none; */
@@ -82,4 +86,8 @@
 .text {
   margin: 10px 0 10px 0;
   color: #383838;
+}
+
+.disp-none{
+  display: none;
 }
