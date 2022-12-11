@@ -115,6 +115,12 @@ input[name="nav_radio"]:checked + label {
   padding: 10px;
   background-color: #cccccc;
 }
+@media screen and (max-width: 768px) {
+  .sidebar_container {
+    display: none;
+  }
+}
+
 
 .content_container {
   width: auto;
@@ -154,11 +160,6 @@ footer {
   color: #383838;
 }
 
-@media screen and (max-width: 768px) {
-  .sidebar_container {
-    display: none;
-  }
-}
 
 
 .disp-grid{
@@ -177,6 +178,12 @@ footer {
 .hamburger div{
   height: 7px;
 }
+@media screen and (min-width:786px){
+  .hamburger {
+    display: none;
+  }
+
+}
 @media screen and (max-width: 768px) {
   .hamburger {
     width: 100%;
@@ -192,5 +199,3 @@ footer {
     width: 100%;
   }
 }
-
-
