@@ -8,8 +8,6 @@ const contents = [
 ];
 
 window.onmessage = function (event) {
-  firstPageContent.classList.add("disp-none");
-  secondPageContent.classList.add("disp-none");
-  firdPageContent.classList.add("disp-none");
-  contents[event.data-1].classList.remove("disp-none")
+  contents.forEach((pageContent) => pageContent.classList.add("disp-none"));
+  contents[event.data - 1].classList.remove("disp-none");
 };

@@ -1,0 +1,63 @@
+.sidebar_container {
+  min-width: 200px;
+  max-width: 200px;
+  padding: 10px;
+  background-color: #cccccc;
+}
+@media screen and (max-width: 768px) {
+  .sidebar_container {
+    display: none;
+  }
+}
+.sidebar_btn_item label {
+  display: inline-block;
+  cursor: pointer;
+  line-height: 30px;
+  border: none;
+  font-weight: 100;
+  font-family: Arial;
+  font-size: 14px;
+  background-color: #383838;
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar_btn_item input[type="radio"]:checked + label {
+  background-color: white;
+  color: black;
+  text-decoration: underline;
+}
+
+.sidebar_btn_item input[type="radio"] {
+  display: none;
+}
+
+.hamburger {
+  background-color: white;
+  /* display: none; */
+  height: 7px;
+}
+.hamburger div {
+  height: 7px;
+}
+@media screen and (min-width: 786px) {
+  .hamburger {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    width: 100%;
+    grid-template-columns: auto auto auto;
+  }
+  .hamburger_btn {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    height: 100%;
+    background-color: #383838;
+    width: 100%;
+  }
+}
