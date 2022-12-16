@@ -1,14 +1,12 @@
-.header {
+header {
   color: #383838;
-}
-
-.header_page {
   width: 100%;
   background-color: #cccccc;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 
 .logo {
   width: 70px;

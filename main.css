@@ -1,5 +1,7 @@
 @import url('./styles/index/header.css');
 @import url('./styles/index/navigationMenu.css');
+@import url('./styles/index/sidebar.css');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +9,6 @@
 
 body{
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 footer {
@@ -19,11 +19,12 @@ footer {
 }
 
 
-main {
-  margin: 0 auto;
-  max-width: 80vh;
+.main {
+  width:100%;
+  display: flex;
 }
 .content{
-  width:100%;
+  flex:6;
+  /* width:-webkit-fill-available; */
   height: 100vh  ;
 }

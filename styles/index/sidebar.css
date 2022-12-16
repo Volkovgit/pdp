@@ -1,0 +1,36 @@
+.sidebar_container_hide {
+  display: none;
+}
+
+.sidebar_container_visible {
+  display: block;
+  background-color: #cccccc;
+}
+
+.sidebarBtn input {
+  display: none;
+}
+#sidebar_container {
+  min-width:70;
+  max-width: 180px;
+  padding: 10px;
+  background-color: #cccccc;
+}
+.sidebarBtn input[type="radio"]:checked + label {
+  background-color: white;
+  color: black;
+  text-decoration: underline;
+}
+
+.sidebarBtn label {
+  display: block;
+  cursor: pointer;
+  line-height: 30px;
+  border: none;
+  font-weight: 100;
+  font-family: Arial;
+  font-size: 14px;
+  background-color: #383838;
+  color: white;
+  text-align: center;
+}

@@ -9,7 +9,7 @@
     <title>EPAM system</title>
   </head>
   <body>
-    <header class="header_page">
+    <header>
       <div class="logo_container">
         <div class="logo"></div>
         <div class="logo_text_container">
@@ -19,24 +19,47 @@
       </div>
 
       <nav>
-        <div class="nav_btn_item">
-          <input id="r1" type="radio" name="nav_radio" value="1" checked />
-          <label for="r1">About UI lab</label>
-        </div>
-        <div class="nav_btn_item">
-          <input id="r2" type="radio" name="nav_radio" value="2" />
-          <label for="r2">Home Tasks</label>
-        </div>
-        <div class="nav_btn_item">
-          <input id="r3" type="radio" name="nav_radio" value="3" />
-          <label for="r3">Test & Exams</label>
+        <div class="menuButton">
+          <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
+          <label for="openSidebarMenu" class="sidebarIconToggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </label>
         </div>
       </nav>
-      
     </header>
 
     <div class="main">
-      <iframe class="content" seamless src="./content/content.html" frameborder="0"></iframe>
+      <div id="sidebar_container" class="sidebar_container_hide">
+        <ul>
+          <li>
+            <div class="sidebarBtn">
+              <input id="r1" type="radio" name="nav_radio" value="1" checked />
+              <label for="r1">About UI lab</label>
+            </div>
+          </li>
+          <li>
+            <div class="sidebarBtn">
+              <input id="r2" type="radio" name="nav_radio" value="2" />
+              <label for="r2">Home Tasks</label>
+            </div>
+          </li>
+          <li>
+            <div class="sidebarBtn">
+              <input id="r3" type="radio" name="nav_radio" value="3" />
+              <label for="r3">Test & exams</label>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+      <iframe
+        class="content"
+        seamless
+        src="./content/content.html"
+        frameborder="0"
+      ></iframe>
     </div>
     <footer></footer>
   </body>
