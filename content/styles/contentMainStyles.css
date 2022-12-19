@@ -1,0 +1,21 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+}
+
+.disp-none {
+  display: none;
+}
+
+img {
+  width: 100%;
+}
+
+.content {
+  margin: 10px;
+}

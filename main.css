@@ -1,6 +1,6 @@
-@import url('./styles/index/header.css');
-@import url('./styles/index/navigationMenu.css');
-@import url('./styles/index/sidebar.css');
+@import url('./styles/header.css');
+@import url('./styles/navigationMenu.css');
+@import url('./styles/sidebar.css');
 
 * {
   margin: 0;
@@ -25,6 +25,5 @@ footer {
 }
 .content{
   flex:6;
-  /* width:-webkit-fill-available; */
   height: 100vh  ;
 }

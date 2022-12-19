@@ -10,7 +10,6 @@ navRadioButtons.forEach((radio) =>
 
 const checkBox = document.querySelector("#openSidebarMenu");
 const menuCheckBox = document.querySelector("#sidebar_container");
-
 checkBox.addEventListener("change", function (event) {
   if (checkBox.checked) {
     menuCheckBox.classList.add("sidebar_container_visible");
@@ -19,4 +18,8 @@ checkBox.addEventListener("change", function (event) {
     menuCheckBox.classList.add("sidebar_container_hide");
     menuCheckBox.classList.remove("sidebar_container_visible");
   }
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+    frameContent.contentWindow.postMessage(1, "*");
 });
