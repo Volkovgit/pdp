@@ -2,10 +2,10 @@
   display: none;
 }
 
-.sidebar_container_visible {
+/* .sidebar_container_visible {
   display: block;
   background-color: #cccccc;
-}
+} */
 
 .sidebarBtn input {
   display: none;
@@ -21,7 +21,7 @@
   text-decoration: underline;
 }
 
-.sidebarBtn label {
+/* .sidebarBtn label {
   display: block;
   cursor: pointer;
   line-height: 30px;
@@ -32,4 +32,5 @@
   background-color: #383838;
   color: white;
   text-align: center;
-}
+  white-space: nowrap
+} */

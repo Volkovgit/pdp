@@ -5,32 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
-    <script src="./index.js" defer></script>
+    <script src="./index.js" type="module" defer></script>
     <title>EPAM system</title>
   </head>
   <body>
-    <header>
-      <div class="logo_container">
-        <div class="logo"></div>
-        <div class="logo_text_container">
-          <p class="logo_header_text logo_text">epam system</p>
-          <h4 class="logo_text">ui lab training</h4>
+    <header class="header bcgc-light_gray">
+      <div class="logo mt-10 ml-10 ">
+        <div class="logo-img disp-inlBlock">
+          <img
+            class="logo-img__picture"
+            src="./components/header/logo/logo-img/__picture/whiteLogoImg.jpg"
+            alt=""
+          />
+        </div>
+        <div class="logo-text disp-inlBlock ml-10">
+          <p class="logo-text__item c-text_gray fF-Arial  t-2em t-upp">epam system</p>
+          <p class="logo-text__item c-text_gray fF-Arial  t-upp">ui lab training</p>
         </div>
       </div>
 
-      <nav>
-        <div class="menuButton">
-          <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
-          <label for="openSidebarMenu" class="sidebarIconToggle">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+      <nav class="navigation bcgc-dark_gray mt-10">
+        <div class="slideMenuButton ml-10">
+          <input
+            class="slideMenuButton__input"
+            type="checkbox"
+            id="openSidebarMenu"
+          />
+          <label class="slideMenuButton-label" for="openSidebarMenu">
+            <div class="slideMenuButton-label__item"></div>
+            <div class="slideMenuButton-label__item"></div>
+            <div class="slideMenuButton-label__item"></div>
           </label>
         </div>
       </nav>
     </header>
 
-    <div class="main">
+    <!-- <div class="main">
       <div id="sidebar_container" class="sidebar_container_hide">
         <ul>
           <li>
@@ -51,7 +61,6 @@
               <label for="r3">Test & exams</label>
             </div>
           </li>
-          
         </ul>
       </div>
       <iframe
@@ -61,7 +70,7 @@
         src="./content/content.html"
         frameborder="0"
       ></iframe>
-    </div>
-    <footer></footer>
+    </div> -->
+    <!-- <footer></footer> -->
   </body>
 </html>

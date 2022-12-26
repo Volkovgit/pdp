@@ -1,0 +1,6 @@
+.slideMenuButton-label__item {
+  width: 100%;
+  height: 5px;
+  background: white;
+  cursor: pointer;
+}

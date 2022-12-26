@@ -1,18 +1,14 @@
-header {
-  color: #383838;
+@import url('./logo/logo.css');
+@import url('./navigation/navigation.css');
+
+.header {
   width: 100%;
-  background-color: #cccccc;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-
-.logo {
-  width: 70px;
-  height: 70px;
-  background-color: white;
-}
+/* 
 
 .logo_container {
   margin: 10px 0 -10px 10px;
@@ -38,4 +34,4 @@ header {
   font-weight: 100;
   height: auto;
   display: inline-block;
-}
+} */

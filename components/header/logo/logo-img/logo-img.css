@@ -1,0 +1,6 @@
+@import url('./__picture/__picture.css');
+
+.logo-img{
+    width:20%;
+    max-width: 150px;
+}

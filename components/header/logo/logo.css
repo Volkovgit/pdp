@@ -1,0 +1,7 @@
+@import url("./logo-img/logo-img.css");
+@import url("./logo-text/logo-text.css");
+
+.logo {
+  display: flex;
+  width: 100%;
+}
