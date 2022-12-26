@@ -1,15 +1,13 @@
 export function setCheckBoxesEvent() {
   const checkBox = document.querySelector(".slideMenuButton__input");
-  // const menuCheckBox = document.querySelector("#sidebar_container");
+  const sidebarMenu = document.querySelector(".sidebar");
   checkBox.addEventListener("change", function (event) {
     if (checkBox.checked) {
-      // menuCheckBox.classList.add("sidebar_container_visible");
-      // menuCheckBox.classList.remove("sidebar_container_hide");
-      console.log("Push");
+      sidebarMenu.classList.add("disp-block");
+      sidebarMenu.classList.remove("disp-none");
     } else {
-      console.log("Down");
-      // menuCheckBox.classList.add("sidebar_container_hide");
-      // menuCheckBox.classList.remove("sidebar_container_visible");
+      sidebarMenu.classList.add("disp-none");
+      sidebarMenu.classList.remove("disp-block");
     }
   });
 }
