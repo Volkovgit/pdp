@@ -10,7 +10,7 @@
   </head>
   <body>
     <header class="header bcgc-light_gray">
-      <div class="logo mt-10 ml-10 ">
+      <div class="logo mt-10 ml-10">
         <div class="logo-img disp-inlBlock">
           <img
             class="logo-img__picture"
@@ -19,8 +19,12 @@
           />
         </div>
         <div class="logo-text disp-inlBlock ml-10">
-          <p class="logo-text__item c-text_gray fF-Arial  t-2em t-upp">epam system</p>
-          <p class="logo-text__item c-text_gray fF-Arial  t-upp">ui lab training</p>
+          <p class="logo-text__item c-text_gray fF-Arial t-2em t-upp">
+            epam system
+          </p>
+          <p class="logo-text__item c-text_gray fF-Arial t-upp">
+            ui lab training
+          </p>
         </div>
       </div>
 
@@ -45,32 +49,57 @@
         <ul class="sidebar-menu">
           <li class="sidebar-menu__item">
             <div class="sidebar-button">
-              <input class="sidebar-button__input" id="btn1" type="radio" name="nav_radio" value="1" checked />
-              <label class="sidebar-button__label" for="btn1">About UI lab</label>
+              <input
+                class="sidebar-button__input"
+                id="btn1"
+                type="radio"
+                name="nav_radio"
+                value="1"
+                checked
+              />
+              <label class="sidebar-button__label" for="btn1"
+                >About UI lab</label
+              >
             </div>
           </li>
           <li class="sidebar-menu__item">
             <div class="sidebar-button">
-              <input class="sidebar-button__input" id="btn2" type="radio" name="nav_radio" value="2"  />
+              <input
+                class="sidebar-button__input"
+                id="btn2"
+                type="radio"
+                name="nav_radio"
+                value="2"
+              />
               <label class="sidebar-button__label" for="btn2">Home Tasks</label>
             </div>
           </li>
           <li class="sidebar-menu__item">
             <div class="sidebar-button">
-              <input class="sidebar-button__input" id="btn3" type="radio" name="nav_radio" value="3"  />
-              <label class="sidebar-button__label" for="btn3">Test & exams</label>
+              <input
+                class="sidebar-button__input"
+                id="btn3"
+                type="radio"
+                name="nav_radio"
+                value="3"
+              />
+              <label class="sidebar-button__label" for="btn3"
+                >Test & exams</label
+              >
             </div>
           </li>
         </ul>
       </div>
-      <!-- <iframe
-        class="content"
-        seamless
-        title="Content with text"
-        src="./content/content.html"
-        frameborder="0"
-      ></iframe> -->
+      <div class="content">
+        <iframe
+          class="content-frame"
+          seamless
+          title="Content with text"
+          src="./components/main-content/content/content.html"
+          frameborder="0"
+        ></iframe>
+      </div>
     </div>
-    <!-- <footer></footer> -->
+    <footer class="footer bcgc-dark_gray"></footer>
   </body>
 </html>
