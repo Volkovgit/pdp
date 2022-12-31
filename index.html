@@ -30,12 +30,12 @@
 
       <nav class="navigation bcgc-dark_gray mt-10">
         <div class="slideMenuButton ml-10">
-          <input
+          <input 
             class="slideMenuButton__input"
             type="checkbox"
             id="openSidebarMenu"
           >
-          <label class="slideMenuButton-label" for="openSidebarMenu">
+          <label tabindex="0" class="slideMenuButton-label" for="openSidebarMenu">
             <span class="slideMenuButton-label__item"></span>
             <span class="slideMenuButton-label__item"></span>
             <span class="slideMenuButton-label__item"></span>
@@ -44,12 +44,12 @@
       </nav>
     </header>
 
-    <div class="main-content">
+    <main class="main-content">
       <div class="sidebar disp-none bcgc-light_gray">
         <ul class="sidebar-menu">
           <li class="sidebar-menu__item">
             <div class="sidebar-button">
-              <input
+              <input 
                 class="sidebar-button__input"
                 id="btn1"
                 type="radio"
@@ -57,33 +57,33 @@
                 value="aboutContent"
                 checked
               >
-              <label class="sidebar-button__label" for="btn1"
+              <label tabindex="1" class="sidebar-button__label" for="btn1"
                 >About UI lab</label
               >
             </div>
           </li>
           <li class="sidebar-menu__item">
             <div class="sidebar-button">
-              <input
+              <input 
                 class="sidebar-button__input"
                 id="btn2"
                 type="radio"
                 name="nav_radio"
                 value="homeContent"
               >
-              <label class="sidebar-button__label" for="btn2">Home Tasks</label>
+              <label tabindex="2" class="sidebar-button__label" for="btn2">Home Tasks</label>
             </div>
           </li>
           <li class="sidebar-menu__item">
             <div class="sidebar-button">
-              <input
+              <input 
                 class="sidebar-button__input"
                 id="btn3"
                 type="radio"
                 name="nav_radio"
                 value="testContent"
               >
-              <label class="sidebar-button__label" for="btn3"
+              <label tabindex="3" class="sidebar-button__label" for="btn3"
                 >Test & exams</label
               >
             </div>
@@ -99,7 +99,7 @@
           
         ></iframe>
       </div>
-    </div>
+    </main>
     <footer class="footer bcgc-dark_gray"></footer>
   </body>
 </html>
