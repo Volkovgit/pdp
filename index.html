@@ -4,33 +4,107 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <title>Document</title>
   </head>
   <body>
-    <div class="page-content">
+    <main class="page-content">
       <div class="about">
-        <div class="autors">
-          <div class="header">
-            <div class="header__item"></div>
+        <div class="about-autors">
+          <div class="about-header">
+            <div class="about-header__item">авторы</div>
           </div>
-          <div class="autor-block">
-            <div class="autor-block__item">
-              <div class="autor-image"></div>
-              <div class="autor-description"></div>
+          <div class="about-autor-block">
+            <div class="about-autor-block__item">
+              <div class="autor-header">
+                <p class="autor-header__item_text">об авторах</p>
+              </div>
+              <div class="autor-image">
+                <img
+                  src="./img/Elisabeth.gif"
+                  alt=""
+                  class="autor-image__item"
+                />
+              </div>
+              <div class="autor-description">
+                <p class="autor-description__item_text">
+                  Элизабет - автор и разработчик программного обеспечения. Она с
+                  самого детства имеет дело с Интернетом. Элизабет -
+                  соучредитель The Ada Project (TAP), сайта для женщин, который
+                  посвящен работе с компьютером и ныне принят ACM (Ассоциацией
+                  по вычислительной технике). Кроме того, Элизабет возглавляет
+                  работы по исследованию и и развитию цифровых носителей.
+                </p>
+              </div>
             </div>
-            <div class="autor-block__item">
-              <div class="autor-image"></div>
-              <div class="autor-description"></div>
+            <div class="about-autor-block__item">
+              <div class="autor-image">
+                <img src="./img/Eric.gif" alt="" class="autor-image__item" />
+              </div>
+              <div class="autor-description">
+                <p class="autor-description__item_text">
+                  Эрик - исследователь в области компьютеров, страстно
+                  увлекающийся работой с информацией медиатипа и архитектурой
+                  систем программного обеспечения. В течении последних четырех
+                  лет он занимался реализацией своей мечты, управляя разработкой
+                  широкополосного Интернета и беспроводного доступа в Disney.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="contents">
-        <div class="table-content"></div>
-        <div class="real-content"></div>
+        <div class="table-content">
+          <div class="table-content-header">
+            <p class="table-content-header__item-text">Содержание (сводка)</p>
+          </div>
+          <div class="table-content-list">
+            <ul class="table-content-list__item">
+              <li class="list-elem"><p class="list-elem__text_from"></p><p class="list-elem__text_header">Введение</p><p class="list-elem__text_to">23</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">1</p><p class="list-elem__text_header">Язык Сети: знакомство с HTML</p><p class="list-elem__text_to">35</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">2</p><p class="list-elem__text_header">Знакомство с гипертекстом: идем дальше - используем гипертекст</p><p class="list-elem__text_to">75</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">3</p><p class="list-elem__text_header">Конструирование веб-страниц: строительные блоки</p><p class="list-elem__text_to">107</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">4</p><p class="list-elem__text_header">Путешествие в Webville: соединение</p><p class="list-elem__text_to">151</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">5</p><p class="list-elem__text_header">Знакомство с медиа: добавление изображений на страницы</p><p class="list-elem__text_to">189</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">6</p><p class="list-elem__text_header">Серьезный HTML: соответствие стандартам</p><p class="list-elem__text_to">245</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">7</p><p class="list-elem__text_header">Добавление X к HTML: переходим к XHTML</p><p class="list-elem__text_to">285</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">8</p><p class="list-elem__text_header">Начнем работать над дизайном: приступаем к работе с CSS</p><p class="list-elem__text_to">305</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">9</p><p class="list-elem__text_header">Увеличиваем словарный запас: меняем шрифты и цвета</p><p class="list-elem__text_to">357</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">10</p><p class="list-elem__text_header">Познакомимся с элементами поближе: блочная модель</p><p class="list-elem__text_to">399</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">11</p><p class="list-elem__text_header">Современная веб-конструкция: элементы div и span</p><p class="list-elem__text_to">441</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">12</p><p class="list-elem__text_header">Расставим элементы по местам: разметка и позиционирование</p><p class="list-elem__text_to">499</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">13</p><p class="list-elem__text_header">Представление в табличной форме: таблицы и большие списки</p><p class="list-elem__text_to">557</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">14</p><p class="list-elem__text_header">Переход на интерактивный режим: XHTML-формы</p><p class="list-elem__text_to">597</p></li>
+              <li class="list-elem"><p class="list-elem__text_from">Приложение</p><p class="list-elem__text_header">Топ 10 тем которые не были освещены в этой книге</p><p class="list-elem__text_to">643</p></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="real-content">
+          <div class="real-content-description">
+            <p class="real-content-description__text">Введение
+              Поведение вашего мозга при изучении HTML и CSS. Когда вы пытаетесь что-либо
+              выучить, ваш мозг неустанно следит за тем, чтобы процесс изучения не остановился. Он
+              думает: “Лучше оставить место для более важной информации, чтобы, например, знать,
+              встречи с какими дикими животными следует избегать. Или знать, что катание на
+              сноуборде без специального снаряжения - не самая удачная идея”. Как же убедить свой
+              мозг в том, что для вас так же важно знать HTML и CSS?</p>
+          </div>
+          <ul class="real-content-list">
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Для кого написана эта книга?</p><p class="real-content-list__elem_text">24</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Кому не стоит читать эту книгу</p><p class="real-content-list__elem_text">24</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Мы знаем, что вы думаете</p><p class="real-content-list__elem_text">25</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Мы также знаем, о чем думает ваш мозг</p><p class="real-content-list__elem_text">25</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Метапознание: учимся учится</p><p class="real-content-list__elem_text">27</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Вот что МЫ делали</p><p class="real-content-list__elem_text">28</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Вот что можете сделать ВЫ, чтобы заставить свой мозг работать</p><p class="real-content-list__elem_text">29</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Примите к сведенью</p><p class="real-content-list__elem_text">30</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Технические рецензенты</p><p class="real-content-list__elem_text">32</p></li>
+            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Благодарности</p><p class="real-content-list__elem_text">33</p></li>
+          </ul>
+        </div>
       </div>
-      
-    </div>
+    </main>
   </body>
 </html>
