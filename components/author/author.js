@@ -10,7 +10,7 @@ export class author extends HTMLElement {
       this.innerHTML = "";
       
       const wrapper = this.createWrapperElement(textContentFromPage,imageUrl);
-      const style = this.createStyleElement();
+      const style = this.createNewElementWithArguments("link",[{"rel":"stylesheet"},{'href':'./components/author/author.css'}]);
 
       let shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot = this.appendChildsToElement(shadowRoot,[style,wrapper]);
@@ -24,18 +24,19 @@ export class author extends HTMLElement {
     return element
   }
 
-
-  createStyleElement(){
-    const style = document.createElement("link");
-    style.setAttribute('rel','stylesheet');
-    style.setAttribute('href','./components/author/author.css');
-    return style;
+  createNewElementWithArguments(elementType,attributes=null){
+    const element = document.createElement(elementType);
+    if(attributes!=null){
+      attributes.forEach((attr)=>{
+        element.setAttribute(Object.keys(attr)[0],attr[Object.keys(attr)]);
+      })
+    }
+    return element
   }
 
-  createWrapperElement(textContentFromPage,imageUrl) {
-    let wrapper = document.createElement("div");
-    wrapper.setAttribute("class", "wrapper");
 
+  createWrapperElement(textContentFromPage,imageUrl) {
+    let wrapper = this.createNewElementWithArguments("div",[{"class":"wrapper"}]);
     const description = this.createDescriptionElement(textContentFromPage);
     const image = this.createImageElement(imageUrl);
     wrapper = this.appendChildsToElement(wrapper,[image,description]);
@@ -45,8 +46,7 @@ export class author extends HTMLElement {
 
   createImageElement(src) {
     const imageElementContainer = document.createElement("div");
-    const image = document.createElement("img");
-    image.setAttribute("src", src);
+    const image = this.createNewElementWithArguments("img",[{src}]);
     imageElementContainer.appendChild(image);
     return imageElementContainer;
   }
