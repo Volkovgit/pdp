@@ -34,79 +34,49 @@
           </div>
         </div>
       </div>
-      <table-component
-        content='{
+
+      <div class="contents">
+        <table-component
+          content='{
           "tableContent":[
-              {"header":"Введение","page":23},
-              {"chapter":1,"header":"Язык Сети: знакомство с HTML","page":35},
-              {"chapter":2,"header":"Знакомство с гипертекстом: идем дальше - используем гипертекст","page":75},
-              {"chapter":3,"header":"Конструирование веб-страниц: строительные блоки","page":107},
-              {"chapter":4,"header":"Путешествие в  Webville: соединение","page":151},
-              {"chapter":5,"header":"Знакомство с медиа: добавление изображений на страницы","page":189},
-              {"chapter":6,"header":"Серьезный HTML: соответствие стандартам","page":245},
-              {"chapter":7,"header":"Добавление X к HTML: переходим к XHTML","page":285},
-              {"chapter":8,"header":"Начнем работать над дизайном: приступаем к работе с CSS","page":305},
-              {"chapter":9,"header":"Увеличиваем словарный запас: меняем шрифты и цвета","page":357},
-              {"chapter":10,"header":"Познакомимся с элементами поближе: блочная модель","page":399},
-              {"chapter":11,"header":"Современная веб-конструкция: элементы div и span","page":441},
-              {"chapter":12,"header":"Расставим элементы по местам: разметка и позиционирование","page":499},
-              {"chapter":13,"header":"Представление в табличной форме: таблицы и большие списки","page":557},
-              {"chapter":14,"header":"Переход на интерактивный режим: XHTML-формы","page":597},
-              {"header":"Переход на интерактивный режим: XHTML-формы","page":645}
+              {"description":"Введение","page":23},
+              {"chapter":1,"description":"Язык Сети: знакомство с HTML","page":35},
+              {"chapter":2,"description":"Знакомство с гипертекстом: идем дальше - используем гипертекст","page":75},
+              {"chapter":3,"description":"Конструирование веб-страниц: строительные блоки","page":107},
+              {"chapter":4,"description":"Путешествие в  Webville: соединение","page":151},
+              {"chapter":5,"description":"Знакомство с медиа: добавление изображений на страницы","page":189},
+              {"chapter":6,"description":"Серьезный HTML: соответствие стандартам","page":245},
+              {"chapter":7,"description":"Добавление X к HTML: переходим к XHTML","page":285},
+              {"chapter":8,"description":"Начнем работать над дизайном: приступаем к работе с CSS","page":305},
+              {"chapter":9,"description":"Увеличиваем словарный запас: меняем шрифты и цвета","page":357},
+              {"chapter":10,"description":"Познакомимся с элементами поближе: блочная модель","page":399},
+              {"chapter":11,"description":"Современная веб-конструкция: элементы div и span","page":441},
+              {"chapter":12,"description":"Расставим элементы по местам: разметка и позиционирование","page":499},
+              {"chapter":13,"description":"Представление в табличной форме: таблицы и большие списки","page":557},
+              {"chapter":14,"description":"Переход на интерактивный режим: XHTML-формы","page":597},
+              {"description":"Переход на интерактивный режим: XHTML-формы","page":645}
           ]
           }'
-      ></table-component>
-      <!-- <div class="contents">
-        <div class="table-content">
-          <div class="table-content-header">
-            <p class="table-content-header__item-text">Содержание (сводка)</p>
-          </div>
-          <div class="table-content-list">
-            <ul class="table-content-list__item">
-              <li class="list-elem"><p class="list-elem__text_from"></p><p class="list-elem__text_header">Введение</p><p class="list-elem__text_to">23</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">1</p><p class="list-elem__text_header">Язык Сети: знакомство с HTML</p><p class="list-elem__text_to">35</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">2</p><p class="list-elem__text_header">Знакомство с гипертекстом: идем дальше - используем гипертекст</p><p class="list-elem__text_to">75</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">3</p><p class="list-elem__text_header">Конструирование веб-страниц: строительные блоки</p><p class="list-elem__text_to">107</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">4</p><p class="list-elem__text_header">Путешествие в Webville: соединение</p><p class="list-elem__text_to">151</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">5</p><p class="list-elem__text_header">Знакомство с медиа: добавление изображений на страницы</p><p class="list-elem__text_to">189</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">6</p><p class="list-elem__text_header">Серьезный HTML: соответствие стандартам</p><p class="list-elem__text_to">245</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">7</p><p class="list-elem__text_header">Добавление X к HTML: переходим к XHTML</p><p class="list-elem__text_to">285</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">8</p><p class="list-elem__text_header">Начнем работать над дизайном: приступаем к работе с CSS</p><p class="list-elem__text_to">305</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">9</p><p class="list-elem__text_header">Увеличиваем словарный запас: меняем шрифты и цвета</p><p class="list-elem__text_to">357</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">10</p><p class="list-elem__text_header">Познакомимся с элементами поближе: блочная модель</p><p class="list-elem__text_to">399</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">11</p><p class="list-elem__text_header">Современная веб-конструкция: элементы div и span</p><p class="list-elem__text_to">441</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">12</p><p class="list-elem__text_header">Расставим элементы по местам: разметка и позиционирование</p><p class="list-elem__text_to">499</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">13</p><p class="list-elem__text_header">Представление в табличной форме: таблицы и большие списки</p><p class="list-elem__text_to">557</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">14</p><p class="list-elem__text_header">Переход на интерактивный режим: XHTML-формы</p><p class="list-elem__text_to">597</p></li>
-              <li class="list-elem"><p class="list-elem__text_from">Приложение</p><p class="list-elem__text_header">Топ 10 тем которые не были освещены в этой книге</p><p class="list-elem__text_to">643</p></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="real-content">
-          <div class="real-content-description">
-            <p class="real-content-description__text">Введение
-              Поведение вашего мозга при изучении HTML и CSS. Когда вы пытаетесь что-либо
-              выучить, ваш мозг неустанно следит за тем, чтобы процесс изучения не остановился. Он
-              думает: “Лучше оставить место для более важной информации, чтобы, например, знать,
-              встречи с какими дикими животными следует избегать. Или знать, что катание на
-              сноуборде без специального снаряжения - не самая удачная идея”. Как же убедить свой
-              мозг в том, что для вас так же важно знать HTML и CSS?</p>
-          </div>
-          <ul class="real-content-list">
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Для кого написана эта книга?</p><p class="real-content-list__elem_text">24</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Кому не стоит читать эту книгу</p><p class="real-content-list__elem_text">24</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Мы знаем, что вы думаете</p><p class="real-content-list__elem_text">25</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Мы также знаем, о чем думает ваш мозг</p><p class="real-content-list__elem_text">25</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Метапознание: учимся учится</p><p class="real-content-list__elem_text">27</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Вот что МЫ делали</p><p class="real-content-list__elem_text">28</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Вот что можете сделать ВЫ, чтобы заставить свой мозг работать</p><p class="real-content-list__elem_text">29</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Примите к сведенью</p><p class="real-content-list__elem_text">30</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Технические рецензенты</p><p class="real-content-list__elem_text">32</p></li>
-            <li class="real-content-list__elem"><p class="real-content-list__elem_text">Благодарности</p><p class="real-content-list__elem_text">33</p></li>
-          </ul>
-        </div>
-      </div> -->
+        ></table-component>
+
+        <table-component
+          content='{
+          "tableContent":[
+              {"description":"Для кого написана эта книга?","page":24},
+              {"description":"Кому не стоит читать эту книгу","page":24},
+              {"description":"Мы знаем, что вы думаете","page":25},
+              {"description":"Мы также знаем, о чем думает ваш мозг","page":25},
+              {"description":"Метапознание: учимся учится","page":27},
+              {"description":"Вот что МЫ делали","page":28},
+              {"description":"Вот что можете сделать ВЫ, чтобы заставить свой мозг работать","page":29},
+              {"description":"Примите к сведенью","page":30},
+              {"description":"Технические рецензенты","page":32},
+              {"description":"Благодарности","page":33}
+          ]
+          }'
+        ></table-component>
+
+      </div>
     </main>
   </body>
 </html>
