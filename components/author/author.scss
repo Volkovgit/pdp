@@ -1,0 +1,33 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height:100%;
+    background-color: antiquewhite;
+}
+
+.photo-wrapper{
+    width:100%;
+    
+}
+
+.author-photo{
+    width: 80%;
+    display: block;
+    margin:auto;
+}
+
+.author-description{
+    width: 80%;
+    
+    margin: 0 auto 0 auto;
+}
+
+.author-description > p{
+    margin: 0 ;
+    // display: block;
+}
+
+// .author-description{
+//     width:100%;
+// }

@@ -45,14 +45,15 @@ export class author extends HTMLElement {
   }
 
   createImageElement(src) {
-    const imageElementContainer = document.createElement("div");
-    const image = this.createNewElementWithArguments("img",[{src}]);
+    const imageElementContainer = this.createNewElementWithArguments("div",[{"class":"photo-wrapper"}]);
+    const image = this.createNewElementWithArguments("img",[{src},{"class":"author-photo"}]);
     imageElementContainer.appendChild(image);
     return imageElementContainer;
   }
 
   createDescriptionElement(text) {
-    const descriptionElementContainer = document.createElement("div");
+    const descriptionElementContainer = this.createNewElementWithArguments("div",[{"class":"author-description"}]);
+    // const descriptionElementContainer = document.createElement("div");
     const paragraphWithText = document.createElement("p");
     paragraphWithText.innerHTML = text;
     descriptionElementContainer.appendChild(paragraphWithText);

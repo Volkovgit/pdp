@@ -10,31 +10,36 @@
   </head>
   <body>
     <main class="page-content">
+      <div class="none"></div>
       <div class="about">
+        
         <div class="about-autors">
           <div class="about-header">
             <div class="about-header__item">авторы</div>
           </div>
           <div class="about-autor-block">
-            <author-component src="./img/Elisabeth.gif">
+            
+            <author-card src="./img/Elisabeth.gif">
               Элизабет - автор и разработчик программного обеспечения. Она с
               самого детства имеет дело с Интернетом. Элизабет - соучредитель
               The Ada Project (TAP), сайта для женщин, который посвящен работе с
               компьютером и ныне принят ACM (Ассоциацией по вычислительной
               технике). Кроме того, Элизабет возглавляет работы по исследованию
               и и развитию цифровых носителей.
-            </author-component>
-            <author-component src="./img/Eric.gif">
+            </author-card>
+            <div class="none"></div>
+            <author-card src="./img/Eric.gif">
               Эрик - исследователь в области компьютеров, страстно увлекающийся
               работой с информацией медиатипа и архитектурой систем программного
               обеспечения. В течении последних четырех лет он занимался
               реализацией своей мечты, управляя разработкой широкополосного
               Интернета и беспроводного доступа в Disney.
-            </author-component>
+            </author-card>
           </div>
         </div>
       </div>
-
+      <div class="none"></div>
+      <div class="none"></div>
       <div class="contents">
         <table-component
           content='{
@@ -54,11 +59,11 @@
               {"chapter":12,"description":"Расставим элементы по местам: разметка и позиционирование","page":499},
               {"chapter":13,"description":"Представление в табличной форме: таблицы и большие списки","page":557},
               {"chapter":14,"description":"Переход на интерактивный режим: XHTML-формы","page":597},
-              {"description":"Переход на интерактивный режим: XHTML-формы","page":645}
+              {"chapter":"Приложение","description":"Топ 10 тем, которые не были разобраны в данной книге","page":645777}
           ]
           }'
         ></table-component>
-
+          <br>
         <table-component
           content='{
           "tableContent":[
@@ -77,6 +82,7 @@
         ></table-component>
 
       </div>
+      <div class="none"></div>
     </main>
   </body>
 </html>
