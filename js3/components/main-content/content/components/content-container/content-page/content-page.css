@@ -1,0 +1,6 @@
+@import url('./__item/__item.css');
+
+
+.content-page>*{
+    padding-bottom: 10px;
+}

@@ -1,0 +1,8 @@
+@import url("./slideMenuButton/slideMenuButton.css");
+@import url('./slideMenuButton/__input/__input.css');
+
+.navigation {
+  width: 100%;
+  height: 40px;
+  color: white;
+}
