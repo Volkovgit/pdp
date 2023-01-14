@@ -11,7 +11,7 @@
         width:100%;
     }
     
-    background-color: red;
+    // background-color: red;
 
     display: flex;
     flex-wrap: wrap;
@@ -21,14 +21,21 @@
 .table-list__element{
    width:100%; 
    display: flex;
+   margin: 0;
+   padding: 0;
 }
 
-.list-chapter{
-    width:auto;
+.number, .empty{
+    // width:auto;
+    width: 6%;
+}
+
+.string{
+    margin-right: 4%;
 }
 
 .list-description{
-    margin-left: 2%;
+    // margin-left: 2%;
     width:100%;
 }
 
