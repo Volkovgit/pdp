@@ -14,7 +14,10 @@
       <div class="about mr-b10">
         <div class="about-autors">
           <div class="about-header">
-            <div class="about-header__item">авторы</div>
+            <div class="about-header-block">
+              <p class="about-header-block__text">авторы</p>
+              <p class="about-header-block__text h-subHeader">Об авторах</p>
+            </div>
           </div>
           <div class="about-autor-block">
             <author-card src="./img/Elisabeth.gif">
@@ -40,11 +43,13 @@
       <div class="none"></div>
       <div class="contents a-center">
         <div class="content-block">
-          <div class="content-block-header"> 
-            <p class="content-block-header__text h-mainHeader">Содержание (сводка)</p>
+          <div class="content-block-header">
+            <p class="content-block-header__text h-mainHeader">
+              Содержание (сводка)
+            </p>
           </div>
           <table-component
-          content='{
+            content='{
           "tableContent":[
               {"chapter":"empty","description":"Введение","page":23},
               {"chapter":1,"description":"Язык Сети: знакомство с HTML","page":35},
@@ -65,22 +70,34 @@
           ]
           }'
           >
-        </table-component>
+          </table-component>
         </div>
-        
+
         <br />
 
         <div class="content-block">
           <div class="content-block-header">
-            <p class="content-block-header__text h-mainHeader">Содержание (настоящее)</p>
+            <p class="content-block-header__text h-mainHeader">
+              Содержание (настоящее)
+            </p>
           </div>
-          <div class="content-bloch-description">
-            <p class="content-block-header__text">Введение
-              Поведение вашего мозга при изучении HTML и CSS. Когда вы пытаетесь что-либо выучить, ваш мозг неустанно следит за тем, чтобы процесс изучения не остановился. Он думает: “Лучше оставить место для более важной информации, чтобы, например, знать, встречи с какими дикими животными следует избегать. Или знать, что катание на сноуборде без специального снаряжения - не самая удачная идея”. Как же убедить свой мозг в том, что для вас так же важно знать HTML и CSS?
-              </p>
+          <div class="content-block-description">
+            <p class="content-block-description__text mr-b2">
+              <span class="h-subHeader">Введение</span>
+              <span class="f-boldText"
+                >Поведение вашего мозга при изучении HTML и CSS.</span
+              >
+              Когда вы пытаетесь что-либо выучить, ваш мозг неустанно следит за
+              тем, чтобы процесс изучения не остановился. Он думает: “Лучше
+              оставить место для более важной информации, чтобы, например,
+              знать, встречи с какими дикими животными следует избегать. Или
+              знать, что катание на сноуборде без специального снаряжения - не
+              самая удачная идея”. Как же убедить свой мозг в том, что для вас
+              так же важно знать HTML и CSS?
+            </p>
           </div>
           <table-component
-          content='{
+            content='{
           "tableContent":[
               {"description":"Для кого написана эта книга?","page":24},
               {"description":"Кому не стоит читать эту книгу","page":24},
@@ -96,7 +113,6 @@
           }'
           ></table-component>
         </div>
-        
       </div>
       <div class="none"></div>
     </main>

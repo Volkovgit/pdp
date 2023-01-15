@@ -66,7 +66,7 @@ export class table extends HTMLElement {
         const pageNumber = this.createNewElementWithParameters('p',[{"class":"list-pageNumber"}],element.page);
 
 
-        const liElement = this.appendChildsToElement(this.createNewElementWithParameters('li',[{"class":"table-list__element"}]),[chapter,description,pageNumber])
+        const liElement = this.appendChildsToElement(this.createNewElementWithParameters('li',[{"class":"table-list__element mr-t2"}]),[chapter,description,pageNumber])
       
         ul.appendChild(liElement)
         

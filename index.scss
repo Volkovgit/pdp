@@ -45,6 +45,18 @@ body {
   }
   &-header {
     height: auto;
+    &-block{
+      width: 80%;
+      margin:0 auto
+    }
+    
+    @supports (display: grid) {
+      display: grid;
+      grid-template-columns: 100%;
+      @media screen and (min-width: 1024px) {
+        grid-template-columns: 1fr 0.1fr 1fr;
+      }
+    }
   }
   &-autor-block {
     @supports (display: grid) {
@@ -62,8 +74,8 @@ body {
     display: grid;
     width: 100%;
     // grid-template-columns: 1fr;
-    @media screen and (max-width:1024px) {
-      width:80%;
+    @media screen and (max-width: 1024px) {
+      width: 80%;
     }
   }
 }
@@ -72,23 +84,46 @@ body {
   width: 100%;
   &-header {
     text-align: center;
-    &__text {
-    }
   }
 }
+
+.content-block-description{
+  &__text{
+    display: block;
+    width:70%;
+    float: right;
+    @media screen and (max-width:1024px) {
+      width:100%;
+    }
+  }
+  
+}
+
+// заголовки
 
 .h-mainHeader {
   font-size: 2.5em;
   font-weight: 600;
 }
 
-.mr-b10{
+.h-subHeader {
+  font-size: 1.5em;
+  display: block;
+  font-weight: 600;
+}
+
+.f-boldText {
+  font-weight: 600;
+}
+
+.mr-b10 {
   margin-bottom: 10%;
 }
 
-
-
-.a-center{
-  margin: 0 auto;
+.mr-b2{
+  margin-bottom: 2%;
 }
 
+.a-center {
+  margin: 0 auto;
+}
