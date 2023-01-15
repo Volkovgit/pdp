@@ -1,4 +1,3 @@
-
 * {
   padding: 0;
   margin: 0;
@@ -27,8 +26,7 @@ body {
   }
 }
 
-
-.page-content{
+.page-content {
   @supports (display: grid) {
     display: grid;
     grid-template-columns: 100%;
@@ -38,10 +36,9 @@ body {
   }
 }
 
-
 .about {
   height: auto;
-  width:100%;
+  width: 100%;
   &-autors {
     width: 100%;
     height: 100%;
@@ -63,11 +60,35 @@ body {
 .contents {
   @supports (display: grid) {
     display: grid;
-    width:100%;
+    width: 100%;
     // grid-template-columns: 1fr;
-    
+    @media screen and (max-width:1024px) {
+      width:80%;
+    }
   }
 }
 
+.content-block {
+  width: 100%;
+  &-header {
+    text-align: center;
+    &__text {
+    }
+  }
+}
 
+.h-mainHeader {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.mr-b10{
+  margin-bottom: 10%;
+}
+
+
+
+.a-center{
+  margin: 0 auto;
+}
 

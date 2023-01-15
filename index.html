@@ -11,37 +11,39 @@
   <body>
     <main class="page-content">
       <div class="none"></div>
-      <div class="about">
-        
+      <div class="about mr-b10">
         <div class="about-autors">
           <div class="about-header">
             <div class="about-header__item">авторы</div>
           </div>
           <div class="about-autor-block">
-            
             <author-card src="./img/Elisabeth.gif">
-              Элизабет - автор и разработчик программного обеспечения. Она с
-              самого детства имеет дело с Интернетом. Элизабет - соучредитель
-              The Ada Project (TAP), сайта для женщин, который посвящен работе с
-              компьютером и ныне принят ACM (Ассоциацией по вычислительной
-              технике). Кроме того, Элизабет возглавляет работы по исследованию
-              и и развитию цифровых носителей.
+              <b>Элизабет</b> - автор и разработчик программного обеспечения.
+              Она с самого детства имеет дело с Интернетом. Элизабет -
+              соучредитель The Ada Project (TAP), сайта для женщин, который
+              посвящен работе с компьютером и ныне принят ACM (Ассоциацией по
+              вычислительной технике). Кроме того, Элизабет возглавляет работы
+              по исследованию и и развитию цифровых носителей.
             </author-card>
             <div class="none"></div>
             <author-card src="./img/Eric.gif">
-              Эрик - исследователь в области компьютеров, страстно увлекающийся
-              работой с информацией медиатипа и архитектурой систем программного
-              обеспечения. В течении последних четырех лет он занимался
-              реализацией своей мечты, управляя разработкой широкополосного
-              Интернета и беспроводного доступа в Disney.
+              <b>Эрик</b> - исследователь в области компьютеров, страстно
+              увлекающийся работой с информацией медиатипа и архитектурой систем
+              программного обеспечения. В течении последних четырех лет он
+              занимался реализацией своей мечты, управляя разработкой
+              широкополосного Интернета и беспроводного доступа в Disney.
             </author-card>
           </div>
         </div>
       </div>
       <div class="none"></div>
       <div class="none"></div>
-      <div class="contents">
-        <table-component
+      <div class="contents a-center">
+        <div class="content-block">
+          <div class="content-block-header"> 
+            <p class="content-block-header__text h-mainHeader">Содержание (сводка)</p>
+          </div>
+          <table-component
           content='{
           "tableContent":[
               {"chapter":"empty","description":"Введение","page":23},
@@ -62,9 +64,22 @@
               {"chapter":"Приложение","description":"Топ 10 тем, которые не были разобраны в данной книге","page":645777}
           ]
           }'
-        ></table-component>
-          <br>
-        <table-component
+          >
+        </table-component>
+        </div>
+        
+        <br />
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <p class="content-block-header__text h-mainHeader">Содержание (настоящее)</p>
+          </div>
+          <div class="content-bloch-description">
+            <p class="content-block-header__text">Введение
+              Поведение вашего мозга при изучении HTML и CSS. Когда вы пытаетесь что-либо выучить, ваш мозг неустанно следит за тем, чтобы процесс изучения не остановился. Он думает: “Лучше оставить место для более важной информации, чтобы, например, знать, встречи с какими дикими животными следует избегать. Или знать, что катание на сноуборде без специального снаряжения - не самая удачная идея”. Как же убедить свой мозг в том, что для вас так же важно знать HTML и CSS?
+              </p>
+          </div>
+          <table-component
           content='{
           "tableContent":[
               {"description":"Для кого написана эта книга?","page":24},
@@ -79,8 +94,9 @@
               {"description":"Благодарности","page":33}
           ]
           }'
-        ></table-component>
-
+          ></table-component>
+        </div>
+        
       </div>
       <div class="none"></div>
     </main>

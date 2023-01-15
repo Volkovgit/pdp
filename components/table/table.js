@@ -1,4 +1,5 @@
 export class table extends HTMLElement {
+  shadowRoot =this.attachShadow({ mode: "open" });
   constructor() {
     super();
   }
@@ -7,13 +8,25 @@ export class table extends HTMLElement {
 
   connectedCallback() {
     setTimeout(()=>{
-        const tableContent = this.tableContentToHtml(JSON.parse(this.getAttribute('content')).tableContent)
-        const tableWrapper = this.appendChildsToElement(this.createNewElementWithParameters('div',[{'class':"table-wrapper"}]),[tableContent])
-        const style = this.createNewElementWithParameters("link",[{"rel":"stylesheet"},{'href':'./components/table/table.css'}]);
-        let shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot = this.appendChildsToElement(shadowRoot,[style,tableWrapper]);
+        
+        this.setStyles()
+        this.createTable()
     })
   }
+
+
+  setStyles(){
+    const style = this.createNewElementWithParameters("link",[{"rel":"stylesheet"},{'href':'./components/table/table.css'}]);
+    this.shadowRoot.appendChild(style)
+  }
+
+  createTable(){
+    const tableContent = this.tableContentToHtml(JSON.parse(this.getAttribute('content')).tableContent)
+    const tableWrapper = this.appendChildsToElement(this.createNewElementWithParameters('div',[{'class':"table-wrapper"}]),[tableContent])
+    this.shadowRoot.appendChild(tableWrapper)
+  }
+
+  
 
   appendChildsToElement(element,childs){
     childs.forEach(child=>{
