@@ -3,12 +3,12 @@
     flex-direction: row;
     flex-wrap: wrap;
     height:100%;
-    // background-color: antiquewhite;
+    width:100%;
+    align-content: space-between;
 }
 
 .photo-wrapper{
     width:100%;
-    
 }
 
 .author-photo{
@@ -17,9 +17,19 @@
     margin:auto;
 }
 
+.author-photo:hover {
+    width: 100%;
+    transition: 1s;
+}
+
+// :host{
+//     background-color: black;
+// }
+
+
+
 .author-description{
     width: 80%;
-    
     margin: 0 auto 0 auto;
 }
 

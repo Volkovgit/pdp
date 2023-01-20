@@ -15,10 +15,10 @@ body {
   height: 100%;
 
   @media screen and (min-width: 1024px) {
-    font-size: 20px;
+    font-size: 18px;
   }
   @media screen and (min-width: 1500px) {
-    font-size: 30px;
+    font-size: 24px;
   }
   @media screen and (max-width: 1024px) {
     font-size: 16px;
@@ -28,9 +28,13 @@ body {
   }
 }
 
+.black {
+  background-color:rgba(0, 0, 0, .2);
+  color:rgba(0, 0, 0, .2);
+  transition: 1s;
+}
+
 .about {
-  // height: auto;
-  // width: 100%;
   &-autors {
     width: 100%;
     height: 100%;
@@ -43,7 +47,7 @@ body {
   }
 }
 
-.page-content{
+.page-content {
   width: 100%;
 }
 
@@ -53,9 +57,19 @@ body {
   flex-direction: row;
 }
 
-.flex-3col{
+author-card {
+  // @supports (display: grid) {
+  //   width: 100%;
+  // }
+  width: 50%;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+}
+
+.flex-rw {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 
@@ -100,8 +114,11 @@ body {
 }
 
 .contents {
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
+  // @supports (display: grid) {
+  //   width: 100%;
+  // }
   @media screen and (max-width: 1024px) {
     width: 80%;
   }

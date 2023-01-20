@@ -1,4 +1,5 @@
 export class author extends HTMLElement {
+  shadowRoot
   constructor() {
     super();
   }
@@ -12,8 +13,12 @@ export class author extends HTMLElement {
       const wrapper = this.createWrapperElement(textContentFromPage,imageUrl);
       const style = this.createNewElementWithArguments("link",[{"rel":"stylesheet"},{'href':'./components/author/author.css'}]);
 
-      let shadowRoot = this.attachShadow({ mode: "open" });
-      shadowRoot = this.appendChildsToElement(shadowRoot,[style,wrapper]);
+      
+
+      this.shadowRoot = this.attachShadow({ mode: "open" });
+      this.shadowRoot = this.appendChildsToElement(this.shadowRoot,[style,wrapper]);
+
+      this.hoverImage()
     });
   }
 
@@ -32,6 +37,18 @@ export class author extends HTMLElement {
       })
     }
     return element
+  }
+
+  hoverImage(){
+    const image = this.shadowRoot.querySelector('.author-photo');
+    image.addEventListener('mouseover',() => {
+      document.querySelector('main').classList.add('black')
+    })
+
+    image.addEventListener('mouseout',() => {
+      document.querySelector('main').classList.remove('black')
+    })
+
   }
 
 
