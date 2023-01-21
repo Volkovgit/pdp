@@ -18,7 +18,7 @@ export class author extends HTMLElement {
       this.shadowRoot = this.attachShadow({ mode: "open" });
       this.shadowRoot = this.appendChildsToElement(this.shadowRoot,[style,wrapper]);
 
-      this.hoverImage()
+      this.setShadowByMouseOverOnImage()
     });
   }
 
@@ -39,15 +39,32 @@ export class author extends HTMLElement {
     return element
   }
 
-  hoverImage(){
-    const image = this.shadowRoot.querySelector('.author-photo');
-    image.addEventListener('mouseover',() => {
-      document.querySelector('main').classList.add('black')
+  setShadowByMouseOverOnImage(){
+    const image = this.shadowRoot.querySelector('.photo-wrapper');
+    const main = document.querySelector('main')
+    const cardList = main.querySelectorAll('author-card');
+    // Я попытался в зависимости от ширины определять разные эвенты клик/наведение , но 
+    // это не работает при изменении ширины после загрузки, оставил только наведение
+    // const onImageEvent = window.innerWidth > 1024 ? "mousedown" : "mouseover"
+    // const outMouseEvent = window.innerWidth > 1024 ? "mouseup" : "mouseout"
+    image.addEventListener("mouseover",() => {
+      cardList.forEach(card=>{
+        if(card != this){
+          main.classList.add('blackShadow')
+          main.classList.remove('whiteShadow')
+        }
+      })
     })
 
-    image.addEventListener('mouseout',() => {
-      document.querySelector('main').classList.remove('black')
+    image.addEventListener("mouseout",() => {
+      cardList.forEach(card=>{
+        if(card != this){
+          main.classList.remove('blackShadow')
+          main.classList.add('whiteShadow')
+        }
+      })
     })
+
 
   }
 
@@ -70,7 +87,6 @@ export class author extends HTMLElement {
 
   createDescriptionElement(text) {
     const descriptionElementContainer = this.createNewElementWithArguments("div",[{"class":"author-description"}]);
-    // const descriptionElementContainer = document.createElement("div");
     const paragraphWithText = document.createElement("p");
     paragraphWithText.innerHTML = text;
     descriptionElementContainer.appendChild(paragraphWithText);

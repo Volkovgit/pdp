@@ -14,17 +14,16 @@
 .author-photo{
     width: 80%;
     display: block;
+    position: relative;
+    z-index: -1;
     margin:auto;
 }
 
-.author-photo:hover {
-    width: 100%;
+.photo-wrapper:hover img{
+    scale: (1.2);
+    z-index: 1;
     transition: 1s;
 }
-
-// :host{
-//     background-color: black;
-// }
 
 
 
@@ -35,9 +34,4 @@
 
 .author-description > p{
     margin: 0 ;
-    // display: block;
 }
-
-// .author-description{
-//     width:100%;
-// }
