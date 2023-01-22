@@ -11,12 +11,20 @@
     width: 100%;
   }
   display: flex;
-  flex-wrap: wrap;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+  	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
 }
 
 .table-list__element {
   width: 100%;
   display: flex;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
 }
 
 .number,

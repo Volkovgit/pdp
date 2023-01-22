@@ -1,5 +1,7 @@
 @import "./atomic";
 
+@import url("./animation.css");
+
 * {
   padding: 0;
   margin: 0;
@@ -28,95 +30,21 @@ body {
   }
 }
 
-.blackShadow {
-  animation-name: fill-shadow-black;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fill-shadow-black {
-  0% {
-    background: rgb(0,0,0,0.2);
-  }
-  25% {
-    background: rgb(0,0,0,0.4);
-  }
-  75% {
-    background: rgb(0,0,0,0.6);
-  }
-  100% {
-    background: rgb(0,0,0,0.8);
-  }
-}
-
-
-.whiteShadow{
-  animation-name: fill-shadow-white;
-  animation-duration: 0.3s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fill-shadow-white {
-  0% {
-    background: rgb(0,0,0,0.8);
-  }
-  25% {
-    background: rgb(0,0,0,0.6);
-  }
-  75% {
-    background: rgb(0,0,0,0.4);
-  }
-  100% {
-    background: rgb(0,0,0,0);
-  }
-}
-
-
-.bcgc-b{
-  box-shadow: inset 0 0 9999px 1000px black;
-}
-
-.about {
-  &-autors {
-    width: 100%;
-    height: 100%;
-    &-header {
-      height: auto;
-      &-block {
-        width: 80%;
-      }
-    }
-  }
-}
-
-.page-content {
-  width: 100%;
-}
-
-.flex-mainColumn {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-author-card {
-  @supports (display: grid) {
-    width: 100%;
-  }
-  width: 50%;
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-  }
-}
 
 .flex-rw {
   display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-direction: row;
 }
 
 .grid-mainColumn {
-  @supports (display: grid) {
+  @supports (display: grid) or (display: -ms-grid) {
+    display: -ms-grid;
     display: grid;
     grid-template-columns: 1fr;
     -ms-grid-column: 1fr;
@@ -127,7 +55,8 @@ author-card {
   }
 }
 .grid-3col {
-  @supports (display: grid) {
+  @supports (display: grid) or (display: -ms-grid) {
+    display: -ms-grid;
     display: grid;
     grid-template-columns: 1fr;
     -ms-grid-column: 1fr;
@@ -138,7 +67,8 @@ author-card {
   }
 }
 .grid-1col {
-  @supports (display: grid) {
+  @supports (display: grid) or (display: -ms-grid) {
+    display: -ms-grid;
     display: grid;
     grid-template-columns: 1fr;
     -ms-grid-column: 1fr;
@@ -148,41 +78,72 @@ author-card {
   }
 }
 
-.none {
-  display: none;
-  @supports (display: grid) {
-    display: block;
-  }
-}
-
-.contents {
-  width: 80%;
-  margin: 0 auto;
-  @supports (display: grid) {
-    width: 100%;
-  }
-  @media screen and (max-width: 1024px) {
-    width: 80%;
-  }
-}
-
-.content {
-  &-block {
-    &-header {
-      text-align: center;
-    }
-    &-description {
+.page {
+  width: 100%;
+  &-about {
+    &-autors {
       width: 100%;
-      &__text {
-        float: right;
-        display: block;
-        @media screen and (max-width: 1024px) {
-          width: 100%;
-        }
-        @media screen and (min-width: 1024px) {
-          width: 70%;
+      height: 100%;
+      &-header {
+        margin: 0 auto;
+        height: auto;
+        &-block {
+          width: 80%;
         }
       }
     }
   }
+  &-none {
+    display: none;
+    @supports (display: grid) or (display: -ms-grid) {
+      display: block;
+    }
+  }
+  &-content {
+    width: 80%;
+    margin: 0 auto;
+    @supports (display: grid) or (display: -ms-grid) {
+      width: 100%;
+    }
+    @media screen and (max-width: 1024px) {
+      width: 80%;
+    }
+    &-block {
+      &-header {
+        text-align: center;
+      }
+      &-description {
+        width: 100%;
+        &__text {
+          float: right;
+          display: block;
+          @media screen and (max-width: 1024px) {
+            width: 100%;
+          }
+          @media screen and (min-width: 1024px) {
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.h-mainHeader {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.h-subHeader {
+  font-size: 1.5em;
+  display: block;
+  font-weight: 600;
+}
+
+.f-boldText {
+  font-weight: 600;
+}
+
+.mr-b10 {
+  margin-bottom: 10%;
 }

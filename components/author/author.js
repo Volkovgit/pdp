@@ -40,29 +40,20 @@ export class author extends HTMLElement {
   }
 
   setShadowByMouseOverOnImage(){
-    const image = this.shadowRoot.querySelector('.photo-wrapper');
+    const image = this.shadowRoot.querySelector('.card-photo');
     const main = document.querySelector('main')
-    const cardList = main.querySelectorAll('author-card');
     // Я попытался в зависимости от ширины определять разные эвенты клик/наведение , но 
     // это не работает при изменении ширины после загрузки, оставил только наведение
     // const onImageEvent = window.innerWidth > 1024 ? "mousedown" : "mouseover"
     // const outMouseEvent = window.innerWidth > 1024 ? "mouseup" : "mouseout"
     image.addEventListener("mouseover",() => {
-      cardList.forEach(card=>{
-        if(card != this){
-          main.classList.add('blackShadow')
-          main.classList.remove('whiteShadow')
-        }
-      })
+      main.classList.add('blackShadow')
+      main.classList.remove('whiteShadow')
     })
 
     image.addEventListener("mouseout",() => {
-      cardList.forEach(card=>{
-        if(card != this){
-          main.classList.remove('blackShadow')
-          main.classList.add('whiteShadow')
-        }
-      })
+      main.classList.remove('blackShadow')
+      main.classList.add('whiteShadow')
     })
 
 
@@ -70,24 +61,24 @@ export class author extends HTMLElement {
 
 
   createWrapperElement(textContentFromPage,imageUrl) {
-    let wrapper = this.createNewElementWithArguments("div",[{"class":"wrapper"}]);
+    let wrapper = this.createNewElementWithArguments("div",[{"class":"card"}]);
     const description = this.createDescriptionElement(textContentFromPage);
     const image = this.createImageElement(imageUrl);
     wrapper = this.appendChildsToElement(wrapper,[image,description]);
 
     return wrapper;
   }
-
+  
   createImageElement(src) {
-    const imageElementContainer = this.createNewElementWithArguments("div",[{"class":"photo-wrapper"}]);
-    const image = this.createNewElementWithArguments("img",[{src},{"class":"author-photo"}]);
+    const imageElementContainer = this.createNewElementWithArguments("div",[{"class":"card-photo"}]);
+    const image = this.createNewElementWithArguments("img",[{src},{"class":"card-photo__img"}]);
     imageElementContainer.appendChild(image);
     return imageElementContainer;
   }
 
   createDescriptionElement(text) {
-    const descriptionElementContainer = this.createNewElementWithArguments("div",[{"class":"author-description"}]);
-    const paragraphWithText = document.createElement("p");
+    const descriptionElementContainer = this.createNewElementWithArguments("div",[{"class":"card-description"}]);
+    const paragraphWithText = this.createNewElementWithArguments("p",[{"class":"card-description__text"}]);
     paragraphWithText.innerHTML = text;
     descriptionElementContainer.appendChild(paragraphWithText);
     return descriptionElementContainer;
