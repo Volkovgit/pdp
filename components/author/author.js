@@ -1,5 +1,5 @@
 export class author extends HTMLElement {
-  shadowRoot
+  shadowRoot = this.attachShadow({ mode: "open" });
   constructor() {
     super();
   }
@@ -10,16 +10,21 @@ export class author extends HTMLElement {
       const imageUrl = this.getAttribute('src')
       this.innerHTML = "";
       
-      const wrapper = this.createWrapperElement(textContentFromPage,imageUrl);
-      const style = this.createNewElementWithArguments("link",[{"rel":"stylesheet"},{'href':'./components/author/author.css'}]);
-
       
-
-      this.shadowRoot = this.attachShadow({ mode: "open" });
-      this.shadowRoot = this.appendChildsToElement(this.shadowRoot,[style,wrapper]);
-
+      this.setStyles();
+      this.setContent(textContentFromPage,imageUrl);
       this.setShadowByMouseOverOnImage()
     });
+  }
+
+  setStyles(){
+    const style = this.createNewElementWithArguments("link",[{"rel":"stylesheet"},{'href':'./components/author/author.css'}]);
+    this.shadowRoot.appendChild(style)
+  }
+
+  setContent(textContentFromPage,imageUrl){
+    const wrapper = this.createWrapperElement(textContentFromPage,imageUrl);
+    this.shadowRoot.appendChild(wrapper)
   }
 
   appendChildsToElement(element,childs){
