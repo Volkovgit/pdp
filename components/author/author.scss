@@ -1,12 +1,7 @@
+@import "../../styles/mixins";
+
 .card {
-  display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  flex-direction: row;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
+  @include flexWithVendors(wrap, row);
   height: 100%;
   width: 100%;
   @supports not ((display: grid) or (display: -ms-grid)) {

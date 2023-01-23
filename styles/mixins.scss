@@ -1,0 +1,22 @@
+@mixin gridWithVendors($width) {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: $width;
+  -ms-grid-column: $width;
+}
+
+@mixin gridColumns($columns) {
+  grid-template-columns: $columns;
+  -ms-grid-column: $columns;
+}
+
+@mixin flexWithVendors($wrap, $direction) {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-wrap: $wrap;
+  -webkit-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-direction: $direction;
+}

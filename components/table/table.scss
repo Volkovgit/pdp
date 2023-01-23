@@ -1,60 +1,40 @@
+@import "../../styles/mixins";
+
 * {
   margin: 0;
   padding: 0;
 }
 
-.table-list {
-  list-style: none;
-  float: right;
-  width: 46%;
-  @media screen and (max-width: 1024px) {
-    width: 100%;
+.table {
+  &-list {
+    list-style: none;
+    float: right;
+    width: 46%;
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+    }
+    @include flexWithVendors(wrap,row);
+    &-row {
+      width: 100%;
+      @include flexWithVendors(nowrap,row);
+      &__description {
+        width: 100%;
+      }
+      &__pageNumber {
+        width: auto;
+      }
+    }
   }
-  display: flex;
-display: -webkit-box;
-display: -webkit-flex;
-display: -ms-flexbox;
-  	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-}
-
-.table-list__element {
-  width: 100%;
-  display: flex;
-display: -webkit-box;
-display: -webkit-flex;
-display: -ms-flexbox;
 }
 
 .number,
 .empty {
   width: 6%;
 }
-
 .string {
   margin-right: 4%;
 }
 
-.list-description {
-  width: 100%;
-}
-
-.list-pageNumber {
-  width: auto;
-}
-
-.table-header {
-  text-align: center;
-}
-
-.table-header__item {
-  display: inline-block;
-}
-
-.header2 {
-  font-size: 2em;
-}
 
 .mr-t2 {
   margin-top: 2%;

@@ -22,7 +22,7 @@ export class table extends HTMLElement {
 
   createTable(){
     const tableContent = this.tableContentToHtml(JSON.parse(this.getAttribute('content')).tableContent)
-    const tableWrapper = this.appendChildsToElement(this.createNewElementWithParameters('div',[{'class':"table-wrapper"}]),[tableContent])
+    const tableWrapper = this.appendChildsToElement(this.createNewElementWithParameters('div',[{'class':"table"}]),[tableContent])
     this.shadowRoot.appendChild(tableWrapper)
   }
 
@@ -61,12 +61,12 @@ export class table extends HTMLElement {
     const ul = this.createNewElementWithParameters('ul',[{"class":"table-list"}])
     tableContent.forEach(element => {
       this.getChapterType(element.chapter);
-        const chapter = this.createNewElementWithParameters('p',[{"class":`list-chapter ${this.getChapterType(element.chapter)}`}],this.getChapterText(element.chapter));
-        const description = this.createNewElementWithParameters('p',[{"class":"list-description"}],element.description);
-        const pageNumber = this.createNewElementWithParameters('p',[{"class":"list-pageNumber"}],element.page);
+        const chapter = this.createNewElementWithParameters('p',[{"class":`table-list-row__chapter ${this.getChapterType(element.chapter)}`}],this.getChapterText(element.chapter));
+        const description = this.createNewElementWithParameters('p',[{"class":"table-list-row__description"}],element.description);
+        const pageNumber = this.createNewElementWithParameters('p',[{"class":"table-list-row__pageNumber"}],element.page);
 
 
-        const liElement = this.appendChildsToElement(this.createNewElementWithParameters('li',[{"class":"table-list__element mr-t2"}]),[chapter,description,pageNumber])
+        const liElement = this.appendChildsToElement(this.createNewElementWithParameters('li',[{"class":"table-list-row mr-t2"}]),[chapter,description,pageNumber])
       
         ul.appendChild(liElement)
         
