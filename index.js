@@ -1,4 +1,4 @@
-var inputLabel = document.querySelector(".input-label");
+var inputLabel = document.querySelector(".dropdown__input");
 
 var listWithValues = [
   {
@@ -191,103 +191,120 @@ var listWithValues = [
   },
 ];
 
+
+// фильтруем список при ввода символов
 function filterList() {
-  createListPicker(listWithValues, inputLabel.value);
+    var filterValue = inputLabel.value
+    var filtredList = listWithValues.filter(function(elem){
+        if(filterValue != null && filterValue != "")return !elem.label.indexOf(filterValue)
+        return true
+      })
+    hideYScroll(filtredList.length)
+    createListElements(filtredList, filterValue);
 }
 
-inputLabel.onkeyup = inputLabel.oninput = filterList;
+function hideYScroll(elementsCount){
+    var list = document.querySelector('ul');
+    if(elementsCount < 5){
+        list.style.overflow = 'hidden';
+    }
+    else{
+        if(list.style.overflow == 'hidden'){
+            list.style.overflow = 'scroll'
+            list.style.overflowX = 'hidden'
+        };
+    }
+}
 
-inputLabel.onpropertychange = function (event) {
-  if (event.propertyName == "value") filterList();
-};
-
-inputLabel.oncut = function () {
-  setTimeout(filterList, 0);
-};
-
-function createButton(value, label) {
+function createButton(label) {
   var btnHtml =
     '<li><button onClick="onButtonclick(this);"' +
     'value="' +
-    value +
+    label +
     '">' +
     label +
     "</button></li>";
   return btnHtml;
 }
 
-function createListPicker(list, filter) {
+function createListElements(list, filter) {
   var ul = document.querySelector("ul");
-  
   ul.innerHTML = "";
   for (var i = 0; i < list.length; i++) {
     if (filter != null && filter != "") {
       if (!list[i].label.indexOf(filter)) {
-        ul.innerHTML += createButton(list[i].id, list[i].label);
+        ul.innerHTML += createButton(list[i].label);
       }
     } else {
-      ul.innerHTML += createButton(list[i].id, list[i].label);
+      ul.innerHTML += createButton(list[i].label);
     }
   }
 }
 
 function onButtonclick(elem) {
-  inputLabel.value = elem.textContent;
-  inputLabel.setAttribute("currentValue", elem.value);
+  var newValue = elem.textContent ? elem.textContent : elem.value;
+  inputLabel.value = newValue;
+  inputLabel.setAttribute("currentValue", newValue);
 }
-
+//проверяем точно ли пользователь нажал на кнопку
+//выглядит так себе проверкой, я хотел реализовать точную проверку что пользователь нажал на кнопку выпадающего списка
+//для того, чтобы не выполнять onClick со всего подряд
 function checkBlurClickElement(element) {
   element.nodeName == "BUTTON" ? element.onclick() : "";
 }
-
-function hideElementBySetNoneClass(){
+//удаляем выпадающий список со страницы
+function deleteListWithItemsFromHtml(){
     var listItem = document.querySelector("ul");
-    // listItem.remove()
+    var wrapper = document.querySelector(".dropdown")
+    if(listItem.remove)listItem.remove()
+    else{wrapper.removeChild(listItem)}
 }
-
-
 // считаем есть ли под блоком расстояние на выпадающий список
-function checkSize(){
+function checkBottomHeightForList(){
     var inputCoordinates = inputLabel.getBoundingClientRect()
     var windowInnerHeight = window.innerHeight
     if(windowInnerHeight-inputCoordinates.bottom>100)return true
     return false
 }
+
+function checkOverflow(){
+    
+}
 //вставляем выпадающий список на страницу
 function insertInputSelect(){
     var ul = document.createElement('ul')
     var inputCoordinates = inputLabel.getBoundingClientRect()
-    
-    ul.style.left = inputCoordinates.x+'px';
+    var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left
+    var wrapper = document.querySelector('.dropdown')
+    ul.style.left = left+'px';
     if(ul.classList){
         ul.classList.add('input-select')
     }
     else{
         ul.className += ul.className+"input-select"
     }
-    if(!checkSize()){
-        console.log(inputCoordinates);
-        // ul.style.y = inputCoordinates.y-300+'px';
-        // ul.style.y = inputCoordinates.y-300+'px';
-        
-        inputLabel.before(ul)
-        ul.style.top = inputCoordinates.y+'px'
-        console.log();
+    if(!checkBottomHeightForList()){
+        ul.style.top = -100+'px'
+        if(inputLabel.before)inputLabel.before(ul)
+        else{
+            wrapper.insertBefore(ul,inputLabel);
+        }
     }
     else{
-        inputLabel.after(ul)
-        
+        if(inputLabel.after)inputLabel.after(ul)
+        else{
+            wrapper.appendChild(ul);
+        }
     }
-    // console.log(ul.getBoundingClientRect());
+    createListElements(listWithValues, null);
     
 }
 
-
+// обработка различных событий у input
 inputLabel.onfocus = function () {
     insertInputSelect()
+    inputLabel.value = "";
     
-    // inputLabel.value = "";
-    // createListPicker(listWithValues, null);
 };
 
 inputLabel.onblur = function (event) {
@@ -296,21 +313,19 @@ inputLabel.onblur = function (event) {
   } else {
     checkBlurClickElement(document.activeElement);
   }
-  var listItem = document.querySelector("ul");
-  listItem.innerHTML = "";
-  hideElementBySetNoneClass()
+  if(inputLabel.getAttribute('currentValue') != inputLabel.value)inputLabel.value = inputLabel.getAttribute('currentValue')
+  deleteListWithItemsFromHtml()
 };
-
-
-// window.onscroll = function(){
-//     inputLabel.blur()
-// }
+inputLabel.onkeyup = inputLabel.oninput = filterList;
+inputLabel.onpropertychange = function (event) {
+  if (event.propertyName == "value") filterList();
+};
+inputLabel.oncut = function () {
+  setTimeout(filterList, 0);
+};
+window.onscroll = function(){
+    inputLabel.blur()
+}
 window.onresize = function(){
     inputLabel.blur()
 }
-
-
-
-
-// console.log(checkSize());
-

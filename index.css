@@ -11,18 +11,18 @@ body{
     height:100%;
 }
 
-.input-wrapper{
+.dropdown{
     width:auto;
+    position: relative;
     /* height:100%; */
     margin-top:800px;
 }
 
-.input-label{
+.dropdown__input{
     width:250px;
     
     display: block;
     margin: auto;
-    /* margin-top: 150px; */
 }
 
 .input-select{
