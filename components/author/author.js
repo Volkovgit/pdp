@@ -18,7 +18,7 @@ export class author extends HTMLElement {
   }
 
   setStyles(){
-    const style = this.createNewElementWithArguments("link",[{"rel":"stylesheet"},{'href':'./components/author/author.css'}]);
+    const style = this.createNewElementWithArguments("link",[{"rel":"stylesheet"},{'href':'./components/author/author.css'},{'type':"text/css"}]);
     this.shadowRoot.appendChild(style)
   }
 

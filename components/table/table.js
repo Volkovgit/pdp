@@ -16,7 +16,7 @@ export class table extends HTMLElement {
 
 
   setStyles(){
-    const style = this.createNewElementWithParameters("link",[{"rel":"stylesheet"},{'href':'./components/table/table.css'}]);
+    const style = this.createNewElementWithParameters("link",[{"rel":"stylesheet"},{'href':'./components/table/table.css'},{'type':"text/css"}]);
     this.shadowRoot.appendChild(style)
   }
 
