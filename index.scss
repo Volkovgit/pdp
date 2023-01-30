@@ -38,16 +38,17 @@ body {
 .grid-mainColumn {
   @supports (display: grid) or (display: -ms-grid) {
     @include gridWithVendors(1fr);
+    justify-content: center;
     @media screen and (min-width: 1024px) {
-      @include gridColumns(0.1fr 1fr 0.1fr);
+      @include gridColumns(0.8fr);
     }
   }
 }
-.grid-3col {
+.grid-2col {
   @supports (display: grid) or (display: -ms-grid) {
     @include gridWithVendors(1fr);
     @media screen and (min-width: 1024px) {
-      @include gridColumns(1fr 0.1fr 1fr);
+      @include gridColumns(1fr 1fr);
     }
   }
 }
