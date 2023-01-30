@@ -33,17 +33,17 @@ function hasEmptyRequiredInput(){
     var requiredInputs = [
         {
             id: 'studentClass',
-            text: '班级',
+            text: 'Класс',
             divId: 'class'
         },
         {
             id: 'studentNumber',
-            text: '学号',
+            text: 'Студенческий билет',
             divId: 'number'
         },
         {
             id: 'studentName',
-            text: '姓名',
+            text: 'Имя',
             divId: 'name'
         }
     ];
@@ -65,8 +65,8 @@ function Get_scores() {
 }
 
 function fullInTopics() {
-    var fullInSubject1 = new Subject('fullInSubject', ['统一建模语言'], 1, 5);
-    var fullInSubject2 = new Subject('fullInSubject', ['继承性', '多态性', '封装性'], 3, 5);
+    var fullInSubject1 = new Subject('fullInSubject', ['Единый язык моделирования'], 1, 5);
+    var fullInSubject2 = new Subject('fullInSubject', ['Наследование', 'Полиморфизм', 'Инкапсуляция'], 3, 5);
 
     var value1_1_1 = $('#gap1').val();
 
@@ -154,7 +154,7 @@ function trueOrFalseTopics() {
 
 function shortAnswerTopics() {
     var shortAnswerSubject = new Subject('shortAnswerSubject',
-        ['模型是对现实世界的简化和抽象,模型是对所研究的系统、过程、事物或概念的一种表达形式。可以是物理实体;可以是某种图形;或者是一种数学表达式。'],
+        ['Модель — это упрощение и абстракция реального мира.,Модель — это представление изучаемой системы, процесса, вещи или концепции. Может быть физическим объектом; может быть каким-то графическим изображением;Или математическое выражение.'],
         1, 20);
     var value5 = $('#short5').val();
 
