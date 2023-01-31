@@ -192,6 +192,8 @@ var listWithValues = [
 ];
 
 
+
+
 // фильтруем список при ввода символов
 function filterList() {
     var filterValue = inputLabel.value
@@ -201,7 +203,10 @@ function filterList() {
       })
     hideYScroll(filtredList.length)
     createListElements(filtredList, filterValue);
+    setPostitionForList()
 }
+
+
 
 function hideYScroll(elementsCount){
     var list = document.querySelector('ul');
@@ -267,16 +272,11 @@ function checkBottomHeightForList(){
     return false
 }
 
-function checkOverflow(){
-    
-}
 //вставляем выпадающий список на страницу
 function insertInputSelect(){
     var ul = document.createElement('ul')
-    var inputCoordinates = inputLabel.getBoundingClientRect()
-    var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left
     var wrapper = document.querySelector('.dropdown')
-    ul.style.left = left+'px';
+    
     if(ul.classList){
         ul.classList.add('input-select')
     }
@@ -284,7 +284,7 @@ function insertInputSelect(){
         ul.className += ul.className+"input-select"
     }
     if(!checkBottomHeightForList()){
-        ul.style.top = -100+'px'
+        // ul.style.top = -100+'px'
         if(inputLabel.before)inputLabel.before(ul)
         else{
             wrapper.insertBefore(ul,inputLabel);
@@ -297,7 +297,21 @@ function insertInputSelect(){
         }
     }
     createListElements(listWithValues, null);
-    
+    setPostitionForList();
+}
+
+function setPostitionForList(){
+  var ul = document.querySelector('ul')
+  var inputCoordinates = inputLabel.getBoundingClientRect()
+  var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left
+  ul.style.left = left+'px';
+  if(!checkBottomHeightForList()){
+    var listElementsCount = document.querySelectorAll('li').length;
+    if(listElementsCount >= 5)ul.style.top = -100+'px'
+    else{
+      ul.style.top = listElementsCount*-20+'px'
+    }
+}
 }
 
 // обработка различных событий у input

@@ -30,7 +30,7 @@ body{
     padding: 0;
     list-style-type:none;
     width:250px;
-    height:100px;
+    max-height:100px;
     overflow: scroll;
     overflow-x:hidden;
     display: block;
