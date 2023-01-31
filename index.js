@@ -191,34 +191,29 @@ var listWithValues = [
   },
 ];
 
-
-
-
 // фильтруем список при ввода символов
 function filterList() {
-    var filterValue = inputLabel.value
-    var filtredList = listWithValues.filter(function(elem){
-        if(filterValue != null && filterValue != "")return !elem.label.indexOf(filterValue)
-        return true
-      })
-    hideYScroll(filtredList.length)
-    createListElements(filtredList, filterValue);
-    setPostitionForList()
+  var filterValue = inputLabel.value;
+  var filtredList = listWithValues.filter(function (elem) {
+    if (filterValue != null && filterValue != "")
+      return !elem.label.indexOf(filterValue);
+    return true;
+  });
+  hideYScroll(filtredList.length);
+  createListElements(filtredList, filterValue);
+  setPostitionForList();
 }
 
-
-
-function hideYScroll(elementsCount){
-    var list = document.querySelector('ul');
-    if(elementsCount < 5){
-        list.style.overflow = 'hidden';
+function hideYScroll(elementsCount) {
+  var list = document.querySelector("ul");
+  if (elementsCount < 5) {
+    list.style.overflow = "hidden";
+  } else {
+    if (list.style.overflow === "hidden") {
+      list.style.overflow = "scroll";
+      list.style.overflowX = "hidden";
     }
-    else{
-        if(list.style.overflow === 'hidden'){
-            list.style.overflow = 'scroll'
-            list.style.overflowX = 'hidden'
-        };
-    }
+  }
 }
 
 function createButton(label) {
@@ -258,78 +253,64 @@ function checkBlurClickElement(element) {
   element.nodeName == "BUTTON" ? element.onclick() : "";
 }
 //удаляем выпадающий список со страницы
-function deleteListWithItemsFromHtml(){
-    var listItem = document.querySelector("ul");
-    var wrapper = document.querySelector(".dropdown")
-    if(listItem.remove)listItem.remove()
-    else{wrapper.removeChild(listItem)}
+function deleteListWithItemsFromHtml() {
+  var listItem = document.querySelector("ul");
+  var wrapper = document.querySelector(".dropdown");
+  if (listItem) {
+    if (listItem.remove) listItem.remove();
+    else {
+      wrapper.removeChild(listItem);
+    }
+  }
 }
 // считаем есть ли под блоком расстояние на выпадающий список
-function checkBottomHeightForList(){
-    var inputCoordinates = inputLabel.getBoundingClientRect()
-    var windowInnerHeight = window.innerHeight
-    if(windowInnerHeight-inputCoordinates.bottom>100)return true
-    return false
+function checkBottomHeightForList() {
+  var inputCoordinates = inputLabel.getBoundingClientRect();
+  var windowInnerHeight = window.innerHeight;
+  if (windowInnerHeight - inputCoordinates.bottom > 100) return true;
+  return false;
 }
 
 //вставляем выпадающий список на страницу
-function insertInputSelect(){
-    var ul = document.createElement('ul')
-    var wrapper = document.querySelector('.dropdown')
-    
-    if(ul.classList){
-        ul.classList.add('input-select')
+function insertInputSelect() {
+  var wrapper = document.querySelector(".dropdown");
+  if (wrapper.querySelector("ul") === null) {
+    var ul = document.createElement("ul");
+    if (ul.classList) {
+      ul.classList.add("input-select");
+    } else {
+      ul.className += ul.className + "input-select";
     }
-    else{
-        ul.className += ul.className+"input-select"
-    }
-    if(!checkBottomHeightForList()){
-        // ul.style.top = -100+'px'
-        if(inputLabel.before)inputLabel.before(ul)
-        else{
-            wrapper.insertBefore(ul,inputLabel);
-        }
-    }
-    else{
-        if(inputLabel.after)inputLabel.after(ul)
-        else{
-            wrapper.appendChild(ul);
-        }
+    if (!checkBottomHeightForList()) {
+      if (inputLabel.before) inputLabel.before(ul);
+      else {
+        wrapper.insertBefore(ul, inputLabel);
+      }
+    } else {
+      if (inputLabel.after) inputLabel.after(ul);
+      else {
+        wrapper.appendChild(ul);
+      }
     }
     createListElements(listWithValues, null);
     setPostitionForList();
-}
-
-function setPostitionForList(){
-  var ul = document.querySelector('ul')
-  var inputCoordinates = inputLabel.getBoundingClientRect()
-  var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left
-  ul.style.left = left+'px';
-  if(!checkBottomHeightForList()){
-    var listElementsCount = document.querySelectorAll('li').length;
-    if(listElementsCount >= 5)ul.style.top = -100+'px'
-    else{
-      ul.style.top = listElementsCount*-20+'px'
-    }
-}
-}
-
-// обработка различных событий у input
-inputLabel.onfocus = function () {
-    insertInputSelect()
-    inputLabel.value = "";
-    
-};
-
-inputLabel.onblur = function (event) {
-  if (event.relatedTarget) {
-    checkBlurClickElement(event.relatedTarget);
-  } else {
-    checkBlurClickElement(document.activeElement);
   }
-  if(inputLabel.getAttribute('currentValue') != inputLabel.value)inputLabel.value = inputLabel.getAttribute('currentValue')
-  deleteListWithItemsFromHtml()
-};
+}
+
+function setPostitionForList() {
+  var ul = document.querySelector("ul");
+  var inputCoordinates = inputLabel.getBoundingClientRect();
+  var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left;
+  ul.style.left = left + "px";
+  if (!checkBottomHeightForList()) {
+    var listElementsCount = document.querySelectorAll("li").length;
+    if (listElementsCount >= 5) ul.style.top = -100 + "px";
+    else {
+      ul.style.top = listElementsCount * -20 + "px";
+    }
+  }
+}
+
 inputLabel.onkeyup = inputLabel.oninput = filterList;
 inputLabel.onpropertychange = function (event) {
   if (event.propertyName == "value") filterList();
@@ -337,9 +318,39 @@ inputLabel.onpropertychange = function (event) {
 inputLabel.oncut = function () {
   setTimeout(filterList, 0);
 };
-window.onscroll = function(){
-    inputLabel.blur()
+window.onscroll = function () {
+  blurInput();
+};
+window.onresize = function () {
+  blurInput();
+};
+
+function dropdownHandler() {
+  insertInputSelect();
+  inputLabel.value = "";
 }
-window.onresize = function(){
-    inputLabel.blur()
+
+function blurInput() {
+  if (inputLabel.getAttribute("currentValue") != inputLabel.value)
+    inputLabel.value = inputLabel.getAttribute("currentValue");
+  deleteListWithItemsFromHtml();
+  inputLabel.blur();
 }
+
+function onClickHandler(e){
+  if (e.relatedTarget) {
+    e.relatedTarget.onclick ? e.relatedTarget.onclick() : "";
+  } else {
+    document.activeElement.onclick ? document.activeElement.onclick() : "";
+  }
+}
+
+window.onclick = function (e) {
+  var dropdown = document.querySelector(".dropdown");
+  if (e.target === dropdown || e.target.offsetParent === dropdown)
+    dropdownHandler(e);
+  else {
+    onClickHandler(e);
+    blurInput();
+  }
+};
