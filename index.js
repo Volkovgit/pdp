@@ -192,26 +192,21 @@ var listWithValues = [
 ];
 
 // фильтруем список при ввода символов
-function filterList() {
-  var filterValue = inputLabel.value;
-  var filtredList = listWithValues.filter(function (elem) {
-    if (filterValue != null && filterValue != "")
-      return !elem.label.indexOf(filterValue);
+function filterListByString(string,elements) {
+  return elements.filter(function (elem) {
+    if (string != null && string != "")
+      return !elem.label.indexOf(string);
     return true;
   });
-  hideYScroll(filtredList.length);
-  createListElements(filtredList, filterValue);
-  setPostitionForList();
 }
 
-function hideYScroll(elementsCount) {
-  var list = document.querySelector("ul");
+function hideYScroll(elementsCount,element) {
   if (elementsCount < 5) {
-    list.style.overflow = "hidden";
+    element.style.overflow = "hidden";
   } else {
-    if (list.style.overflow === "hidden") {
-      list.style.overflow = "scroll";
-      list.style.overflowX = "hidden";
+    if (element.style.overflow === "hidden") {
+      element.style.overflow = "scroll";
+      element.style.overflowX = "hidden";
     }
   }
 }
@@ -227,17 +222,11 @@ function createButton(label) {
   return btnHtml;
 }
 
-function createListElements(list, filter) {
+function createDropDownElements(list) {
   var ul = document.querySelector("ul");
   ul.innerHTML = "";
   for (var i = 0; i < list.length; i++) {
-    if (filter != null && filter != "") {
-      if (!list[i].label.indexOf(filter)) {
-        ul.innerHTML += createButton(list[i].label);
-      }
-    } else {
-      ul.innerHTML += createButton(list[i].label);
-    }
+    ul.innerHTML += createButton(list[i].label);
   }
 }
 
@@ -246,12 +235,7 @@ function onButtonclick(elem) {
   inputLabel.value = newValue;
   inputLabel.setAttribute("currentValue", newValue);
 }
-//проверяем точно ли пользователь нажал на кнопку
-//выглядит так себе проверкой, я хотел реализовать точную проверку что пользователь нажал на кнопку выпадающего списка
-//для того, чтобы не выполнять onClick со всего подряд
-function checkBlurClickElement(element) {
-  element.nodeName == "BUTTON" ? element.onclick() : "";
-}
+
 //удаляем выпадающий список со страницы
 function deleteListWithItemsFromHtml() {
   var listItem = document.querySelector("ul");
@@ -271,52 +255,59 @@ function checkBottomHeightForList() {
   return false;
 }
 
+function createDropDown(parent){
+  var ul = document.createElement("ul");
+  if (ul.classList) {
+    ul.classList.add("input-select");
+  } else {
+    ul.className += ul.className + "input-select";
+  }
+  if (!checkBottomHeightForList()) {
+    if (inputLabel.before) inputLabel.before(ul);
+    else {
+      parent.insertBefore(ul, inputLabel);
+    }
+  } else {
+    if (inputLabel.after) inputLabel.after(ul);
+    else {
+      parent.appendChild(ul);
+    }
+  }
+}
+
 //вставляем выпадающий список на страницу
 function insertInputSelect() {
   var wrapper = document.querySelector(".dropdown");
+  var input = wrapper.querySelector('input');
+  var filtredListByInput = filterListByString(input.value,listWithValues);
   if (wrapper.querySelector("ul") === null) {
-    var ul = document.createElement("ul");
-    if (ul.classList) {
-      ul.classList.add("input-select");
-    } else {
-      ul.className += ul.className + "input-select";
-    }
-    if (!checkBottomHeightForList()) {
-      if (inputLabel.before) inputLabel.before(ul);
-      else {
-        wrapper.insertBefore(ul, inputLabel);
-      }
-    } else {
-      if (inputLabel.after) inputLabel.after(ul);
-      else {
-        wrapper.appendChild(ul);
-      }
-    }
-    createListElements(listWithValues, null);
-    setPostitionForList();
+    createDropDown(wrapper)
   }
+  var list = wrapper.querySelector("ul");
+  createDropDownElements(filtredListByInput);
+  setDropDownPosition(list,input);
+  hideYScroll(filtredListByInput.length,list);
 }
 
-function setPostitionForList() {
-  var ul = document.querySelector("ul");
-  var inputCoordinates = inputLabel.getBoundingClientRect();
+function setDropDownPosition(dropDown,label) {
+  var inputCoordinates = label.getBoundingClientRect();
   var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left;
-  ul.style.left = left + "px";
+  dropDown.style.left = left + "px";
   if (!checkBottomHeightForList()) {
     var listElementsCount = document.querySelectorAll("li").length;
-    if (listElementsCount >= 5) ul.style.top = -100 + "px";
+    if (listElementsCount >= 5) dropDown.style.top = -100 + "px";
     else {
-      ul.style.top = listElementsCount * -20 + "px";
+      dropDown.style.top = listElementsCount * -20 + "px";
     }
   }
 }
 
-inputLabel.onkeyup = inputLabel.oninput = filterList;
+inputLabel.onkeyup = inputLabel.oninput = insertInputSelect;
 inputLabel.onpropertychange = function (event) {
-  if (event.propertyName == "value") filterList();
+  if (event.propertyName == "value") insertInputSelect();
 };
 inputLabel.oncut = function () {
-  setTimeout(filterList, 0);
+  setTimeout(insertInputSelect, 0);
 };
 window.onscroll = function () {
   blurInput();
@@ -326,8 +317,9 @@ window.onresize = function () {
 };
 
 function dropdownHandler() {
-  insertInputSelect();
+  inputLabel.focus();
   inputLabel.value = "";
+  insertInputSelect();
 }
 
 function blurInput() {
@@ -337,20 +329,12 @@ function blurInput() {
   inputLabel.blur();
 }
 
-function onClickHandler(e){
-  if (e.relatedTarget) {
-    e.relatedTarget.onclick ? e.relatedTarget.onclick() : "";
-  } else {
-    document.activeElement.onclick ? document.activeElement.onclick() : "";
-  }
-}
 
 window.onclick = function (e) {
   var dropdown = document.querySelector(".dropdown");
   if (e.target === dropdown || e.target.offsetParent === dropdown)
     dropdownHandler(e);
   else {
-    onClickHandler(e);
     blurInput();
   }
 };
