@@ -209,7 +209,7 @@ function hideYScroll(elementsCount){
         list.style.overflow = 'hidden';
     }
     else{
-        if(list.style.overflow == 'hidden'){
+        if(list.style.overflow === 'hidden'){
             list.style.overflow = 'scroll'
             list.style.overflowX = 'hidden'
         };
