@@ -1,0 +1,29 @@
+.blackShadow {
+  animation-name: fill-shadow-black;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fill-shadow-black {
+  0% {
+    background: rgb(0, 0, 0, 0.2);
+  }
+  100% {
+    background: rgb(0, 0, 0, 0.8);
+  }
+}
+
+.whiteShadow {
+  animation-name: fill-shadow-white;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fill-shadow-white {
+  0% {
+    background: rgb(0, 0, 0, 0.8);
+  }
+  100% {
+    background: rgb(0, 0, 0, 0);
+  }
+}

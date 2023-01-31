@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="./index.js" type="module"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="page flex-rw grid-mainColumn">
+      
+      <div class="page-about mr-b10">
+        <div class="page-about-autors">
+          <div class="page-about-autors-header grid-2col">
+            <div class="page-about-autors-header-block">
+              <p class="page-about-autors-header-block__text">авторы</p>
+              <p class="page-about-autors-header-block__text h-subHeader">Об авторах</p>
+            </div>
+          </div>
+          <div class="page-about-autors-list grid-2col flex-rw">
+            <author-card src="./img/Elisabeth.gif">
+              <b>Элизабет</b> - автор и разработчик программного обеспечения.
+              Она с самого детства имеет дело с Интернетом. Элизабет -
+              соучредитель The Ada Project (TAP), сайта для женщин, который
+              посвящен работе с компьютером и ныне принят ACM (Ассоциацией по
+              вычислительной технике). Кроме того, Элизабет возглавляет работы
+              по исследованию и и развитию цифровых носителей.
+            </author-card>
+            <author-card src="./img/Eric.gif">
+              <b>Эрик</b> - исследователь в области компьютеров, страстно
+              увлекающийся работой с информацией медиатипа и архитектурой систем
+              программного обеспечения. В течении последних четырех лет он
+              занимался реализацией своей мечты, управляя разработкой
+              широкополосного Интернета и беспроводного доступа в Disney.
+            </author-card>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="page-content grid-1col flex-rw">
+        <div class="page-content-block">
+          <div class="page-content-block-header ta-c">
+            <p class="page-content-block-header__text h-mainHeader">
+              Содержание (сводка)
+            </p>
+          </div>
+          <table-component
+            content='{
+          "tableContent":[
+              {"chapter":"empty","description":"Введение","page":23},
+              {"chapter":1,"description":"Язык Сети: знакомство с HTML","page":35},
+              {"chapter":2,"description":"Знакомство с гипертекстом: идем дальше - используем гипертекст","page":75},
+              {"chapter":3,"description":"Конструирование веб-страниц: строительные блоки","page":107},
+              {"chapter":4,"description":"Путешествие в  Webville: соединение","page":151},
+              {"chapter":5,"description":"Знакомство с медиа: добавление изображений на страницы","page":189},
+              {"chapter":6,"description":"Серьезный HTML: соответствие стандартам","page":245},
+              {"chapter":7,"description":"Добавление X к HTML: переходим к XHTML","page":285},
+              {"chapter":8,"description":"Начнем работать над дизайном: приступаем к работе с CSS","page":305},
+              {"chapter":9,"description":"Увеличиваем словарный запас: меняем шрифты и цвета","page":357},
+              {"chapter":10,"description":"Познакомимся с элементами поближе: блочная модель","page":399},
+              {"chapter":11,"description":"Современная веб-конструкция: элементы div и span","page":441},
+              {"chapter":12,"description":"Расставим элементы по местам: разметка и позиционирование","page":499},
+              {"chapter":13,"description":"Представление в табличной форме: таблицы и большие списки","page":557},
+              {"chapter":14,"description":"Переход на интерактивный режим: XHTML-формы","page":597},
+              {"chapter":"Приложение","description":"Топ 10 тем, которые не были разобраны в данной книге","page":645777}
+          ]
+          }'
+          >
+          </table-component>
+        </div>
+
+        <br />
+
+        <div class="page-content-block">
+          <div class="page-content-block-header">
+            <p class="page-content-block-header__text h-mainHeader">
+              Содержание (настоящее)
+            </p>
+          </div>
+          <div class="page-content-block-description">
+            <p class="page-content-block-description__text">
+              <span class="h-subHeader">Введение</span>
+              <span class="f-boldText"
+                >Поведение вашего мозга при изучении HTML и CSS.</span
+              >
+              Когда вы пытаетесь что-либо выучить, ваш мозг неустанно следит за
+              тем, чтобы процесс изучения не остановился. Он думает: “Лучше
+              оставить место для более важной информации, чтобы, например,
+              знать, встречи с какими дикими животными следует избегать. Или
+              знать, что катание на сноуборде без специального снаряжения - не
+              самая удачная идея”. Как же убедить свой мозг в том, что для вас
+              так же важно знать HTML и CSS?
+            </p>
+          </div>
+          <table-component
+            content='{
+          "tableContent":[
+              {"description":"Для кого написана эта книга?","page":24},
+              {"description":"Кому не стоит читать эту книгу","page":24},
+              {"description":"Мы знаем, что вы думаете","page":25},
+              {"description":"Мы также знаем, о чем думает ваш мозг","page":25},
+              {"description":"Метапознание: учимся учится","page":27},
+              {"description":"Вот что МЫ делали","page":28},
+              {"description":"Вот что можете сделать ВЫ, чтобы заставить свой мозг работать","page":29},
+              {"description":"Примите к сведенью","page":30},
+              {"description":"Технические рецензенты","page":32},
+              {"description":"Благодарности","page":33}
+          ]
+          }'
+          ></table-component>
+        </div>
+      </div>
+      
+    </main>
+  </body>
+</html>

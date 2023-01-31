@@ -1,0 +1,45 @@
+@import "../../styles/mixins";
+
+.card {
+  @include flexWithVendors(wrap, row);
+  height: 100%;
+  width: 100%;
+  @supports not ((display: grid) or (display: -ms-grid)) {
+    align-content: space-between;
+  }
+
+  &-photo {
+    width: 100%;
+
+    &__img {
+      width: 80%;
+      display: block;
+      position: relative;
+      z-index: -1;
+      margin: auto;
+    }
+    &:hover img {
+      scale: (1.2);
+      z-index: 1;
+      transition: 1s;
+    }
+  }
+
+  &-description {
+    width: 80%;
+    margin: 0 auto 0 auto;
+    &__text {
+      margin: 0;
+    }
+  }
+}
+
+:host {
+  @supports (display: grid) or (display: -ms-grid) {
+    width: 100%;
+  }
+  width: 50%;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+}

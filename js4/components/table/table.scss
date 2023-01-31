@@ -1,0 +1,41 @@
+@import "../../styles/mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.table {
+  &-list {
+    list-style: none;
+    float: right;
+    width: 46%;
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+    }
+    @include flexWithVendors(wrap,row);
+    &-row {
+      width: 100%;
+      @include flexWithVendors(nowrap,row);
+      &__description {
+        width: 100%;
+      }
+      &__pageNumber {
+        width: auto;
+      }
+    }
+  }
+}
+
+.number,
+.empty {
+  width: 6%;
+}
+.string {
+  margin-right: 4%;
+}
+
+
+.mr-t2 {
+  margin-top: 2%;
+}
