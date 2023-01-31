@@ -1,0 +1,83 @@
+@import url("./styles/animation.css");
+@import './styles/mixins';
+@import './styles/page/page';
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 18px;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 24px;
+  }
+  @media screen and (max-width: 1024px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 14px;
+  }
+}
+
+
+.flex-rw {
+  @include flexWithVendors(wrap,row);
+}
+
+.grid-mainColumn {
+  @supports (display: grid) or (display: -ms-grid) {
+    @include gridWithVendors(1fr);
+    justify-content: center;
+    @media screen and (min-width: 1024px) {
+      @include gridColumns(0.8fr);
+    }
+  }
+}
+.grid-2col {
+  @supports (display: grid) or (display: -ms-grid) {
+    @include gridWithVendors(1fr);
+    @media screen and (min-width: 1024px) {
+      @include gridColumns(1fr 1fr);
+    }
+  }
+}
+.grid-1col {
+  @supports (display: grid) or (display: -ms-grid) {
+    @include gridWithVendors(1fr);
+    @media screen and (max-width: 1024px) {
+      width: 80%;
+    }
+  }
+}
+
+
+
+.h-mainHeader {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.h-subHeader {
+  font-size: 1.5em;
+  display: block;
+  font-weight: 600;
+}
+
+.f-boldText {
+  font-weight: 600;
+}
+
+.mr-b10 {
+  margin-bottom: 10%;
+}
