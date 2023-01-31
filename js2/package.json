@@ -1,0 +1,30 @@
+{
+  "name": "consolegame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Volkovgit/consoleGame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Volkovgit/consoleGame/issues"
+  },
+  "homepage": "https://github.com/Volkovgit/consoleGame#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^8.26.0",
+    "mocha": "^10.1.0",
+    "mock-stdin": "^1.0.0",
+    "prettier": "^2.7.1",
+    "sinon": "^15.0.0"
+  }
+}
