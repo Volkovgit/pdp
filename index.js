@@ -265,6 +265,10 @@ function createDropDown(parent){
   }
 }
 
+function setNullSearchResultDisclamer(dropDown,text){
+  dropDown.innerHTML = "<p>"+text+"<p>"
+}
+
 //вставляем выпадающий список на страницу
 function setDropDown(dropdownWrapper) {
   var wrapper = dropdownWrapper ? dropdownWrapper : document.querySelector(".dropdown");
@@ -275,11 +279,12 @@ function setDropDown(dropdownWrapper) {
     createDropDown(wrapper)
   }
   // пришлось добавить эту строку, повторяющую 273 из за IE9 т.к. IE9 не смог нормально работать с переменными, хранящими адрес DOM элемента.
-  // код будет работать, если закоментить следующую строку, но IE будет еще писать ошибку в консоли. Как я понимаю это из за того что DOM могут быть "живыми"
+  // код будет работать, если закоментить следующую строку, но IE будет еще писать ошибку в консоли. Как я понимаю это из за того что DOM элементы "живые"
   list === null ? wrapper.querySelector ? list = wrapper.querySelector("ul") : list = document.querySelector('ul') : "";
   createDropDownElements(filtredListByInput,list);
   setDropDownPosition(list,input);
   hideYScroll(filtredListByInput.length,list);
+  filtredListByInput.length === 0 ? setNullSearchResultDisclamer(list,"Ничего не найдено") : ""
 }
 
 function setDropDownPosition(dropDown,label) {
@@ -289,6 +294,7 @@ function setDropDownPosition(dropDown,label) {
   if (!chechHeightUnderElement(inputCoordinates,100)) {
     var listElementsCount = document.querySelectorAll("li").length;
     if (listElementsCount >= 5) dropDown.style.top = -100 + "px";
+    else if(listElementsCount === 0)dropDown.style.top = -20 + "px";
     else {
       dropDown.style.top = listElementsCount * -20 + "px";
     }
