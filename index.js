@@ -191,7 +191,7 @@ var listWithValues = [
   },
 ];
 
-// фильтруем список при ввода символов
+
 function filterListByString(string,elements) {
   return elements.filter(function (elem) {
     if (string != null && string != "")
@@ -199,7 +199,6 @@ function filterListByString(string,elements) {
     return true;
   });
 }
-
 function hideYScroll(elementsCount,element) {
   if (elementsCount < 5) {
     element.style.overflow = "hidden";
@@ -210,7 +209,6 @@ function hideYScroll(elementsCount,element) {
     }
   }
 }
-
 function createButton(label) {
   var btnHtml =
     '<li><button onClick="onButtonclick(this);"' +
@@ -221,37 +219,28 @@ function createButton(label) {
     "</button></li>";
   return btnHtml;
 }
-
-function createDropDownElements(list) {
-  var ul = document.querySelector("ul");
-  ul.innerHTML = "";
+function createDropDownElements(list,element) {
+  element.innerHTML = "";
   for (var i = 0; i < list.length; i++) {
-    ul.innerHTML += createButton(list[i].label);
+    element.innerHTML += createButton(list[i].label);
   }
 }
-
 function onButtonclick(elem) {
   var newValue = elem.textContent ? elem.textContent : elem.value;
   inputLabel.value = newValue;
   inputLabel.setAttribute("currentValue", newValue);
 }
-
-//удаляем выпадающий список со страницы
-function deleteListWithItemsFromHtml() {
-  var listItem = document.querySelector("ul");
-  var wrapper = document.querySelector(".dropdown");
-  if (listItem) {
-    if (listItem.remove) listItem.remove();
+function deleteChildrenFromWrapper(wrapper,item) {
+  if (item) {
+    if (item.remove) item.remove();
     else {
-      wrapper.removeChild(listItem);
+      wrapper.removeChild(item);
     }
   }
 }
 // считаем есть ли под блоком расстояние на выпадающий список
-function checkBottomHeightForList() {
-  var inputCoordinates = inputLabel.getBoundingClientRect();
-  var windowInnerHeight = window.innerHeight;
-  if (windowInnerHeight - inputCoordinates.bottom > 100) return true;
+function chechHeightUnderElement(coordinates,height) {
+  if (window.innerHeight - coordinates.bottom > height) return true;
   return false;
 }
 
@@ -262,7 +251,8 @@ function createDropDown(parent){
   } else {
     ul.className += ul.className + "input-select";
   }
-  if (!checkBottomHeightForList()) {
+  var inputCoordinates = parent.querySelector('input').getBoundingClientRect();
+  if (!chechHeightUnderElement(inputCoordinates,100)) {
     if (inputLabel.before) inputLabel.before(ul);
     else {
       parent.insertBefore(ul, inputLabel);
@@ -276,15 +266,18 @@ function createDropDown(parent){
 }
 
 //вставляем выпадающий список на страницу
-function insertInputSelect() {
-  var wrapper = document.querySelector(".dropdown");
-  var input = wrapper.querySelector('input');
+function setDropDown(dropdownWrapper) {
+  var wrapper = dropdownWrapper ? dropdownWrapper : document.querySelector(".dropdown");
+  var input = wrapper.querySelector ? wrapper.querySelector('input') : document.querySelector('input');
   var filtredListByInput = filterListByString(input.value,listWithValues);
-  if (wrapper.querySelector("ul") === null) {
+  var list = wrapper.querySelector ? wrapper.querySelector("ul") : document.querySelector('ul')
+  if (list === null) {
     createDropDown(wrapper)
   }
-  var list = wrapper.querySelector("ul");
-  createDropDownElements(filtredListByInput);
+  // пришлось добавить эту строку, повторяющую 273 из за IE9 т.к. IE9 не смог нормально работать с переменными, хранящими адрес DOM элемента.
+  // код будет работать, если закоментить следующую строку, но IE будет еще писать ошибку в консоли. Как я понимаю это из за того что DOM могут быть "живыми"
+  list === null ? wrapper.querySelector ? list = wrapper.querySelector("ul") : list = document.querySelector('ul') : "";
+  createDropDownElements(filtredListByInput,list);
   setDropDownPosition(list,input);
   hideYScroll(filtredListByInput.length,list);
 }
@@ -293,7 +286,7 @@ function setDropDownPosition(dropDown,label) {
   var inputCoordinates = label.getBoundingClientRect();
   var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left;
   dropDown.style.left = left + "px";
-  if (!checkBottomHeightForList()) {
+  if (!chechHeightUnderElement(inputCoordinates,100)) {
     var listElementsCount = document.querySelectorAll("li").length;
     if (listElementsCount >= 5) dropDown.style.top = -100 + "px";
     else {
@@ -302,12 +295,12 @@ function setDropDownPosition(dropDown,label) {
   }
 }
 
-inputLabel.onkeyup = inputLabel.oninput = insertInputSelect;
+inputLabel.onkeyup = inputLabel.oninput = setDropDown;
 inputLabel.onpropertychange = function (event) {
-  if (event.propertyName == "value") insertInputSelect();
+  if (event.propertyName == "value") setDropDown();
 };
 inputLabel.oncut = function () {
-  setTimeout(insertInputSelect, 0);
+  setTimeout(setDropDown, 0);
 };
 window.onscroll = function () {
   blurInput();
@@ -319,13 +312,15 @@ window.onresize = function () {
 function dropdownHandler() {
   inputLabel.focus();
   inputLabel.value = "";
-  insertInputSelect();
+  setDropDown();
 }
 
 function blurInput() {
   if (inputLabel.getAttribute("currentValue") != inputLabel.value)
     inputLabel.value = inputLabel.getAttribute("currentValue");
-  deleteListWithItemsFromHtml();
+  var wrapper = document.querySelector(".dropdown");
+  var item = wrapper.querySelector("ul");
+  deleteChildrenFromWrapper(wrapper,item);
   inputLabel.blur();
 }
 
