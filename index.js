@@ -270,11 +270,12 @@ function setNullSearchResultDisclamer(dropDown,text){
 }
 
 //вставляем выпадающий список на страницу
-function setDropDown(dropdownWrapper) {
-  var wrapper = dropdownWrapper ? dropdownWrapper : document.querySelector(".dropdown");
+function setDropDown(event) {
+  var wrapper = document.querySelector(".dropdown");
   var input = wrapper.querySelector ? wrapper.querySelector('input') : document.querySelector('input');
   var filtredListByInput = filterListByString(input.value,listWithValues);
   var list = wrapper.querySelector ? wrapper.querySelector("ul") : document.querySelector('ul')
+  var triangle =  wrapper.querySelector ? wrapper.querySelector(".triangle-up") : document.querySelector('.triangle-up')
   if (list === null) {
     createDropDown(wrapper)
   }
@@ -285,12 +286,11 @@ function setDropDown(dropdownWrapper) {
   setDropDownPosition(list,input);
   hideYScroll(filtredListByInput.length,list);
   filtredListByInput.length === 0 ? setNullSearchResultDisclamer(list,"Ничего не найдено") : ""
+  triangeReverseTo(wrapper,'down')
 }
 
 function setDropDownPosition(dropDown,label) {
   var inputCoordinates = label.getBoundingClientRect();
-  var left = inputCoordinates.x ? inputCoordinates.x : inputCoordinates.left;
-  dropDown.style.left = left + "px";
   if (!chechHeightUnderElement(inputCoordinates,100)) {
     var listElementsCount = document.querySelectorAll("li").length;
     if (listElementsCount >= 5) dropDown.style.top = -100 + "px";
@@ -300,6 +300,20 @@ function setDropDownPosition(dropDown,label) {
     }
   }
 }
+
+function triangeReverseTo(dropDown,way){
+  if(dropDown.classList){
+    if(way === 'down'){
+      dropDown.classList.remove('triangle-up');
+      dropDown.classList.add('triangle-down')
+    }
+    if(way === 'up'){
+      dropDown.classList.add('triangle-up');
+      dropDown.classList.remove('triangle-down')
+    }
+  }
+}
+
 
 inputLabel.onkeyup = inputLabel.oninput = setDropDown;
 inputLabel.onpropertychange = function (event) {
@@ -315,10 +329,11 @@ window.onresize = function () {
   blurInput();
 };
 
-function dropdownHandler() {
+function dropdownHandler(e) {
   inputLabel.focus();
   inputLabel.value = "";
-  setDropDown();
+  setDropDown(e);
+  
 }
 
 function blurInput() {
@@ -327,8 +342,10 @@ function blurInput() {
   var wrapper = document.querySelector(".dropdown");
   var item = wrapper.querySelector("ul");
   deleteChildrenFromWrapper(wrapper,item);
+  triangeReverseTo(wrapper,'up')
   inputLabel.blur();
 }
+
 
 
 window.onclick = function (e) {
