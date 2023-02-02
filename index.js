@@ -312,6 +312,14 @@ function triangeReverseTo(dropDown,way){
       dropDown.classList.remove('triangle-down')
     }
   }
+  else{
+    if(way === 'down'){
+      dropDown.className = dropDown.className.replace('triangle-up','triangle-down')
+    }
+    if(way === 'up'){
+      dropDown.className = dropDown.className.replace('triangle-down','triangle-up')
+    }
+  }
 }
 
 
