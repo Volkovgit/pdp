@@ -147,10 +147,10 @@ function Get_scores() {
 }
 
 function gradeCalculate(score){
-    if(score < 50) return 2
-    if(score < 60) return 3
-    if(score < 70) return 4
-    if(score < 80) return 5
+    if(score < 60) return 2
+    if(score < 85) return 3
+    if(score < 100) return 4
+    if(score < 110) return 5
 }
 
 function fullInTopics() {
