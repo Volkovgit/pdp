@@ -45,6 +45,25 @@
             </div>
         </div>
     </div>
+
+    <div id="result" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">close</span></button>
+                    <h3 class="modal-title text-success">Результаты: </h3>
+                </div>
+                <div class="modal-body">
+                    <p id="resultScore"></p>
+                    <p id="resultGrade"></p>
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <h1 class="text-center">Единый тест теории моделирования языка</h1>
 
     <div class="panel panel-default">
@@ -57,30 +76,27 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="row">
-                <div id="class" class="col-md-4 form-group">
-                    <label class="control-label">
-                      Класс (обязательно)
-                      <input type="text" id="studentClass" name="studentClass" class="form-control">
-                    </label>
-                </div>
-                <div id="number" class="col-md-4 form-group">
-                    <label class="control-label">
-                      Студенческий билет (обязательно)
-                      <input type="text" id="studentNumber" name="studentNumber" class="form-control">
-                    </label>
-                </div>
-                <div id="name" class="col-md-4 form-group">
-                    <label class="control-label">
-                       Имя (обязательно)
-                       <input type="text" id="studentName" name="studentName" class="form-control">
-                    </label>
-                </div>
-            </div>
-         </div>
-    </div>
+    <div class="panel panel-default" id="panelStudentPicker">
+        <div class="panel-heading" >
+          <h2 class="panel-title">Выберите студента из списка</h2>
+        </div>
+        <div class="panel-body" >
+          <table class="table " id="studentList">
+            <thead>
+              <tr >
+                <th scope="col"></th>
+                <th scope="col">Имя</th>
+                <th scope="col">Студенческий билет</th>
+                <th scope="col">Класс</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
 
 
     <div class="panel panel-success">
@@ -114,7 +130,7 @@
 
    <div class="panel panel-success">
        <div class="panel-heading">
-           <h2 class="panel-title">2. Вопросы с несколькими вариантами ответов (10 баллов за каждый вопрос, всего 2 вопроса)</h2>
+           <h2 class="panel-title">2. Вопросы с одним вариантом ответа (10 баллов за каждый вопрос, всего 2 вопроса)</h2>
        </div>
        <div class="panel-body">
            <ol>
@@ -137,7 +153,7 @@
                </li>
                <li>
                    <div class="form-group">
-                       <label class="control-label"> Java ЯП:</label>
+                       <label class="control-label"> В языке JAVA:</label>
                        <div class="radio">
                            <label> <input type="radio" name="radio_ans_2" id="sel2_1" value="A">(A)единственное наследование</label>
                        </div>
@@ -201,9 +217,39 @@
        </div>
    </div>
 
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2 class="panel-title">4. Вопрос с несколькими вариантами ответа (10 баллов)</h2>
+        </div>
+        <div class="panel-body">
+            <ol>
+                <li>
+                    <div class="form-group">
+                        <label class="control-label">На диаграмме деятельности существуют следующие виды переходов</label>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_1" value="A">(A)Триггерные</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_2" value="B">(B)Нетриггерные</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_3" value="C">(C)Со сторожевым условием</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_4" value="D">(D)Ветвление</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_5" value="E">(D)Переходы с дорожками;</label>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
    <div class="panel panel-success">
        <div class="panel-heading">
-           <h2 class="panel-title">4. Верно или нет (10 баллов за каждый вопрос, всего 2 вопроса)</h2>
+           <h2 class="panel-title">5. Верно или нет (10 баллов за каждый вопрос, всего 2 вопроса)</h2>
        </div>
        <div class="panel-body">
            <ol>
@@ -247,7 +293,7 @@
 
    <div class="panel panel-success">
        <div class="panel-heading">
-           <h2 class="panel-title">5. Вопросы с краткими ответами (20 баллов за каждый, всего 1 вопрос)</h2>
+           <h2 class="panel-title">6. Вопросы с краткими ответами (20 баллов за каждый, всего 1 вопрос)</h2>
        </div>
        <div class="panel-body">
            <ol>

@@ -1,3 +1,72 @@
+const studentList = [
+    {
+      "studNumber": 5989,
+      "name": "Holt Rowe",
+      "class": 11
+    },
+    {
+      "studNumber": 7903,
+      "name": "Garrett Paul",
+      "class": 7
+    },
+    {
+      "studNumber": 6429,
+      "name": "Opal Nunez",
+      "class": 10
+    },
+    {
+      "studNumber": 7232,
+      "name": "Kristy Mullins",
+      "class": 7
+    },
+    {
+      "studNumber": 5105,
+      "name": "Reilly Crawford",
+      "class": 6
+    },
+    {
+      "studNumber": 7080,
+      "name": "Dionne Lyons",
+      "class": 7
+    },
+    {
+      "studNumber": 5625,
+      "name": "Romero Skinner",
+      "class": 5
+    },
+    {
+      "studNumber": 4872,
+      "name": "Lottie Velez",
+      "class": 10
+    },
+    {
+      "studNumber": 2691,
+      "name": "Emma Beach",
+      "class": 6
+    },
+    {
+      "studNumber": 2063,
+      "name": "Jeri Soto",
+      "class": 7
+    },
+    {
+      "studNumber": 1917,
+      "name": "Hansen Morgan",
+      "class": 8
+    },
+    {
+      "studNumber": 8712,
+      "name": "Greta Dotson",
+      "class": 11
+    },
+    {
+      "studNumber": 9322,
+      "name": "Lenore Koch",
+      "class": 10
+    }
+]
+
+
 $(document).ready(function(){
     $('#btnSubmit').on('click',function(){
 
@@ -6,9 +75,29 @@ $(document).ready(function(){
             $('#alert').modal('show');
             return false;
         }
-        Get_scores();
+        Get_scores()
+        $('#result').modal('show');
         return false;
     });
+    for(var i = 0; i<studentList.length;i++){
+        var studentRow = `<tr id='${i}'>
+        <td>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radio_student"
+              id="flexRadioDefault${i}"
+            />
+          </div>
+        </td>
+          <td><label class="d-block form-check-label" for="flexRadioDefault${i}" style="width: 100%;">${studentList[i].name}</label></td>
+          <td><label class="d-block form-check-label" for="flexRadioDefault${i}" style="width: 100%;">${studentList[i].studNumber}</label></td>
+          <td><label class="d-block form-check-label" for="flexRadioDefault${i}" style="width: 100%;">${studentList[i].class}</label></td>
+      </tr>`
+        $('#studentList > tbody').append( studentRow );
+    }
+    
 });
 
 
@@ -16,14 +105,14 @@ function inputsInformation(inputs) {
     var text = '';
     for (var i = 0; i < inputs.length; i++) {
         var input = inputs[i];
-        var element = $('#' + input.id);
-
-        if (element && _.isEmpty(element.val())) {
-            $('#'+input.divId).addClass('has-error');
+        var element = $('input[name="'+input.name+'"]:checked')[0];
+        console.log(element);
+        if (!element) {
+            $('#'+input.divId).addClass('panel-danger');
             text += input.text + '';
         }
         else {
-            $('#' + input.divId).removeClass('has-error');
+            $('#' + input.divId).removeClass('panel-danger');
         }
     }
     return text;
@@ -32,19 +121,10 @@ function inputsInformation(inputs) {
 function hasEmptyRequiredInput(){
     var requiredInputs = [
         {
-            id: 'studentClass',
+            // id: 'flexRadioDefault',
             text: 'Класс',
-            divId: 'class'
-        },
-        {
-            id: 'studentNumber',
-            text: 'Студенческий билет',
-            divId: 'number'
-        },
-        {
-            id: 'studentName',
-            text: 'Имя',
-            divId: 'name'
+            divId: 'panelStudentPicker',
+            name:"radio_student"
         }
     ];
 
@@ -60,8 +140,17 @@ function Get_scores() {
 
     var value = fullInTopics() + choiceTopics() + multipleChoiceTopics() + trueOrFalseTopics() + shortAnswerTopics();
     $("#scores").text(value);
+    $("#resultScore").text(value + " баллов");
+    $("#resultGrade").text("Оценка : "+gradeCalculate(value));
     $('#divScores').addClass('text-danger');
+    return value
+}
 
+function gradeCalculate(score){
+    if(score < 50) return 2
+    if(score < 60) return 3
+    if(score < 70) return 4
+    if(score < 80) return 5
 }
 
 function fullInTopics() {
@@ -111,8 +200,9 @@ function multipleChoiceTopics() {
     var multipleChoiceSubject = new Subject('multipleChoiceSubject',
         [
             ['A', 'B', 'D'],
-            ['A', 'B', 'C']
-        ], 2, 10);
+            ['A', 'B', 'C'],
+            ['B','C','D']
+        ], 3, 10);
 
     var multipleChoiceSubject1 = new MultipleChoiceSubject('check_ans_1');
     var value1 = multipleChoiceSubject1.calculation();
@@ -133,6 +223,17 @@ function multipleChoiceTopics() {
             multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
         }
     }
+
+    var multipleChoiceSubject3 = new MultipleChoiceSubject('check_ans_3');
+    var value3 = multipleChoiceSubject3.calculation();
+    var answer3 = multipleChoiceSubject.answer[2];
+    if (answer3.length == value3.length) {
+        var diffA = _.difference(value3, answer3);
+        if (_.isEmpty(diffA)) {
+            multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
+        }
+    }
+
     return multipleChoiceSubject.scores;
 }
 
