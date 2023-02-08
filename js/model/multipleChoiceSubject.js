@@ -2,7 +2,6 @@ function MultipleChoiceSubject(name){
   this.name = name;
 }
 MultipleChoiceSubject.prototype.calculation = function(){
-  //  var choiceElement =
     var multipleChoiceElement = $('input[name="' + this.name + '"]:checked');
     var value = [];
     if (multipleChoiceElement.length > 0){

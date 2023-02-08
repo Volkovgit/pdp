@@ -106,7 +106,6 @@ function inputsInformation(inputs) {
     for (var i = 0; i < inputs.length; i++) {
         var input = inputs[i];
         var element = $('input[name="'+input.name+'"]:checked')[0];
-        console.log(element);
         if (!element) {
             $('#'+input.divId).addClass('panel-danger');
             text += input.text + '';
@@ -121,7 +120,6 @@ function inputsInformation(inputs) {
 function hasEmptyRequiredInput(){
     var requiredInputs = [
         {
-            // id: 'flexRadioDefault',
             text: 'Класс',
             divId: 'panelStudentPicker',
             name:"radio_student"
@@ -159,7 +157,7 @@ function fullInTopics() {
 
     var value1_1_1 = $('#gap1').val();
 
-    if (value1_1_1 == fullInSubject1.answer[0]) {
+    if (value1_1_1 === fullInSubject1.answer[0]) {
         fullInSubject1.scores += fullInSubject1.scorePerSubject;
     }
 
@@ -170,7 +168,7 @@ function fullInTopics() {
 
     for (var i = 0; i < fullInSubject2.answer.length; i++) {
         for (var j = 0; j < value1_2.length; j++) {
-            if (fullInSubject2.answer[i] == value1_2[j]) {
+            if (fullInSubject2.answer[i] === value1_2[j]) {
                 fullInSubject2.scores += fullInSubject2.scorePerSubject;
                 break;
             }
@@ -189,7 +187,7 @@ function choiceTopics() {
     var value = [value1, value2];
 
     for (var i = 0; i < value.length; i++) {
-        if (value[i] == choiceSubject.answer[i]) {
+        if (value[i] === choiceSubject.answer[i]) {
             choiceSubject.scores += choiceSubject.scorePerSubject;
         }
     }
@@ -207,7 +205,7 @@ function multipleChoiceTopics() {
     var multipleChoiceSubject1 = new MultipleChoiceSubject('check_ans_1');
     var value1 = multipleChoiceSubject1.calculation();
     var answer1 = multipleChoiceSubject.answer[0];
-    if (answer1.length == value1.length) {
+    if (answer1.length === value1.length) {
         var diffA = _.difference(value1, answer1);
         if (_.isEmpty(diffA)) {
             multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
@@ -217,7 +215,7 @@ function multipleChoiceTopics() {
     var multipleChoiceSubject2 = new MultipleChoiceSubject('check_ans_2');
     var value2 = multipleChoiceSubject2.calculation();
     var answer2 = multipleChoiceSubject.answer[1];
-    if (answer2.length == value2.length) {
+    if (answer2.length === value2.length) {
         var diffB = _.difference(value2, answer2);
         if (_.isEmpty(diffB)) {
             multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
@@ -227,7 +225,7 @@ function multipleChoiceTopics() {
     var multipleChoiceSubject3 = new MultipleChoiceSubject('check_ans_3');
     var value3 = multipleChoiceSubject3.calculation();
     var answer3 = multipleChoiceSubject.answer[2];
-    if (answer3.length == value3.length) {
+    if (answer3.length === value3.length) {
         var diffA = _.difference(value3, answer3);
         if (_.isEmpty(diffA)) {
             multipleChoiceSubject.scores += multipleChoiceSubject.scorePerSubject;
@@ -246,7 +244,7 @@ function trueOrFalseTopics() {
     var value = [value1, value2];
 
     for (var i = 0; i < value.length; i++) {
-        if (value[i] == trueOrFalseSubject.answer[i]) {
+        if (value[i] === trueOrFalseSubject.answer[i]) {
             trueOrFalseSubject.scores += trueOrFalseSubject.scorePerSubject;
         }
     }
@@ -259,7 +257,7 @@ function shortAnswerTopics() {
         1, 20);
     var value5 = $('#short5').val();
 
-    if (value5 == shortAnswerSubject.answer[0]) {
+    if (value5 === shortAnswerSubject.answer[0]) {
         shortAnswerSubject.scores = shortAnswerSubject.scorePerSubject;
     }
     return shortAnswerSubject.scores;
