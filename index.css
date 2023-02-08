@@ -15,8 +15,7 @@ body {
 .dropdown {
   width: 250px;
   position: relative;
-  margin: 0 auto;
-  margin-top: 800px;
+  margin: 800px auto 0 auto;
 }
 
 .dropdown__input {

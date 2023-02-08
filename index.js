@@ -194,11 +194,12 @@ var listWithValues = [
 
 function filterListByString(string,elements) {
   return elements.filter(function (elem) {
-    if (string != null && string != "")
+    if (string !== null && string !== "")
       return !elem.label.indexOf(string);
     return true;
   });
 }
+
 function hideYScroll(elementsCount,element) {
   if (elementsCount < 5) {
     element.style.overflow = "hidden";
@@ -209,27 +210,24 @@ function hideYScroll(elementsCount,element) {
     }
   }
 }
+
 function createButton(label) {
-  var btnHtml =
-    '<li><button onClick="onButtonclick(this);"' +
-    'value="' +
-    label +
-    '">' +
-    label +
-    "</button></li>";
-  return btnHtml;
+  return `<li><button onClick="onButtonClick(this);" value="${label}">${label}</button></li>`
 }
+
 function createDropDownElements(list,element) {
   element.innerHTML = "";
   for (var i = 0; i < list.length; i++) {
     element.innerHTML += createButton(list[i].label);
   }
 }
-function onButtonclick(elem) {
+
+function onButtonClick(elem) {
   var newValue = elem.textContent ? elem.textContent : elem.value;
   inputLabel.value = newValue;
   inputLabel.setAttribute("currentValue", newValue);
 }
+
 function deleteChildrenFromWrapper(wrapper,item) {
   if (item) {
     if (item.remove) item.remove();
@@ -238,10 +236,9 @@ function deleteChildrenFromWrapper(wrapper,item) {
     }
   }
 }
-// считаем есть ли под блоком расстояние на выпадающий список
-function chechHeightUnderElement(coordinates,height) {
-  if (window.innerHeight - coordinates.bottom > height) return true;
-  return false;
+
+function checkHeightUnderElement(coordinates,height) {
+  return window.innerHeight - coordinates.bottom > height
 }
 
 function createDropDown(parent){
@@ -252,7 +249,7 @@ function createDropDown(parent){
     ul.className += ul.className + "input-select";
   }
   var inputCoordinates = parent.querySelector('input').getBoundingClientRect();
-  if (!chechHeightUnderElement(inputCoordinates,100)) {
+  if (!checkHeightUnderElement(inputCoordinates,100)) {
     if (inputLabel.before) inputLabel.before(ul);
     else {
       parent.insertBefore(ul, inputLabel);
@@ -270,28 +267,31 @@ function setNullSearchResultDisclamer(dropDown,text){
 }
 
 //вставляем выпадающий список на страницу
-function setDropDown(event) {
+function setDropDown() {
   var wrapper = document.querySelector(".dropdown");
   var input = wrapper.querySelector ? wrapper.querySelector('input') : document.querySelector('input');
   var filtredListByInput = filterListByString(input.value,listWithValues);
   var list = wrapper.querySelector ? wrapper.querySelector("ul") : document.querySelector('ul')
-  var triangle =  wrapper.querySelector ? wrapper.querySelector(".triangle-up") : document.querySelector('.triangle-up')
   if (list === null) {
     createDropDown(wrapper)
   }
   // пришлось добавить эту строку, повторяющую 273 из за IE9 т.к. IE9 не смог нормально работать с переменными, хранящими адрес DOM элемента.
   // код будет работать, если закоментить следующую строку, но IE будет еще писать ошибку в консоли. Как я понимаю это из за того что DOM элементы "живые"
-  list === null ? wrapper.querySelector ? list = wrapper.querySelector("ul") : list = document.querySelector('ul') : "";
+  if(list === null) {
+    if(wrapper.querySelector) list = wrapper.querySelector("ul")
+    else list = document.querySelector('ul')
+  }
+  
   createDropDownElements(filtredListByInput,list);
   setDropDownPosition(list,input);
   hideYScroll(filtredListByInput.length,list);
   filtredListByInput.length === 0 ? setNullSearchResultDisclamer(list,"Ничего не найдено") : ""
-  triangeReverseTo(wrapper,'down')
+  triangleReverseTo(wrapper,'down')
 }
 
 function setDropDownPosition(dropDown,label) {
   var inputCoordinates = label.getBoundingClientRect();
-  if (!chechHeightUnderElement(inputCoordinates,100)) {
+  if (!checkHeightUnderElement(inputCoordinates,100)) {
     var listElementsCount = document.querySelectorAll("li").length;
     if (listElementsCount >= 5) dropDown.style.top = -100 + "px";
     else if(listElementsCount === 0)dropDown.style.top = -20 + "px";
@@ -301,7 +301,7 @@ function setDropDownPosition(dropDown,label) {
   }
 }
 
-function triangeReverseTo(dropDown,way){
+function triangleReverseTo(dropDown,way){
   if(dropDown.classList){
     if(way === 'down'){
       dropDown.classList.remove('triangle-up');
@@ -340,7 +340,7 @@ window.onresize = function () {
 function dropdownHandler(e) {
   inputLabel.focus();
   inputLabel.value = "";
-  setDropDown(e);
+  setDropDown();
   
 }
 
@@ -350,7 +350,7 @@ function blurInput() {
   var wrapper = document.querySelector(".dropdown");
   var item = wrapper.querySelector("ul");
   deleteChildrenFromWrapper(wrapper,item);
-  triangeReverseTo(wrapper,'up')
+  triangleReverseTo(wrapper,'up')
   inputLabel.blur();
 }
 
