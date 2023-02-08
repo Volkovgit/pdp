@@ -1,32 +1,41 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-document.querySelectorAll(".activity-likes-heart__svg").forEach(function (heartButton) {
-    heartButton.addEventListener('click', function (e) {
-        var path = heartButton.children[0];
-        path.attributes[0].value === "#9ca3af" ? heartButton.children[0].setAttribute('fill', '#eb2940') : heartButton.children[0].setAttribute('fill', '#9ca3af');
-    });
-});
-var Card = /** @class */ (function (_super) {
-    __extends(Card, _super);
-    function Card() {
-        return _super.call(this) || this;
+const cardList = [
+    {
+        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+    },
+    {
+        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+    },
+    {
+        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+    },
+    {
+        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+    },
+    {
+        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+    },
+];
+class Card extends HTMLElement {
+    constructor(data) {
+        super();
+        this.data = data;
     }
-    Card.prototype.connectedCallback = function () {
-        console.log('Prost');
-    };
-    return Card;
-}(HTMLElement));
-customElements.define("my-element", Card);
+    connectedCallback() {
+        setTimeout(() => {
+            this.innerHTML += `<div class='card'>
+      <div class="card-photo">
+          <img
+            class="card-photo__img"
+            src="${this.data.imageUrl}"
+            alt=""
+          />
+        </div>
+      </div>`;
+        });
+    }
+}
+customElements.define("card-element", Card);
+cardList.forEach((card) => {
+    const cardObj = new Card(card);
+    document.querySelector('footer').before(cardObj);
+});

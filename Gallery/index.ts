@@ -1,21 +1,49 @@
-document.querySelectorAll(".activity-likes-heart__svg").forEach((heartButton) => {
-    heartButton.addEventListener('click',(e) => {
-        const path = heartButton.children[0];
-        path.attributes[0].value === "#9ca3af" ? heartButton.children[0].setAttribute('fill','#eb2940') : heartButton.children[0].setAttribute('fill','#9ca3af')
-    })
-});
+type CardData = {
+  imageUrl: string;
+};
 
+const cardList: CardData[] = [
+  {
+    imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+  },
+  {
+    imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+  },
+  {
+    imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+  },
+  {
+    imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+  },
+  {
+    imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
+  },
+];
 
-
-
-class Card extends HTMLElement{
-    constructor(){
-        super();
-        
-    }
-
-    connectedCallback(){
-        console.log('Prost');
-    }
+class Card extends HTMLElement {
+  data: CardData;
+  constructor(data: CardData) {
+    super();
+    this.data = data;
+  }
+  connectedCallback() {
+    setTimeout(() => {
+      this.innerHTML += `<div class='card'>
+      <div class="card-photo">
+          <img
+            class="card-photo__img"
+            src="${this.data.imageUrl}"
+            alt=""
+          />
+        </div>
+      </div>`
+    });
+  }
 }
-customElements.define("my-element", Card);
+customElements.define("card-element", Card);
+
+
+cardList.forEach((card:CardData)=>{
+  const cardObj = new Card(card)
+  document.querySelector('footer').before(cardObj)
+})
