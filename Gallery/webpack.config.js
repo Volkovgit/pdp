@@ -1,19 +1,25 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const { webpack, HotModuleReplacementPlugin } = require("webpack");
 
 module.exports = {
   entry: "./src/index.ts",
+
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /\.(scss)$/,
         use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
-        test: /\.tsx?$/,
-        use: ["babel-loader",'ts-loader'],
+        test: /\.ts?$/,
+        use: ["babel-loader", "ts-loader"],
         exclude: /node_modules/,
-      }
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: "asset/inline",
+      },
     ],
   },
   output: {
@@ -25,5 +31,6 @@ module.exports = {
       template: path.join(__dirname, "src", "index.html"),
       filename: "index.html",
     }),
+    // new HotModuleReplacementPlugin(),
   ],
 };
