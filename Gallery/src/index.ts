@@ -1,3 +1,4 @@
+import './index.scss'
 type cardStatistic = {
   likes: number;
   views: number;

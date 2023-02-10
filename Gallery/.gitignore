@@ -1,5 +1,5 @@
 *.css
 *.map
-*.js
+*src\.js
 *node_modules
 *dist
