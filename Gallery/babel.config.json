@@ -4,14 +4,15 @@
       "@babel/preset-env",
       {
         "targets": {
-          "edge": "17",
-          "firefox": "60",
-          "chrome": "67",
+          "edge": "15",
+          "firefox": "51",
+          "chrome": "56",
           "safari": "11.1"
         },
         "useBuiltIns": "usage",
         "corejs": "3.6.5"
       }
     ]
-  ]
+  ],
+  "sourceMaps": true
 }

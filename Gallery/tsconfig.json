@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2015",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "sourceMap": true,
   },
-  
   "files": ["./src/index.ts"]
 }
