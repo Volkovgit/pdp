@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+<meta charset ="UTF-8">
+<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Единый тест по теории моделирования языка</title>
+<!-- add css sources at here -->
+<!--<link rel="stylesheet" href="css/myStyle.css"/>-->
+<link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap.css"/>
+
+
+<!-- add javascript libs at here -->
+<script type="text/javascript" src="lib/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="lib/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="lib/lodash-2.4.1/lodash.compat.js"></script>
+
+<!-- add javascript sources at here -->
+<script type="text/javaScript" src="js/main.js"></script>
+<script type="text/javaScript" src="js/model/subject.js"></script>
+<script type="text/javaScript" src="js/model/choiceSubject.js"></script>
+<script type="text/javaScript" src="js/model/multipleChoiceSubject.js"></script>
+
+</head>
+ <body>
+  <div class="container">
+   <form action="#" method="post" autocomplete="off">
+
+    <div id="alert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+                    <h3 class="modal-title text-danger">Внимание!</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Пожалуйста, внимательно проверьте и заполните необходимые пункты</p>
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">Продолжить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="result" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+                    <h3 class="modal-title text-success">Результаты: </h3>
+                </div>
+                <div class="modal-body">
+                    <p id="resultScore"></p>
+                    <p id="resultGrade"></p>
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center">Единый тест теории моделирования языка</h1>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">Предмет экзамена: единый язык моделирования UML</div>
+                <div class="col-md-4">Время: 100 минут</div>
+                <div class="col-md-4" id="divScores">Счет:<span id="scores" class="text-danger"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" id="panelStudentPicker">
+        <div class="panel-heading" >
+          <h2 class="panel-title">Выберите студента из списка</h2>
+        </div>
+        <div class="panel-body" >
+          <table class="table " id="studentList">
+            <thead>
+              <tr >
+                <th scope="col"></th>
+                <th scope="col">Имя</th>
+                <th scope="col">Студенческий билет</th>
+                <th scope="col">Класс</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+    <div class="panel panel-success">
+    <div class="panel-heading">
+       <h2 class="panel-title">1. Заполните пропуски.(5 баллов за каждый ответ, всего 4 пропуска)</h2>
+    </div>
+        <div class="panel-body">
+            <ol>
+                <li class="">
+                    <div class="form-group">
+                        <label class="control-label">Полное название UML:</label>
+                        <div class="form-inline">
+                            <label><input type="text" name="gap_ans_1" id="gap1" class="form-control">.</label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <label class="control-label">Отличительными чертами объекта являются</label>
+                        <div class="form-inline">
+                            <label><input type="text" name="gap_ans_2" id="gap2_1" class="form-control"></label>
+                            <label><input type="text" name="gap_ans_2" id="gap2_2" class="form-control"></label>
+                            <label><input type="text" name="gap_ans_2" id="gap2_3" class="form-control">.</label>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+   <div class="panel panel-success">
+       <div class="panel-heading">
+           <h2 class="panel-title">2. Вопросы с одним вариантом ответа (10 баллов за каждый вопрос, всего 2 вопроса)</h2>
+       </div>
+       <div class="panel-body">
+           <ol>
+               <li>
+                   <div class="form-group">
+                       <label class="control-label">Отношение UML к программной инженерии:</label>
+                       <div class="radio">
+                           <label><input type="radio" name="radio_ans_1" id="sel1_1" value="A">(A)UML и есть разработка ПО</label>
+                       </div>
+                       <div class="radio">
+                           <label><input type="radio" name="radio_ans_1" id="sel1_2" value="B">(B)UML участвовал в разработке ПО для инженеров-программистов</label>
+                       </div>
+                       <div class="radio">
+                           <label><input type="radio" name="radio_ans_1" id="sel1_3" value="C">(C)UML не имеет ничего общего с разработкой ПО</label>
+                       </div>
+                       <div class="radio">
+                           <label><input type="radio" name="radio_ans_1" id="sel1_4" value="D">(D)UML Часть разработки ПО</label>
+                       </div>
+                   </div>
+               </li>
+               <li>
+                   <div class="form-group">
+                       <label class="control-label"> В языке JAVA:</label>
+                       <div class="radio">
+                           <label> <input type="radio" name="radio_ans_2" id="sel2_1" value="A">(A)Одиночное наследование</label>
+                       </div>
+                       <div class="radio">
+                           <label><input type="radio" name="radio_ans_2" id="sel2_2" value="B">(B)Множественное наследование</label>
+                       </div>
+                       <div class="radio">
+                           <label><input type="radio" name="radio_ans_2" id="sel2_3" value="C">(C)Поддерживается как одиночное, так и множественное наследование.</label>
+                       </div>
+                       <div class="radio">
+                           <label><input type="radio" name="radio_ans_2" id="sel2_4" value="D">(D)Одиночное наследование и множественное наследование не поддерживаются</label>
+                       </div>
+                   </div>
+               </li>
+           </ol>
+
+       </div>
+   </div>
+
+   <div class="panel panel-success">
+       <div class="panel-heading">
+           <h2 class="panel-title">3. Вопросы с несколькими вариантами ответов (10 баллов за каждый вопрос, всего 2 вопроса)</h2>
+       </div>
+       <div class="panel-body">
+           <ol>
+               <li>
+                   <div class="form-group">
+                       <label class="control-label">Каковы три степени детализации вариантов использования?</label>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_1" value="A">(A)Обзорный уровень</label>
+                       </div>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_2" value="B">(B)Уровень спроса</label>
+                       </div>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_3" value="C">(C)Уровень пользовательских целей</label>
+                       </div>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_1" id="mul1_4" value="D">(D)Вспомогательный уровень</label>
+                       </div>
+                   </div>
+               </li>
+               <li>
+                   <div class="form-group">
+                       <label class="control-label">Из каких трех частей состоит диаграмма классов</label>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_1" value="A">(A)Название(Name)</label>
+                       </div>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_2" value="B">(B)Аттрибут(Attribute)</label>
+                       </div>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_3" value="C">(C)Действие(Operation)</label>
+                       </div>
+                       <div class="checkbox">
+                          <label><input type="checkbox" name="check_ans_2" id="mul2_4" value="D">(D)Функция(Function)</label>
+                       </div>
+                   </div>
+               </li>
+           </ol>
+       </div>
+   </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2 class="panel-title">4. Вопрос с несколькими вариантами ответа (10 баллов)</h2>
+        </div>
+        <div class="panel-body">
+            <ol>
+                <li>
+                    <div class="form-group">
+                        <label class="control-label">На диаграмме деятельности существуют следующие виды переходов</label>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_1" value="A">(A)Триггерные</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_2" value="B">(B)Нетриггерные</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_3" value="C">(C)Со сторожевым условием</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_4" value="D">(D)Ветвление</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" name="check_ans_3" id="mul3_5" value="E">(D)Переходы с дорожками;</label>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+   <div class="panel panel-success">
+       <div class="panel-heading">
+           <h2 class="panel-title">5. Верно или нет (10 баллов за каждый вопрос, всего 2 вопроса)</h2>
+       </div>
+       <div class="panel-body">
+           <ol>
+               <li>
+                   <div class="form-group">
+                       <label class="control-label">Диаграммы вариантов использования применяются только для общения и связи с клиентами, а также для определения требований.</label>
+                           <div class="radio">
+                               <label><input type="radio" id="tureOrFalse1_1" name="ans_1" value="yes">
+                                   <span class="glyphicon glyphicon-ok text-success"></span>
+                               </label>
+                           </div>
+                           <div class="radio">
+                               <label>
+                                   <input type="radio" id="tureOrFalse1_2" name="ans_1" value="no">
+                                   <span class="glyphicon glyphicon-remove text-danger"></span>
+                               </label>
+                           </div>
+                   </div>
+
+               </li>
+               <li>
+                   <div class="form-group">
+                       <label class="control-label">На диаграмме состояний допускается любое количество терминальных состояний.</label>
+                           <div class="radio">
+                               <label><input type="radio" id="tureOrFalse2_1" name="ans_2" value="yes">
+                                   <span class="glyphicon glyphicon-ok text-success"></span>
+                               </label>
+                           </div>
+                           <div class="radio">
+                               <label>
+                                   <input type="radio" id="tureOrFalse2_2" name="ans_2" value="no">
+                                   <span class="glyphicon glyphicon-remove text-danger"></span>
+                               </label>
+                           </div>
+                   </div>
+               </li>
+           </ol>
+       </div>
+   </div>
+
+
+   <div class="panel panel-success">
+       <div class="panel-heading">
+           <h2 class="panel-title">6. Вопросы с краткими ответами (20 баллов за каждый, всего 1 вопрос)</h2>
+       </div>
+       <div class="panel-body">
+           <ol>
+               <li>
+                   <div class="form-group">
+                       <label class="control-label">
+                        Кратко опишите, что такое модель и каково представление модели?
+                       </label>
+                   </div>
+                   <label><textarea rows="4" id="short5"></textarea></label>
+               </li>
+           </ol>
+       </div>
+   </div>
+
+   <p class="text-center">
+   <input type="submit" id="btnSubmit" class="btn btn-success" value="Отправить">（Пожалуйста, внимательно проверьте перед отправкой!)
+
+   </form>
+ </div>
+</body>
+
+</html>
