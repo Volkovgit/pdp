@@ -1,6 +1,11 @@
-import './index.scss'
-import './components/types'
-import {Card,LocalStorage} from './components/components'
+import "./index.scss";
+import "./components/types";
+import { LocalStorage } from "./components/components";
+const storage = new LocalStorage();
+
+function testPropsFunction(e){
+  console.log(e); 
+}
 
 const cardList: CardData[] = [
   {
@@ -14,6 +19,7 @@ const cardList: CardData[] = [
       likes: 1,
       views: 33,
     },
+    likeHandler:console.log
   },
   {
     imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
@@ -26,14 +32,28 @@ const cardList: CardData[] = [
       likes: 1,
       views: 33,
     },
+    likeHandler:console.log
   },
 ];
 
 
-console.log(window.localStorage);
-cardList.forEach((card: CardData) => {
-  const cardObj = new Card(card);
-  document.querySelector("main").appendChild(cardObj);
-});
 
-console.log(LocalStorage);
+document.addEventListener("DOMContentLoaded", () => {
+  // if(storage.hasItemInLocalStorage('card')){
+  //   const cards: CardData[] = JSON.parse(storage.getItemFromLocalStorage('card'));
+  //   cards.forEach((card: CardData) => {
+  //     document.querySelector("main").innerHTML+= `<card-element props='${JSON.stringify(card)}' likeFunction='${testPropsFunction}'></card-element>`;
+  //   });
+  // }
+  // else{
+  //   storage.setItemToLocalStorage('card',cardList);
+  // }
+  setTimeout(() => {
+    document.querySelector("main").innerHTML = '';
+    cardList.forEach((card: CardData) => {
+      console.log(card);
+      document.querySelector("main").innerHTML+= `<card-element props='${JSON.stringify(card)}'></card-element>`;
+    });
+  },1000)
+  
+});

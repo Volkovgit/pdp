@@ -11,4 +11,5 @@ type cardStatistic = {
       authorType: string;
     };
     statistic: cardStatistic;
+    likeHandler : Function;
   };

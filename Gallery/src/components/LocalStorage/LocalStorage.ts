@@ -4,15 +4,15 @@ export default class LocalStorage {
     this.localstorage = window.localStorage;
   }
 
-  setCardsToLocalStorage(cards: CardData[]) {
-    this.localstorage.setItem("cards", JSON.stringify(cards));
+  setItemToLocalStorage(itemName:string,itemValue: CardData[]) {
+    this.localstorage.setItem(itemName, JSON.stringify(itemValue));
   }
 
-  getCardsFromLocalStorage(): CardData[] | null {
-    return JSON.parse(this.localstorage.getItem("cards"));
+  getItemFromLocalStorage(itemName:string): string {
+    return this.localstorage.getItem(itemName);
   }
 
-  hasCardInLocalStorage(): boolean {
-    return this.localstorage.getItem("cards") !== null;
+  hasItemInLocalStorage(itemName:string): boolean {
+    return this.localstorage.getItem(itemName) !== null;
   }
 }
