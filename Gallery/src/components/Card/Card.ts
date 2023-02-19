@@ -1,24 +1,27 @@
-export default class Card extends HTMLElement {
-  props: CardData;
+import { Application } from "../components";
 
-  constructor() {
-    super();
+
+export default class Card {
+  props: CardData;
+  parent : Application;
+  htmlElement : HTMLElement
+
+  constructor(parent,htmlElement,props) {
+    this.parent = parent;
+    this.htmlElement = htmlElement
+    this.props = props;
+    this.render();
   }
 
   connectedCallback() {
     setTimeout(() => {
-      this.render();
+      console.log(this);
+      this.likeHandler();
     });
   }
 
-  setProps(){
-    console.log(JSON.parse(this.getAttribute('props')));
-    this.props = JSON.parse(this.getAttribute('props'))
-  }
-
   render() {
-    this.setProps();
-    this.innerHTML = `<div class="card">
+    this.htmlElement.innerHTML += `<div class="card" id="">
       <div class="card-photo"><img class="card-photo__img" src="${this.props.imageUrl}" /></div>
       <div class="card-description">
         <div class="author">
@@ -28,7 +31,7 @@ export default class Card extends HTMLElement {
         </div>
         <div class="activity">
           <div class="activity-likes">
-            <div  class="activity-likes-heart">
+            <div  class="activity-likes-heart" onclick="this.likeHandler">
               <svg class="activity-likes-heart__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" version="1">
                 <path
                   fill="#9ca3af"
@@ -59,30 +62,24 @@ export default class Card extends HTMLElement {
           </div>
         </div>
       </div>`;
-    this.likeHandler();
+      this.likeHandler()
   }
 
-  static get observedAttributes() {
-    return ["props"];
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.render();
-  }
 
   likeHandler() {
-    const element = this.querySelector(".activity-likes");
-    const svgPath = element.querySelector("path");
-    svgPath.addEventListener("click", () => {
-      if (element.attributes.getNamedItem("active") === null) {
-        element.setAttribute("active", "true");
-        svgPath.setAttribute("fill", "#eb2940");
-        console.log(typeof this.props.likeHandler);
-      } else {
-        element.removeAttribute("active");
-        svgPath.setAttribute("fill", "#9ca3af");
-      }
-    });
+    console.log(this);
+    // const element = this.querySelector(".activity-likes");
+    // const svgPath = element.querySelector("path");
+    // svgPath.addEventListener("click", () => {
+    //   if (element.attributes.getNamedItem("active") === null) {
+    //     element.setAttribute("active", "true");
+    //     svgPath.setAttribute("fill", "#eb2940");
+    //     // console.log(typeof this.props.author.likeHandler);
+    //   } else {
+    //     element.removeAttribute("active");
+    //     svgPath.setAttribute("fill", "#9ca3af");
+    //   }
+    // });
   }
 }
-customElements.define("card-element", Card);
+

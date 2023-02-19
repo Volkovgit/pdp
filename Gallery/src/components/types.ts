@@ -1,15 +1,16 @@
 type cardStatistic = {
-    likes: number;
-    views: number;
+  likes: number;
+  views: number;
+};
+
+type CardData = {
+  id: number;
+  imageUrl: string;
+  author: {
+    authorName: string;
+    authorLogoUrl: string;
+    authorType: string;
+    likeHandler: string;
   };
-  
-  type CardData = {
-    imageUrl: string;
-    author: {
-      authorName: string;
-      authorLogoUrl: string;
-      authorType: string;
-    };
-    statistic: cardStatistic;
-    likeHandler : Function;
-  };
+  statistic: cardStatistic;
+};
