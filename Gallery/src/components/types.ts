@@ -1,6 +1,12 @@
 type cardStatistic = {
-  likes: number;
-  views: number;
+  likes: {
+    active:boolean,
+    count:number
+  },
+  views: {
+    active:boolean,
+    count:number
+  }
 };
 
 type CardData = {
@@ -10,7 +16,6 @@ type CardData = {
     authorName: string;
     authorLogoUrl: string;
     authorType: string;
-    likeHandler: string;
   };
   statistic: cardStatistic;
 };

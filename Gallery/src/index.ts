@@ -2,7 +2,7 @@ import "./index.scss";
 import "./components/types";
 import { Application, LocalStorage,Card } from "./components/components";
 const storage = new LocalStorage();
-// customElements.define("card-element", Card);
+customElements.define("card-element", Card);
 
 
 document.addEventListener("DOMContentLoaded", () => {

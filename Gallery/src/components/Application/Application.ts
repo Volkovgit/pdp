@@ -8,12 +8,17 @@ export default class Application {
       author: {
         authorName: "Halo Lab",
         authorLogoUrl: "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
-        authorType: "pro",
-        likeHandler: "testPropsFunction",
+        authorType: "pro"
       },
       statistic: {
-        likes: 1,
-        views: 33,
+        likes: {
+          active:true,
+          count:1
+        },
+        views: {
+          active:true,
+          count:33
+        },
       },
     },
     {
@@ -22,12 +27,17 @@ export default class Application {
       author: {
         authorName: "Halo Lab",
         authorLogoUrl: "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
-        authorType: "ne pro",
-        likeHandler: "testPropsFunction",
+        authorType: "ne pro"
       },
       statistic: {
-        likes: 1,
-        views: 33,
+        likes: {
+          active:true,
+          count:1
+        },
+        views: {
+          active:true,
+          count:33
+        },
       },
     },
   ];
@@ -35,13 +45,29 @@ export default class Application {
     this.render();
   }
 
+  findCardById(id){
+    return this.cardList.filter(card=>card.id===id)[0];
+  }
+
+
+  likesHandler(card){
+    const cardById = this.findCardById(card.props.id)
+    if(cardById.statistic.likes.active){
+      cardById.statistic.likes.count --;
+    }
+    else{
+      cardById.statistic.likes.count ++;
+    }
+    cardById.statistic.likes.active = !cardById.statistic.likes.active
+    
+    card.rerenderCard(cardById);
+  }
  
   render() {
     const element = document.querySelector("main");
     this.cardList.forEach((card: CardData) => {
-      new Card(this, element, card);
-      //   document.querySelector("main").innerHTML += `<card-element props='${JSON.stringify(card)}'></card-element>`;
+      const cardElement = new Card(this, card);
+      element.appendChild(cardElement)
     });
-    console.log(element.querySelectorAll(".card"));
   }
 }
