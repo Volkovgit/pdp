@@ -5,8 +5,7 @@
 
 @font-face {
   font-family: "SF-Pro Regular";
-  src: local("SF-Pro Regular"),
-    url("./fonts/SF-Pro-Display-Regular.otf") format("opentype");
+  src: local("SF-Pro Regular"), url("./fonts/SF-Pro-Display-Regular.otf") format("opentype");
 }
 
 @mixin flexbox($wrap: none, $direction: none, $align: none, $justify: none) {
@@ -63,19 +62,44 @@ main {
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-top: 10%;
-}
 
-.card-photo {
-  width: 100%;
-}
-
-.card-photo__img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.card-description {
-  @include flexbox(nowrap, row, none, space-between);
+  &-photo {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    position: relative;
+    &-buttons {
+      display: flex;
+      position: absolute;
+      width: 30%;
+      height: 15%;
+      right: 0;
+      bottom: 5%;
+      justify-content: space-around;
+      &-download,
+      &-likes {
+        width: 40%;
+        border-radius: 12px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &__svg{
+          width:60%;
+          height:60%;
+        }
+      }
+    }
+    &__img {
+      width: 100%;
+      position: relative;
+      z-index: -1;
+      border-radius: 10px;
+    }
+  }
+  &-description {
+    @include flexbox(nowrap, row, none, space-between);
+  }
 }
 
 .author {
@@ -116,11 +140,11 @@ main {
     @include flexbox(nowrap, row, center, space-evenly);
     width: 45%;
     &-heart {
-      width:20px;
-      height:15px;
-      &__svg{
-        height:100%;
-        width:100%;
+      width: 20px;
+      height: 15px;
+      &__svg {
+        height: 100%;
+        width: 100%;
         cursor: pointer;
       }
     }
@@ -128,13 +152,21 @@ main {
   &-views {
     @include flexbox(nowrap, row, center, space-evenly);
     width: 45%;
-    &-eye{
-        width:20px;
-        height:15px;
-        &__svg{
-            height:100%;
-            width:100%;
-        }
+    &-eye {
+      width: 20px;
+      height: 15px;
+      &__svg {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
+}
+
+.shadow-down {
+  box-shadow: 1px -75px 33px -46px rgba(34, 60, 80, 0.6) inset;
+}
+
+.hide{
+  display: none;
 }

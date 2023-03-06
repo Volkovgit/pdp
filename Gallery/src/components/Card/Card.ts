@@ -1,11 +1,10 @@
 import { Application } from "../components";
 
-
-export default class Card extends HTMLElement{
+export default class Card extends HTMLElement {
   props: CardData;
-  parent : Application;
+  parent: Application;
 
-  constructor(parent,props) {
+  constructor(parent, props) {
     super();
     this.parent = parent;
     this.props = props;
@@ -14,23 +13,41 @@ export default class Card extends HTMLElement{
 
   connectedCallback() {
     setTimeout(() => {
-      console.log(this);
       this.likeHandler();
+      this.imageClickHandler();
     });
   }
 
   render() {
     this.innerHTML = `<div class="card" id="">
-      <div class="card-photo"><img class="card-photo__img" src="${this.props.imageUrl}" /></div>
+      <div class="card-photo">
+      <div class="card-photo-buttons hide">
+          <div class="card-photo-buttons-download"><svg class="card-photo-buttons-download__svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 11L12 16" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.5 13.5L9.5 13.5" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 9.312C3 4.93757 3.93757 4 8.312 4H9.92963C10.5983 4 11.2228 4.3342 11.5937 4.8906L12.4063 6.1094C12.7772 6.6658 13.4017 7 14.0704 7C15.9647 7 17.8145 7 19.1258 7C20.1807 7 21.0128 7.82095 21.0029 8.8758C21.0013 9.05376 21 9.20638 21 9.312V14.688C21 19.0624 20.0624 20 15.688 20H8.312C3.93757 20 3 19.0624 3 14.688V9.312Z" stroke="#323232" stroke-width="2"/>
+            </svg></div>
+          <div class="card-photo-buttons-likes"><svg class="card-photo-buttons-likes__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" version="1">
+            <path
+            ${this.props.statistic.likes.active ? 'fill="#eb2940"' : 'fill="#9ca3af"'}
+              
+              d="M473.984,74.248c-50.688-50.703-132.875-50.703-183.563,0c-17.563,17.547-29.031,38.891-34.438,61.391
+        c-5.375-22.5-16.844-43.844-34.406-61.391c-50.688-50.703-132.875-50.703-183.563,0c-50.688,50.688-50.688,132.875,0,183.547
+        l217.969,217.984l218-217.984C524.672,207.123,524.672,124.936,473.984,74.248z"
+            ></path>
+          </svg></div>
+        </div>
+      <img class="card-photo__img" src="${this.props.imageUrl}" />
+      </div>
       <div class="card-description">
         <div class="author">
-          <div class="author-image"><img class="author-image__item" src="${this.props.author.authorLogoUrl}" /></div>
+          <div class="author-image" ><img class="author-image__item" src="${this.props.author.authorLogoUrl}" /></div>
           <div class="author-name"><span class="author-name__text">${this.props.author.authorName}</span></div>
           <div class="author-type"><span class="author-type__text">${this.props.author.authorType}</span></div>
         </div>
         <div class="activity">
           <div class="activity-likes">
-            <div  class="activity-likes-heart" onclick="this.likeHandler">
+            <div  class="activity-likes-heart">
               <svg class="activity-likes-heart__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" version="1">
                 <path
                   ${this.props.statistic.likes.active ? 'fill="#eb2940"' : 'fill="#9ca3af"'}
@@ -64,22 +81,30 @@ export default class Card extends HTMLElement{
       </div>`;
   }
 
-  rerenderCard(newProps){
-    this.props = newProps;
-    this.render()
-    this.likeHandler();
-  }
-
-  switchColorSvgLikes(){
-
-  }
-
   likeHandler() {
-    const element = this.querySelector(".activity-likes");
-    const svgPath = element.querySelector("path");
-    svgPath.addEventListener("click", () => {
-      this.parent.likesHandler(this)
+    const element = this.querySelector(".activity-likes-heart");
+    element.addEventListener("click", () => {
+      this.parent.likesHandler(this);
     });
   }
+
+  imageClickHandler() {
+    const buttons = this.querySelector(".card-photo-buttons");
+    const container = this.querySelector('.card-photo')
+    container.addEventListener("click", () => {
+      if (container.hasAttribute("active")) {
+        container.removeAttribute("active");
+        container.classList.remove('shadow-down')
+        buttons.classList.add('hide')
+      } else {
+        container.setAttribute('active','');
+        container.classList.add('shadow-down')
+        buttons.classList.remove('hide')
+      }
+    });
+  }
+
+  
 }
+
 

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //   storage.setItemToLocalStorage('card',cardList);
   // }
   setTimeout(() => {
-    new Application()
+    new Application(document.querySelector('main'))
     // document.querySelector("main").innerHTML = '';
     // cardList.forEach((card: CardData) => {
     //   console.log(card);
