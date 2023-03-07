@@ -16,7 +16,7 @@ export default class Application {
           count:1
         },
         views: {
-          active:true,
+          active:false,
           count:33
         },
       },
@@ -35,7 +35,7 @@ export default class Application {
           count:1
         },
         views: {
-          active:true,
+          active:false,
           count:33
         },
       },
@@ -95,7 +95,6 @@ export default class Application {
 
   likesHandler(card){
     const cardById = this.findCardById(card.props.id)
-    const cardInHtml = this.findCardInHtml(card);
     if(cardById.statistic.likes.active){
       cardById.statistic.likes.count --;
     }
@@ -103,7 +102,16 @@ export default class Application {
       cardById.statistic.likes.count ++;
     }
     cardById.statistic.likes.active = !cardById.statistic.likes.active
-    this.parentElement.replaceChild(new Card(this,cardById),cardInHtml)
+    card.updateCard(cardById)
+  }
+
+  viewsHandler(card){
+    const cardById = this.findCardById(card.props.id)
+    if(!cardById.statistic.views.active){
+      cardById.statistic.views.count ++;
+      cardById.statistic.views.active = true;
+    }
+    card.updateCard(cardById)
   }
  
   render() {
