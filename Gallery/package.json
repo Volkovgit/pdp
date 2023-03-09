@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "webpack-dev-server --mode development",
+    "server": "start npm run dataServer && start npm run webServer",
+    "dataServer":"json-server --watch db.json",
+    "webServer":"webpack-dev-server --mode development",
     "prode": "webpack --mode production",
     "dev": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -98,6 +98,10 @@ export default class Storage {
     }
   }
 
+  private updateLocalStorage(){
+    this.localStorage.setItemToLocalStorage("card", this.state);
+  }
+
   public getState(): CardData[] {
     return this.state;
   }
@@ -114,7 +118,7 @@ export default class Storage {
       filtredCard.statistic.likes.count++;
     }
     filtredCard.statistic.likes.active = !filtredCard.statistic.likes.active;
-
+    this.updateLocalStorage()
     return filtredCard;
   }
 
@@ -124,6 +128,7 @@ export default class Storage {
       filtredCard.statistic.views.count++;
       filtredCard.statistic.views.active = true;
     }
+    this.updateLocalStorage();
     return filtredCard
   }
 }
