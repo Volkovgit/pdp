@@ -135,4 +135,4 @@ export default class Card extends HTMLElement {
   
 }
 
-
+customElements.define("card-element", Card);
