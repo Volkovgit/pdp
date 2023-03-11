@@ -17,11 +17,17 @@ export default class Storage {
       const cards: CardData[] = JSON.parse(this.localStorage.getItemFromLocalStorage("card"));
       this.state = cards;
     } else {
-      // this.getCardsFromServer()
+      this.getCardsFromServer()
     }
   }
 
-  private updateLocalStorage() {
+  private updateState(updatedCard:CardData) {
+    this.state = this.state.map(card=>{
+      if(card.id === updatedCard.id){
+        return updatedCard;
+      }
+      return card
+    })
     this.localStorage.setItemToLocalStorage("card", this.state);
   }
 
@@ -42,36 +48,29 @@ export default class Storage {
     return this.state.filter((card) => card.id === cardForFind.props.id)[0];
   }
 
-  promiseWrapper(callback:Function): Promise<CardData |CardData[]> {
-    return new Promise((resolve, reject) => {
-      callback().then(result=>resolve(result))
-    });
-  }
+
 
   async updateLikes(likedCard) {
-    console.log(likedCard.props.statistic);
-    let filtredCard = this.findCard(likedCard);
-    console.log(filtredCard.statistic);
     let result;
-    if (filtredCard.statistic.likes.active) {
-      result = await this.server.requestToServer(`/card-update?id=${filtredCard.id}&updateType=downLikes`, "POST")
+    if (likedCard.props.statistic.likes.active) {
+      result = await this.server.requestToServer(`/card-update?id=${likedCard.props.id}&updateType=downLikes`, "POST")
     } else {
-      result = await this.server.requestToServer(`/card-update?id=${filtredCard.id}&updateType=upLikes`, "POST")
+      result = await this.server.requestToServer(`/card-update?id=${likedCard.props.id}&updateType=upLikes`, "POST")
     }
-    const cardActive = filtredCard.statistic.likes.active
-    result.statistic.likes.active = cardActive;
-    filtredCard = result
-    this.updateLocalStorage();
-    return await result;
+    result.statistic.likes.active = !likedCard.props.statistic.likes.active;
+    this.updateState(result);
+    return result;
   }
 
-  updateViews(viewedCard) {
-    const filtredCard = this.findCard(viewedCard);
-    if (!filtredCard.statistic.views.active) {
-      filtredCard.statistic.views.count++;
-      filtredCard.statistic.views.active = true;
+  async updateViews(viewedCard) {
+    if (!viewedCard.props.statistic.views.active) {
+      viewedCard = await this.server.requestToServer(`/card-update?id=${viewedCard.props.id}&updateType=upViews`, "POST")
+      viewedCard.statistic.views.active = true;
     }
-    this.updateLocalStorage();
-    return filtredCard;
+    else{
+      return viewedCard.props
+    }
+    this.updateState(viewedCard);
+    return viewedCard;
   }
 }

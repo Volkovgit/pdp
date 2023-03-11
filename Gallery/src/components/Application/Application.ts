@@ -14,7 +14,7 @@ export default class Application {
   }
 
   viewsHandler(card) {
-    card.updateCard(this.state.updateViews(card));
+    this.state.updateViews(card).then(newCardProps=>card.updateCard(newCardProps))
   }
 
   render() {

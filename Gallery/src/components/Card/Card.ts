@@ -95,7 +95,6 @@ export default class Card extends HTMLElement {
   }
 
   updateCard(props){
-    console.log(props);
     this.props = props;
     this.updateLikes(this.props.statistic.likes.count);
     this.updateViews(this.props.statistic.views.count)
