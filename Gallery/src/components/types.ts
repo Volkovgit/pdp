@@ -1,15 +1,15 @@
-type cardStatistic = {
+interface cardStatistic {
   likes: {
-    active:boolean,
-    count:number
-  },
+    active: boolean;
+    count: number;
+  };
   views: {
-    active:boolean,
-    count:number
-  }
-};
+    active: boolean;
+    count: number;
+  };
+}
 
-type CardData = {
+interface CardData {
   id: number;
   imageUrl: string;
   author: {
@@ -18,4 +18,4 @@ type CardData = {
     authorType: string;
   };
   statistic: cardStatistic;
-};
+}

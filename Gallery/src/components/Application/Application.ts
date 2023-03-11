@@ -1,20 +1,20 @@
-import { Card } from "../components";
+import { Card } from '../components';
 
 export default class Application {
   state: Storage;
   parentElement: HTMLElement;
-  constructor(parentElement, state) {
+  constructor (parentElement, state) {
     this.state = state;
     this.parentElement = parentElement;
     this.render();
   }
 
   likesHandler(card) {
-    this.state.updateLikes(card).then(newCardProps=>card.updateCard(newCardProps))
+    this.state.updateLikes(card).then((newCardProps) => card.updateCard(newCardProps));
   }
 
   viewsHandler(card) {
-    this.state.updateViews(card).then(newCardProps=>card.updateCard(newCardProps))
+    this.state.updateViews(card).then((newCardProps) => card.updateCard(newCardProps));
   }
 
   render() {
@@ -22,7 +22,7 @@ export default class Application {
       cards.forEach((card: CardData) => {
         const cardElement = new Card(this, card);
         this.parentElement.appendChild(cardElement);
-      });
+      })
     });
   }
 }
