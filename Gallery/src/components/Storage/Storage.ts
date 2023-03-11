@@ -1,125 +1,68 @@
-import { LocalStorage } from "../components";
+import { LocalStorage, Server } from "../components";
 
 export default class Storage {
-  private state: CardData[];
+  private state: CardData[] | null;
   private localStorage: LocalStorage;
+  private server: Server;
 
-  constructor() {
+  constructor(server) {
+    this.state = null;
     this.localStorage = new LocalStorage();
+    this.server = server;
     this.setStateOnInit();
   }
 
   private setStateOnInit() {
-    const cardList: CardData[] = [
-      {
-        id: 1,
-        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
-        author: {
-          authorName: "Halo Lab",
-          authorLogoUrl: "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
-          authorType: "pro",
-        },
-        statistic: {
-          likes: {
-            active: false,
-            count: 185,
-          },
-          views: {
-            active: false,
-            count: 33,
-          },
-        },
-      },
-      {
-        id: 2,
-        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
-        author: {
-          authorName: "Halo Lab",
-          authorLogoUrl: "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
-          authorType: "ne pro",
-        },
-        statistic: {
-          likes: {
-            active: true,
-            count: 1,
-          },
-          views: {
-            active: false,
-            count: 33,
-          },
-        },
-      },
-      {
-        id: 3,
-        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
-        author: {
-          authorName: "Halo Lab",
-          authorLogoUrl: "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
-          authorType: "ne pro",
-        },
-        statistic: {
-          likes: {
-            active: true,
-            count: 1,
-          },
-          views: {
-            active: true,
-            count: 33,
-          },
-        },
-      },
-      {
-        id: 4,
-        imageUrl: "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
-        author: {
-          authorName: "Halo Lab",
-          authorLogoUrl: "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
-          authorType: "ne pro",
-        },
-        statistic: {
-          likes: {
-            active: true,
-            count: 1,
-          },
-          views: {
-            active: true,
-            count: 33,
-          },
-        },
-      },
-    ];
     if (this.localStorage.hasItemInLocalStorage("card")) {
       const cards: CardData[] = JSON.parse(this.localStorage.getItemFromLocalStorage("card"));
       this.state = cards;
     } else {
-      // тут должен уходить запрос, потом мы значения кладем в localStorage, пока что фиксированный массив туда кладу
-      this.localStorage.setItemToLocalStorage("card", cardList);
-      this.state = cardList;
+      // this.getCardsFromServer()
     }
   }
 
-  private updateLocalStorage(){
+  private updateLocalStorage() {
     this.localStorage.setItemToLocalStorage("card", this.state);
   }
 
-  public getState(): CardData[] {
-    return this.state;
+  private async getCardsFromServer() {
+    const response = await this.server.requestToServer("/cards", "GET");
+    this.localStorage.setItemToLocalStorage("card", response);
+    this.state = response;
+  }
+
+  public async getState(): Promise<CardData[]> {
+    return new Promise((resolve, reject) => {
+      if (this.state !== null) resolve(this.state);
+      this.getCardsFromServer().then((data) => resolve(this.state));
+    });
   }
 
   findCard(cardForFind) {
     return this.state.filter((card) => card.id === cardForFind.props.id)[0];
   }
 
-  updateLikes(likedCard) {
-    const filtredCard = this.findCard(likedCard);
+  promiseWrapper(callback:Function): Promise<CardData |CardData[]> {
+    return new Promise((resolve, reject) => {
+      callback().then(result=>resolve(result))
+    });
+  }
+
+  async updateLikes(likedCard) {
+    console.log(likedCard.props.statistic);
+    let filtredCard = this.findCard(likedCard);
+    console.log(filtredCard.statistic);
+    let result;
     if (filtredCard.statistic.likes.active) {
-      filtredCard.statistic.likes.count--;
+      result = await this.server.requestToServer(`/card-update?id=${filtredCard.id}&updateType=downLikes`, "POST")
     } else {
-      filtredCard.statistic.likes.count++;
+      result = await this.server.requestToServer(`/card-update?id=${filtredCard.id}&updateType=upLikes`, "POST")
     }
-    filtredCard.statistic.likes.active = !filtredCard.statistic.likes.active;
-    this.updateLocalStorage()
-    return filtredCard;
+    const cardActive = filtredCard.statistic.likes.active
+    result.statistic.likes.active = cardActive;
+    filtredCard = result
+    this.updateLocalStorage();
+    return await result;
   }
 
   updateViews(viewedCard) {
@@ -129,6 +72,6 @@ export default class Storage {
       filtredCard.statistic.views.active = true;
     }
     this.updateLocalStorage();
-    return filtredCard
+    return filtredCard;
   }
 }

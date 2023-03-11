@@ -1,5 +1,10 @@
-{
-  "posts": [
+// сервер-заглушка для проекта
+const jsonServer = require("json-server");
+const server = jsonServer.create();
+const router = jsonServer.router("db.json");
+const middlewares = jsonServer.defaults();
+const db = {
+  "cards": [
     {
       "id": "6409fe4c52f9e5877a641d17",
       "imageUrl": "https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large",
@@ -306,3 +311,50 @@
     }
   ]
 }
+
+
+// Set default middlewares (logger, static, cors and no-cache)
+server.use(middlewares);
+server.use(jsonServer.bodyParser);
+
+// Add custom routes before JSON Server router
+server.get("/cards", (req, res) => {
+  res.jsonp(db.cards);
+});
+
+server.post("/card-update", (req, res) => {
+  if (req.method === "POST") {
+    const action = req.query.updateType;
+    const cardId = req.query.id;
+    if (action && cardId) {
+      const card = db.cards.filter((elem) => elem.id == cardId)[0];
+      if(card!=null){
+        switch (action) {
+          case "upLikes":
+            card.statistic.likes.count++;
+            break;
+          case "downLikes":
+            card.statistic.likes.count--;
+            break;
+          case "upViews":
+            card.statistic.views.count++;
+            break;
+        }
+        res.jsonp(card);
+      }
+      else{
+        res.jsonp({error:"нет карты с таким id"})
+      }
+      
+    }
+    else{
+      res.jsonp({error:"Не переданы необходимые параметры"})
+    }
+    
+  }
+});
+
+server.use(router);
+server.listen(3000, () => {
+  console.log("JSON Server is running");
+});

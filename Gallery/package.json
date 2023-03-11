@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "start npm run dataServer && start npm run webServer",
-    "dataServer":"json-server --watch db.json",
-    "webServer":"webpack-dev-server --mode development",
+    "server": "start npm run dataServerLive && start npm run webServer",
+    "dataServerLive": "nodemon ./Server/server.js",
+    "dataServer":"node src/Server/server.js",
+    "webServer": "webpack-dev-server --mode development",
     "prode": "webpack --mode production",
     "dev": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +24,8 @@
     "file-loader": "^6.2.0",
     "hot-module-replacement": "^3.0.4",
     "html-webpack-plugin": "^5.5.0",
+    "json-server": "^0.17.2",
+    "nodemon": "^2.0.21",
     "postcss-loader": "^7.0.2",
     "postcss-preset-env": "^8.0.1",
     "resolve-url-loader": "^5.0.0",
