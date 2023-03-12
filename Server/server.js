@@ -22,7 +22,7 @@ const db = {
         views: {
           active: true,
           count: 490
-        }
+        },
       },
     },
     {
@@ -42,7 +42,7 @@ const db = {
         views: {
           active: true,
           count: 126
-        }
+        },
       },
     },
     {
@@ -62,7 +62,7 @@ const db = {
         views: {
           active: true,
           count: 404
-        }
+        },
       },
     },
     {
@@ -82,7 +82,7 @@ const db = {
         views: {
           active: true,
           count: 118
-        }
+        },
       },
     },
     {
@@ -102,7 +102,7 @@ const db = {
         views: {
           active: false,
           count: 131
-        }
+        },
       },
     },
     {
@@ -122,7 +122,7 @@ const db = {
         views: {
           active: false,
           count: 201
-        }
+        },
       },
     },
     {
@@ -142,7 +142,7 @@ const db = {
         views: {
           active: false,
           count: 445
-        }
+        },
       },
     },
     {
@@ -162,7 +162,7 @@ const db = {
         views: {
           active: false,
           count: 549
-        }
+        },
       },
     },
     {
@@ -182,7 +182,7 @@ const db = {
         views: {
           active: false,
           count: 377
-        }
+        },
       },
     },
     {
@@ -202,7 +202,7 @@ const db = {
         views: {
           active: false,
           count: 832
-        }
+        },
       },
     },
     {
@@ -222,7 +222,7 @@ const db = {
         views: {
           active: true,
           count: 633
-        }
+        },
       },
     },
     {
@@ -242,7 +242,7 @@ const db = {
         views: {
           active: true,
           count: 612
-        }
+        },
       },
     },
     {
@@ -262,7 +262,7 @@ const db = {
         views: {
           active: false,
           count: 687
-        }
+        },
       },
     },
     {
@@ -282,7 +282,7 @@ const db = {
         views: {
           active: false,
           count: 564
-        }
+        },
       },
     },
     {
@@ -302,7 +302,7 @@ const db = {
         views: {
           active: true,
           count: 414
-        }
+        },
       },
     },
     {
@@ -322,11 +322,11 @@ const db = {
         views: {
           active: false,
           count: 795
-        }
+        },
       },
     },
-  ]
-};
+  ],
+}
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
@@ -347,13 +347,13 @@ server.post('/card-update', (req, res) => {
         switch (action) {
         case 'upLikes':
           card.statistic.likes.count++
-          break;
-          case 'downLikes':
+            break
+        case 'downLikes':
           card.statistic.likes.count--
-          break;
-        case 'upViews':
+            break
+          case 'upViews':
           card.statistic.views.count++
-          break;
+            break
         }
         res.jsonp(card)
       } else {

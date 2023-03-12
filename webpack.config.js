@@ -24,13 +24,13 @@ module.exports = {
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/inline',
-      },
-    ]
+      }
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
       filename: 'index.html',
     })
-  ],
-}
+  ]
+};
