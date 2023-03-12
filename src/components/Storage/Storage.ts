@@ -37,8 +37,8 @@ export default class Storage {
     this.state = response;
   }
 
-  public async getState(): Promise<CardData[]> {
-    return await new Promise((resolve, reject) => {
+  public getState(): Promise<CardData[]> {
+    return new Promise((resolve, reject) => {
       if (this.state !== null) resolve(this.state);
       this.getCardsFromServer().then((data) => {
         resolve(this.state);

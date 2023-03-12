@@ -4,7 +4,7 @@ export default class LocalStorage {
     this.localstorage = window.localStorage;
   }
 
-  setItemToLocalStorage(itemName: string, itemValue: CardData[]) {
+  setItemToLocalStorage(itemName: string, itemValue: any) {
     this.localstorage.setItem(itemName, JSON.stringify(itemValue));
   }
 
