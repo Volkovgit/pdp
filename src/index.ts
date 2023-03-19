@@ -3,7 +3,6 @@ import './components/types';
 import { Application, Server, Storage } from './components/components';
 const server = new Server();
 const storage = new Storage(server);
-console.log(storage);
 
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {

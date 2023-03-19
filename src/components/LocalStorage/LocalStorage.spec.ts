@@ -1,4 +1,4 @@
-import { LocalStorage } from "../components/components";
+import { LocalStorage } from "../components";
 
 describe('LocalStorage',() => {
     let storage
@@ -20,7 +20,7 @@ describe('LocalStorage',() => {
         expect(storage.getItemFromLocalStorage(key) === value)
     })
 
-    test('Get nonexistent from localStorage',() => {
+    test('Get nonexistent item from localStorage',() => {
         window.localStorage.clear();
         expect(storage.getItemFromLocalStorage('123') === null)
         expect(storage.getItemFromLocalStorage('lorem') === null)
