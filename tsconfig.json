@@ -5,7 +5,8 @@
     "target": "ES2015",
     "rootDir": "./src",
     "sourceMap": true,
-    "lib": ["es5", "es6", "dom", "es2015.collection"]
+    "lib": ["es5", "es6", "dom", "es2015.collection"],
+    "esModuleInterop":true
   },
   "files": ["./src/index.ts"]
 }
