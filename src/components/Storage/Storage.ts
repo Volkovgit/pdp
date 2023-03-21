@@ -5,7 +5,7 @@ export default class Storage {
   private readonly localStorage: LocalStorage;
   private readonly server: Server;
 
-  constructor (server) {
+  constructor(server) {
     this.state = null;
     this.localStorage = new LocalStorage();
     this.server = server;
@@ -27,7 +27,7 @@ export default class Storage {
         return updatedCard;
       }
       return card;
-    })
+    });
     this.localStorage.setItemToLocalStorage('card', this.state);
   }
 
@@ -42,7 +42,7 @@ export default class Storage {
       if (this.state !== null) resolve(this.state);
       this.getCardsFromServer().then((data) => {
         resolve(this.state);
-      })
+      });
     });
   }
 
@@ -52,12 +52,12 @@ export default class Storage {
       result = await this.server.requestToServer(
         `/card-update?id=${likedCard.props.id}&updateType=downLikes`,
         'POST',
-      )
+      );
     } else {
       result = await this.server.requestToServer(
         `/card-update?id=${likedCard.props.id}&updateType=upLikes`,
         'POST',
-      )
+      );
     }
     result.statistic.likes.active = !likedCard.props.statistic.likes.active;
     this.updateState(result);
@@ -69,7 +69,7 @@ export default class Storage {
       viewedCard = await this.server.requestToServer(
         `/card-update?id=${viewedCard.props.id}&updateType=upViews`,
         'POST',
-      )
+      );
       viewedCard.statistic.views.active = true;
     } else {
       return viewedCard.props;

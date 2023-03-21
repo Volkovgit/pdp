@@ -1,6 +1,6 @@
 export default class LocalStorage {
   localstorage: Storage;
-  constructor () {
+  constructor() {
     this.localstorage = window.localStorage;
   }
 

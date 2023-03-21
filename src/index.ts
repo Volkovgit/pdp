@@ -8,4 +8,4 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     new Application(document.querySelector('main'), storage);
   }, 1000);
-})
+});

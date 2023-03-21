@@ -58,10 +58,8 @@ const testData = [
         count: 404,
       },
     },
-  }
+  },
 ];
-
-
 
 describe('LocalStorage', () => {
   let storage;
@@ -81,8 +79,8 @@ describe('LocalStorage', () => {
     storage = new Storage(server);
   });
 
-  test('Create and insert cards element in html',async () => {
-    const htmlStringWithThreeCards=` <card-element><div class="card" id="">
+  test('Create and insert cards element in html', async () => {
+    const htmlStringWithThreeCards = ` <card-element><div class="card" id="">
     <div class="card-photo">        
     <div class="card-photo-buttons hide">
       <a class="card-photo-buttons-download" href="https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large" download="proposed_file_name"><svg class="card-photo-buttons-download__svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -211,9 +209,9 @@ describe('LocalStorage', () => {
           <div class="activity-views__count">404</div>
         </div>
       </div>
-    </div></div></card-element>`
+    </div></div></card-element>`;
     const newNode = document.createElement('main');
     application = await new Application(newNode, storage);
-    expect(application.parentElement.innerHTML === htmlStringWithThreeCards)
+    expect(application.parentElement.innerHTML === htmlStringWithThreeCards);
   });
 });

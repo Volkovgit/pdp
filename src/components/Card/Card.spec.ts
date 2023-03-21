@@ -444,10 +444,10 @@ describe('LocalStorage', () => {
       </div>
     </div>`;
     cardElement = new Card(application, cardElementProps);
-    expect(cardElement.innerHTML === cardHtml)
+    expect(cardElement.innerHTML === cardHtml);
   });
 
-  test('Should update likes',async () => {
+  test('Should update likes', async () => {
     const cardElementPropsBeforeUpLikes = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:
@@ -467,7 +467,7 @@ describe('LocalStorage', () => {
           count: 490,
         },
       },
-    }
+    };
     const cardElementPropsAfterUpLikes = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:
@@ -487,7 +487,7 @@ describe('LocalStorage', () => {
           count: 490,
         },
       },
-    }
+    };
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
@@ -496,11 +496,11 @@ describe('LocalStorage', () => {
       }),
     ) as jest.Mock;
     cardElement = new Card(application, cardElementPropsBeforeUpLikes);
-    cardElement.parent.likesHandler(cardElement)
-    await expect(cardElement.props === cardElementPropsAfterUpLikes)
-  })
+    cardElement.parent.likesHandler(cardElement);
+    await expect(cardElement.props === cardElementPropsAfterUpLikes);
+  });
 
-  test('Should update views',async () => {
+  test('Should update views', async () => {
     const cardElementPropsBeforeUpLikes = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:
@@ -520,7 +520,7 @@ describe('LocalStorage', () => {
           count: 490,
         },
       },
-    }
+    };
     const cardElementPropsAfterUpLikes = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:
@@ -540,7 +540,7 @@ describe('LocalStorage', () => {
           count: 491,
         },
       },
-    }
+    };
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
@@ -549,11 +549,11 @@ describe('LocalStorage', () => {
       }),
     ) as jest.Mock;
     cardElement = new Card(application, cardElementPropsBeforeUpLikes);
-    cardElement.parent.viewsHandler(cardElement)
-    await expect(cardElement.props === cardElementPropsAfterUpLikes)
-  })
+    cardElement.parent.viewsHandler(cardElement);
+    await expect(cardElement.props === cardElementPropsAfterUpLikes);
+  });
 
-  test('Update card props',() => {
+  test('Update card props', () => {
     const cardPropsBefore = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:
@@ -573,7 +573,7 @@ describe('LocalStorage', () => {
           count: 490,
         },
       },
-    }
+    };
     const cardPropsAfter = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:
@@ -593,10 +593,10 @@ describe('LocalStorage', () => {
           count: 491,
         },
       },
-    }
+    };
 
     cardElement = new Card(application, cardPropsBefore);
-    cardElement.updateCard(cardPropsAfter)
-    expect(cardElement.props === cardPropsAfter)
-  })
+    cardElement.updateCard(cardPropsAfter);
+    expect(cardElement.props === cardPropsAfter);
+  });
 });

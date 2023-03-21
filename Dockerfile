@@ -1,8 +1,6 @@
-FROM node:19
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-EXPOSE 8080
-CMD ["npx","nodemon","./Server/server.js"]
+FROM nginx
+WORKDIR /site
+COPY ./dist /usr/share/nginx/html
+COPY nginx.conf /usr/share/nginx/nginx.conf
+RUN mkdir /usr/share/nginx/cache
+RUN touch /usr/share/nginx/nginx-access.log

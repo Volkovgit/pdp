@@ -18,3 +18,14 @@
 
 
 ![design](./design.PNG)
+
+
+
+# Сборка и запуск в докере
+* npm run prode - собрать prode версию проекта
+* docker-compose build
+* docker-compose run 
+
+
+# Для разработки
+* npm run server

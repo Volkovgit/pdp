@@ -4,7 +4,7 @@ export default class Card extends HTMLElement {
   props: CardData;
   parent: Application;
 
-  constructor (parent, props) {
+  constructor(parent, props) {
     super();
     this.parent = parent;
     this.props = props;
@@ -15,7 +15,7 @@ export default class Card extends HTMLElement {
     setTimeout(() => {
       this.likeHandler();
       this.imageClickHandler();
-    })
+    });
   }
 
   render() {
@@ -96,7 +96,7 @@ export default class Card extends HTMLElement {
     ].forEach((likeButton) => {
       likeButton.addEventListener('click', () => {
         this.parent.likesHandler(this);
-      })
+      });
     });
   }
 
@@ -118,7 +118,7 @@ export default class Card extends HTMLElement {
       this.querySelector('.card-photo-buttons-likes__svg > path'),
     ].forEach((svg) => {
       svg.setAttribute('fill', `${this.props.statistic.likes.active ? '#eb2940' : '#9ca3af'}`);
-    })
+    });
   }
 
   updateViews(count) {

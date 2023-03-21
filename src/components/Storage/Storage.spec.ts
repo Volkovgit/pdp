@@ -330,9 +330,8 @@ describe('Storage', () => {
 
   test('Cards array was set in localStorage', async () => {
     const res = await storage.getState();
-    expect(storage.localStorage.getItemFromLocalStorage('card') === res)
+    expect(storage.localStorage.getItemFromLocalStorage('card') === res);
   });
-
 
   test('Up likes count on card data', () => {
     const cardBeforeUpLikes = {
