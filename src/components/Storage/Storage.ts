@@ -1,4 +1,4 @@
-import { LocalStorage, type Server } from '../components';
+import { LocalStorage, type Server } from '../Components';
 
 export default class Storage {
   private state: CardData[] | null;
@@ -38,9 +38,9 @@ export default class Storage {
   }
 
   public getState(): Promise<CardData[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (this.state !== null) resolve(this.state);
-      this.getCardsFromServer().then((data) => {
+      this.getCardsFromServer().then(() => {
         resolve(this.state);
       });
     });
@@ -51,12 +51,12 @@ export default class Storage {
     if (likedCard.props.statistic.likes.active) {
       result = await this.server.requestToServer(
         `/card-update?id=${likedCard.props.id}&updateType=downLikes`,
-        'POST',
+        'POST'
       );
     } else {
       result = await this.server.requestToServer(
         `/card-update?id=${likedCard.props.id}&updateType=upLikes`,
-        'POST',
+        'POST'
       );
     }
     result.statistic.likes.active = !likedCard.props.statistic.likes.active;
@@ -68,7 +68,7 @@ export default class Storage {
     if (!viewedCard.props.statistic.views.active) {
       viewedCard = await this.server.requestToServer(
         `/card-update?id=${viewedCard.props.id}&updateType=upViews`,
-        'POST',
+        'POST'
       );
       viewedCard.statistic.views.active = true;
     } else {

@@ -8,12 +8,12 @@ export default class Server {
     try {
       const response = await fetch(`${this.SERVER_URL}${query}`, {
         method,
-        body: body ? JSON.stringify(body) : null,
+        body: body ? JSON.stringify(body) : null
       });
       if (!response.ok) throw new Error(response.statusText);
       return await response.json();
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   }
 }

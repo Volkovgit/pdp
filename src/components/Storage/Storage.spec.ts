@@ -1,5 +1,4 @@
-import { Storage, Server } from '../components';
-import fetch, { Response } from 'node-fetch';
+import { Storage, Server } from '../Components';
 jest.mock('node-fetch');
 
 const testData = [
@@ -9,18 +8,18 @@ const testData = [
     author: {
       authorName: 'Alma',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 936,
+        count: 936
       },
       views: {
         active: true,
-        count: 490,
-      },
-    },
+        count: 490
+      }
+    }
   },
   {
     id: '6409fe4cdfc0a18089cfd25c',
@@ -28,18 +27,18 @@ const testData = [
     author: {
       authorName: 'Ronda',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 769,
+        count: 769
       },
       views: {
         active: true,
-        count: 126,
-      },
-    },
+        count: 126
+      }
+    }
   },
   {
     id: '6409fe4c6a1ea99d3e32a309',
@@ -47,18 +46,18 @@ const testData = [
     author: {
       authorName: 'Chris',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 587,
+        count: 587
       },
       views: {
         active: true,
-        count: 404,
-      },
-    },
+        count: 404
+      }
+    }
   },
   {
     id: '6409fe4ccafb5697e7b7b64a',
@@ -66,18 +65,18 @@ const testData = [
     author: {
       authorName: 'Winnie',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: false,
-        count: 249,
+        count: 249
       },
       views: {
         active: true,
-        count: 118,
-      },
-    },
+        count: 118
+      }
+    }
   },
   {
     id: '6409fe4cfcec9ff13df00acf',
@@ -85,18 +84,18 @@ const testData = [
     author: {
       authorName: 'Jan',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: false,
-        count: 495,
+        count: 495
       },
       views: {
         active: false,
-        count: 131,
-      },
-    },
+        count: 131
+      }
+    }
   },
   {
     id: '6409fe4cfba7958fc10aed4d',
@@ -104,18 +103,18 @@ const testData = [
     author: {
       authorName: 'Raquel',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 452,
+        count: 452
       },
       views: {
         active: false,
-        count: 201,
-      },
-    },
+        count: 201
+      }
+    }
   },
   {
     id: '6409fe4cced2e6744d8e6915',
@@ -123,18 +122,18 @@ const testData = [
     author: {
       authorName: 'Morton',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: false,
-        count: 633,
+        count: 633
       },
       views: {
         active: false,
-        count: 445,
-      },
-    },
+        count: 445
+      }
+    }
   },
   {
     id: '6409fe4c097661fbe03e8ce1',
@@ -142,18 +141,18 @@ const testData = [
     author: {
       authorName: 'Shelby',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 196,
+        count: 196
       },
       views: {
         active: false,
-        count: 549,
-      },
-    },
+        count: 549
+      }
+    }
   },
   {
     id: '6409fe4cc68fc1791a1f229b',
@@ -161,18 +160,18 @@ const testData = [
     author: {
       authorName: 'Madden',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 370,
+        count: 370
       },
       views: {
         active: false,
-        count: 377,
-      },
-    },
+        count: 377
+      }
+    }
   },
   {
     id: '6409fe4c1b08267293fce5c5',
@@ -180,18 +179,18 @@ const testData = [
     author: {
       authorName: 'Burt',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 267,
+        count: 267
       },
       views: {
         active: false,
-        count: 832,
-      },
-    },
+        count: 832
+      }
+    }
   },
   {
     id: '6409fe4ca2384e0f562263b6',
@@ -199,18 +198,18 @@ const testData = [
     author: {
       authorName: 'Chrystal',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: false,
-        count: 500,
+        count: 500
       },
       views: {
         active: true,
-        count: 633,
-      },
-    },
+        count: 633
+      }
+    }
   },
   {
     id: '6409fe4c5f3fcb0f3aaf836d',
@@ -218,18 +217,18 @@ const testData = [
     author: {
       authorName: 'Lancaster',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 500,
+        count: 500
       },
       views: {
         active: true,
-        count: 612,
-      },
-    },
+        count: 612
+      }
+    }
   },
   {
     id: '6409fe4c32af027464d966d7',
@@ -237,18 +236,18 @@ const testData = [
     author: {
       authorName: 'Blanchard',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: false,
-        count: 315,
+        count: 315
       },
       views: {
         active: false,
-        count: 687,
-      },
-    },
+        count: 687
+      }
+    }
   },
   {
     id: '6409fe4c000e7e91a7328d49',
@@ -256,18 +255,18 @@ const testData = [
     author: {
       authorName: 'Genevieve',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 738,
+        count: 738
       },
       views: {
         active: false,
-        count: 564,
-      },
-    },
+        count: 564
+      }
+    }
   },
   {
     id: '6409fe4c821ee0afa59416fd',
@@ -275,18 +274,18 @@ const testData = [
     author: {
       authorName: 'Shepard',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 143,
+        count: 143
       },
       views: {
         active: true,
-        count: 414,
-      },
-    },
+        count: 414
+      }
+    }
   },
   {
     id: '6409fe4c2bf5bef3c030a525',
@@ -294,19 +293,19 @@ const testData = [
     author: {
       authorName: 'Janet',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: false,
-        count: 138,
+        count: 138
       },
       views: {
         active: false,
-        count: 795,
-      },
-    },
-  },
+        count: 795
+      }
+    }
+  }
 ];
 
 describe('Storage', () => {
@@ -317,8 +316,8 @@ describe('Storage', () => {
       Promise.resolve({
         ok: true,
         status: 200,
-        json: () => Promise.resolve(testData),
-      }),
+        json: () => Promise.resolve(testData)
+      })
     ) as jest.Mock;
     server = new Server();
     storage = new Storage(server);
@@ -342,19 +341,19 @@ describe('Storage', () => {
         author: {
           authorName: 'Alma',
           authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-          authorType: 'PRO',
+          authorType: 'PRO'
         },
         statistic: {
           likes: {
             active: false,
-            count: 936,
+            count: 936
           },
           views: {
             active: true,
-            count: 490,
-          },
-        },
-      },
+            count: 490
+          }
+        }
+      }
     };
 
     const cardAfterUpLikes = {
@@ -364,26 +363,26 @@ describe('Storage', () => {
       author: {
         authorName: 'Alma',
         authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-        authorType: 'PRO',
+        authorType: 'PRO'
       },
       statistic: {
         likes: {
           active: true,
-          count: 937,
+          count: 937
         },
         views: {
           active: true,
-          count: 490,
-        },
-      },
+          count: 490
+        }
+      }
     };
 
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
         status: 200,
-        json: () => Promise.resolve(cardAfterUpLikes),
-      }),
+        json: () => Promise.resolve(cardAfterUpLikes)
+      })
     ) as jest.Mock;
 
     storage.updateLikes(cardBeforeUpLikes).then((card) => expect(card === cardAfterUpLikes));
@@ -398,19 +397,19 @@ describe('Storage', () => {
         author: {
           authorName: 'Alma',
           authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-          authorType: 'PRO',
+          authorType: 'PRO'
         },
         statistic: {
           likes: {
             active: true,
-            count: 936,
+            count: 936
           },
           views: {
             active: true,
-            count: 490,
-          },
-        },
-      },
+            count: 490
+          }
+        }
+      }
     };
 
     const cardAfterUpLikes = {
@@ -420,26 +419,26 @@ describe('Storage', () => {
       author: {
         authorName: 'Alma',
         authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-        authorType: 'PRO',
+        authorType: 'PRO'
       },
       statistic: {
         likes: {
           active: false,
-          count: 935,
+          count: 935
         },
         views: {
           active: true,
-          count: 490,
-        },
-      },
+          count: 490
+        }
+      }
     };
 
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
         status: 200,
-        json: () => Promise.resolve(cardAfterUpLikes),
-      }),
+        json: () => Promise.resolve(cardAfterUpLikes)
+      })
     ) as jest.Mock;
 
     storage.updateLikes(cardBeforeUpLikes).then((card) => expect(card === cardAfterUpLikes));
@@ -455,19 +454,19 @@ describe('Storage', () => {
           author: {
             authorName: 'Alma',
             authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-            authorType: 'PRO',
+            authorType: 'PRO'
           },
           statistic: {
             likes: {
               active: false,
-              count: 936,
+              count: 936
             },
             views: {
               active: false,
-              count: 490,
-            },
-          },
-        },
+              count: 490
+            }
+          }
+        }
       };
 
       const cardAfterUpViews = {
@@ -477,26 +476,26 @@ describe('Storage', () => {
         author: {
           authorName: 'Alma',
           authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-          authorType: 'PRO',
+          authorType: 'PRO'
         },
         statistic: {
           likes: {
             active: false,
-            count: 936,
+            count: 936
           },
           views: {
             active: true,
-            count: 491,
-          },
-        },
+            count: 491
+          }
+        }
       };
 
       global.fetch = jest.fn(() =>
         Promise.resolve({
           ok: true,
           status: 200,
-          json: () => Promise.resolve(cardAfterUpViews),
-        }),
+          json: () => Promise.resolve(cardAfterUpViews)
+        })
       ) as jest.Mock;
 
       storage.updateViews(cardBeforeUpViews).then((card) => {
@@ -513,27 +512,27 @@ describe('Storage', () => {
           author: {
             authorName: 'Alma',
             authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-            authorType: 'PRO',
+            authorType: 'PRO'
           },
           statistic: {
             likes: {
               active: false,
-              count: 936,
+              count: 936
             },
             views: {
               active: true,
-              count: 490,
-            },
-          },
-        },
+              count: 490
+            }
+          }
+        }
       };
 
       global.fetch = jest.fn(() =>
         Promise.resolve({
           ok: true,
           status: 200,
-          json: () => Promise.resolve(viewedCard),
-        }),
+          json: () => Promise.resolve(viewedCard)
+        })
       ) as jest.Mock;
 
       storage.updateViews(viewedCard).then((card) => {

@@ -1,5 +1,4 @@
-import { Storage, Server, Card, Application } from '../components';
-import fetch, { Response } from 'node-fetch';
+import { Storage, Server, Application } from '../Components';
 jest.mock('node-fetch');
 const testData = [
   {
@@ -8,18 +7,18 @@ const testData = [
     author: {
       authorName: 'Alma',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 936,
+        count: 936
       },
       views: {
         active: true,
-        count: 490,
-      },
-    },
+        count: 490
+      }
+    }
   },
   {
     id: '6409fe4cdfc0a18089cfd25c',
@@ -27,18 +26,18 @@ const testData = [
     author: {
       authorName: 'Ronda',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 769,
+        count: 769
       },
       views: {
         active: true,
-        count: 126,
-      },
-    },
+        count: 126
+      }
+    }
   },
   {
     id: '6409fe4c6a1ea99d3e32a309',
@@ -46,40 +45,39 @@ const testData = [
     author: {
       authorName: 'Chris',
       authorLogoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-      authorType: 'PRO',
+      authorType: 'PRO'
     },
     statistic: {
       likes: {
         active: true,
-        count: 587,
+        count: 587
       },
       views: {
         active: true,
-        count: 404,
-      },
-    },
-  },
+        count: 404
+      }
+    }
+  }
 ];
 
 describe('LocalStorage', () => {
   let storage;
   let server;
   let application;
-  let mainElementInHtml;
 
   beforeEach(() => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
         status: 200,
-        json: () => Promise.resolve(testData),
-      }),
+        json: () => Promise.resolve(testData)
+      })
     ) as jest.Mock;
     server = new Server();
     storage = new Storage(server);
   });
 
-  test('Create and insert cards element in html', async () => {
+  test('Create and insert cards element in html', async() => {
     const htmlStringWithThreeCards = ` <card-element><div class="card" id="">
     <div class="card-photo">        
     <div class="card-photo-buttons hide">

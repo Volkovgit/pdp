@@ -1,4 +1,4 @@
-import { LocalStorage } from '../components';
+import LocalStorage from './LocalStorage';
 
 describe('LocalStorage', () => {
   let storage;

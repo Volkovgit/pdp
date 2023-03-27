@@ -1,4 +1,4 @@
-import { Card } from '../components';
+import { Card } from '../Components';
 
 export default class Application {
   state: Storage;

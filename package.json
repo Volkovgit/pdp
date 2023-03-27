@@ -11,7 +11,8 @@
     "webServer": "webpack-dev-server --mode development",
     "prode": "webpack --mode production",
     "dev": "webpack --mode development",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . --ext .ts"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +22,8 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/runtime": "^7.20.13",
     "@types/jest": "^29.4.0",
-    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "babel-jest": "^29.5.0",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",

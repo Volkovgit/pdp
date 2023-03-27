@@ -1,6 +1,6 @@
 import './index.scss';
-import './components/types';
-import { Application, Server, Storage } from './components/components';
+import './components/Types';
+import { Application, Server, Storage } from './components/Components';
 const server = new Server();
 const storage = new Storage(server);
 

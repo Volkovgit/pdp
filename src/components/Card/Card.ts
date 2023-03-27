@@ -1,4 +1,6 @@
-import { type Application } from '../components';
+/* eslint-disable prettier/prettier */
+/* eslint-disable max-len */
+import { type Application } from '../Components';
 
 export default class Card extends HTMLElement {
   props: CardData;
@@ -23,8 +25,8 @@ export default class Card extends HTMLElement {
       <div class="card-photo">
       <div class="card-photo-buttons hide">
         <a class="card-photo-buttons-download" href="${
-          this.props.imageUrl
-        }" download="proposed_file_name"><svg class="card-photo-buttons-download__svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  this.props.imageUrl
+}" download="proposed_file_name"><svg class="card-photo-buttons-download__svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 11L12 16" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M14.5 13.5L9.5 13.5" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M3 9.312C3 4.93757 3.93757 4 8.312 4H9.92963C10.5983 4 11.2228 4.3342 11.5937 4.8906L12.4063 6.1094C12.7772 6.6658 13.4017 7 14.0704 7C15.9647 7 17.8145 7 19.1258 7C20.1807 7 21.0128 7.82095 21.0029 8.8758C21.0013 9.05376 21 9.20638 21 9.312V14.688C21 19.0624 20.0624 20 15.688 20H8.312C3.93757 20 3 19.0624 3 14.688V9.312Z" stroke="#323232" stroke-width="2"/>
@@ -44,14 +46,14 @@ export default class Card extends HTMLElement {
       <div class="card-description">
         <div class="author">
           <div class="author-image" ><img class="author-image__item" src="${
-            this.props.author.authorLogoUrl
-          }" /></div>
+  this.props.author.authorLogoUrl
+}" /></div>
           <div class="author-name"><span class="author-name__text">${
-            this.props.author.authorName
-          }</span></div>
+  this.props.author.authorName
+}</span></div>
           <div class="author-type"><span class="author-type__text">${
-            this.props.author.authorType
-          }</span></div>
+  this.props.author.authorType
+}</span></div>
         </div>
         <div class="activity">
           <div class="activity-likes">
@@ -92,7 +94,7 @@ export default class Card extends HTMLElement {
   likeHandler() {
     [
       this.querySelector('.activity-likes-heart'),
-      this.querySelector('.card-photo-buttons-likes'),
+      this.querySelector('.card-photo-buttons-likes')
     ].forEach((likeButton) => {
       likeButton.addEventListener('click', () => {
         this.parent.likesHandler(this);
@@ -115,7 +117,7 @@ export default class Card extends HTMLElement {
     likeCounter.innerHTML = `${count}`;
     [
       this.querySelector('.activity-likes-heart__svg > path'),
-      this.querySelector('.card-photo-buttons-likes__svg > path'),
+      this.querySelector('.card-photo-buttons-likes__svg > path')
     ].forEach((svg) => {
       svg.setAttribute('fill', `${this.props.statistic.likes.active ? '#eb2940' : '#9ca3af'}`);
     });

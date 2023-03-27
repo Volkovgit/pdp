@@ -4,6 +4,7 @@ export default class LocalStorage {
     this.localstorage = window.localStorage;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setItemToLocalStorage(itemName: string, itemValue: any) {
     this.localstorage.setItem(itemName, JSON.stringify(itemValue));
   }
