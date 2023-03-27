@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'SF-Pro Regular';
-  src: local('SF-Pro Regular'), url('./fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  src: local('SF-Pro Regular'), url('./Fonts/SF-Pro-Display-Regular.otf') format('opentype');
 }
 
 @mixin flexbox($wrap: none, $direction: none, $align: none, $justify: none) {

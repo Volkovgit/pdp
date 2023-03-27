@@ -41,11 +41,11 @@ export default class Card extends HTMLElement {
             ></path>
           </svg></div>
         </div>
-      <img class="card-photo__img" src="${this.props.imageUrl}" />
+      <img class="card-photo__img" Src="${this.props.imageUrl}" />
       </div>
       <div class="card-description">
         <div class="author">
-          <div class="author-image" ><img class="author-image__item" src="${
+          <div class="author-image" ><img class="author-image__item" Src="${
   this.props.author.authorLogoUrl
 }" /></div>
           <div class="author-name"><span class="author-name__text">${

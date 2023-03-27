@@ -1,4 +1,4 @@
-import { Storage, Server, Card, Application } from '../Components';
+import { Storage, Server, Card, Application, LocalStorage } from '../Components';
 jest.mock('node-fetch');
 const testData = [
   {
@@ -313,6 +313,7 @@ describe('LocalStorage', () => {
   let application;
   let mainElementInHtml;
   let cardElement;
+  let localStorage;
 
   beforeEach(() => {
     global.fetch = jest.fn(() =>
@@ -324,7 +325,8 @@ describe('LocalStorage', () => {
     ) as jest.Mock;
     mainElementInHtml = document.createElement('main');
     server = new Server();
-    storage = new Storage(server);
+    localStorage = new LocalStorage();
+    storage = new Storage(server, localStorage);
     application = new Application(mainElementInHtml, storage);
   });
 
@@ -394,20 +396,28 @@ describe('LocalStorage', () => {
           ></path>
         </svg></div>
       </div>
-    <img class="card-photo__img" src="${cardElementProps.imageUrl}" />
+    <img class="card-photo__img" Src="${cardElementProps.imageUrl}" />
     </div>
     <div class="card-description">
       <div class="author">
-        <div class="author-image" ><img class="author-image__item" src="${cardElementProps.author.authorLogoUrl}" /></div>
-        <div class="author-name"><span class="author-name__text">${cardElementProps.author.authorName}</span></div>
-        <div class="author-type"><span class="author-type__text">${cardElementProps.author.authorType}</span></div>
+        <div class="author-image" ><img class="author-image__item" Src="${
+  cardElementProps.author.authorLogoUrl
+}" /></div>
+        <div class="author-name"><span class="author-name__text">${
+  cardElementProps.author.authorName
+}</span></div>
+        <div class="author-type"><span class="author-type__text">${
+  cardElementProps.author.authorType
+}</span></div>
       </div>
       <div class="activity">
         <div class="activity-likes">
           <div  class="activity-likes-heart">
             <svg class="activity-likes-heart__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" version="1">
               <path
-                ${cardElementProps.statistic.likes.active ? 'fill="#eb2940"' : 'fill="#9ca3af"'}d="M473.984,74.248c-50.688-50.703-132.875-50.703-183.563,0c-17.563,17.547-29.031,38.891-34.438,61.391
+                ${
+  cardElementProps.statistic.likes.active ? 'fill="#eb2940"' : 'fill="#9ca3af"'
+}d="M473.984,74.248c-50.688-50.703-132.875-50.703-183.563,0c-17.563,17.547-29.031,38.891-34.438,61.391
           c-5.375-22.5-16.844-43.844-34.406-61.391c-50.688-50.703-132.875-50.703-183.563,0c-50.688,50.688-50.688,132.875,0,183.547
           l217.969,217.984l218-217.984C524.672,207.123,524.672,124.936,473.984,74.248z"
               ></path>
@@ -438,7 +448,7 @@ describe('LocalStorage', () => {
     expect(cardElement.innerHTML === cardHtml);
   });
 
-  test('Should update likes', async() => {
+  test('Should update likes', async () => {
     const cardElementPropsBeforeUpLikes = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:
@@ -491,7 +501,7 @@ describe('LocalStorage', () => {
     await expect(cardElement.props === cardElementPropsAfterUpLikes);
   });
 
-  test('Should update views', async() => {
+  test('Should update views', async () => {
     const cardElementPropsBeforeUpLikes = {
       id: '6409fe4c52f9e5877a641d17',
       imageUrl:

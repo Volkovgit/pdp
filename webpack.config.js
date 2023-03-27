@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './Src/Index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle-[hash].js'
@@ -29,8 +31,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
-      filename: 'index.html'
+      template: path.join(__dirname, 'Src', 'Index.html'),
+      filename: 'Index.html'
     })
   ]
 };

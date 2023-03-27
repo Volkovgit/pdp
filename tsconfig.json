@@ -3,10 +3,10 @@
   "exclude": ["node_modules", "**/*.spec.ts"],
   "compilerOptions": {
     "target": "ES2015",
-    "rootDir": "./src",
+    "rootDir": "./Src",
     "sourceMap": true,
     "lib": ["es5", "es6", "dom", "es2015.collection"],
     "esModuleInterop":true
   },
-  "files": ["./src/index.ts"]
+  "files": ["Src/Index.ts"]
 }

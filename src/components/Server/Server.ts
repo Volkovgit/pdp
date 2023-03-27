@@ -1,8 +1,6 @@
 export default class Server {
-  private readonly SERVER_URL: string;
-  constructor() {
-    this.SERVER_URL = 'http://localhost:3000';
-  }
+  private readonly SERVER_URL: string = 'http://localhost:3000';
+  constructor() {}
 
   public async requestToServer(query, method, body = null) {
     try {

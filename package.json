@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "start npm run dataServerLive && start npm run webServer && npm run prettierWrite && npx eslint --fix .",
+    "server": "start npm run dataServerLive && start npm run webServer && npm run prettierWrite && npx eslint --fix ./Src",
     "dataServerLive": "nodemon ./Server/server.js",
-    "prettierWrite": "npx prettier --write ./src",
-    "dataServer": "node src/Server/server.js",
+    "prettierWrite": "npx prettier --write ./Src",
+    "dataServer": "node Src/Server/server.js",
     "webServer": "webpack-dev-server --mode development",
     "prode": "webpack --mode production",
     "dev": "webpack --mode development",

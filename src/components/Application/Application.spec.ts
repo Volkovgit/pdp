@@ -1,4 +1,4 @@
-import { Storage, Server, Application } from '../Components';
+import { Storage, Server, Application, LocalStorage } from '../Components';
 jest.mock('node-fetch');
 const testData = [
   {
@@ -64,6 +64,7 @@ describe('LocalStorage', () => {
   let storage;
   let server;
   let application;
+  let localStorage;
 
   beforeEach(() => {
     global.fetch = jest.fn(() =>
@@ -74,10 +75,11 @@ describe('LocalStorage', () => {
       })
     ) as jest.Mock;
     server = new Server();
-    storage = new Storage(server);
+    localStorage = new LocalStorage();
+    storage = new Storage(server, localStorage);
   });
 
-  test('Create and insert cards element in html', async() => {
+  test('Create and insert cards element in html', async () => {
     const htmlStringWithThreeCards = ` <card-element><div class="card" id="">
     <div class="card-photo">        
     <div class="card-photo-buttons hide">
@@ -92,11 +94,11 @@ describe('LocalStorage', () => {
       l217.969,217.984l218-217.984C524.672,207.123,524.672,124.936,473.984,74.248z"></path>
         </svg></div>
       </div>
-    <img class="card-photo__img" src="https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large">
+    <img class="card-photo__img" Src="https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large">
     </div>
     <div class="card-description">
       <div class="author">
-        <div class="author-image"><img class="author-image__item" src="https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg"></div>
+        <div class="author-image"><img class="author-image__item" Src="https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg"></div>
         <div class="author-name"><span class="author-name__text">Alma</span></div>
         <div class="author-type"><span class="author-type__text">PRO</span></div>
       </div>
@@ -135,11 +137,11 @@ describe('LocalStorage', () => {
       l217.969,217.984l218-217.984C524.672,207.123,524.672,124.936,473.984,74.248z"></path>
         </svg></div>
       </div>
-    <img class="card-photo__img" src="https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large">
+    <img class="card-photo__img" Src="https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large">
     </div>
     <div class="card-description">
       <div class="author">
-        <div class="author-image"><img class="author-image__item" src="https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg"></div>
+        <div class="author-image"><img class="author-image__item" Src="https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg"></div>
         <div class="author-name"><span class="author-name__text">Ronda</span></div>
         <div class="author-type"><span class="author-type__text">PRO</span></div>
       </div>
@@ -178,11 +180,11 @@ describe('LocalStorage', () => {
       l217.969,217.984l218-217.984C524.672,207.123,524.672,124.936,473.984,74.248z"></path>
         </svg></div>
       </div>
-    <img class="card-photo__img" src="https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large">
+    <img class="card-photo__img" Src="https://narcosis-css.ru/800/600/https/pbs.twimg.com/media/Eevk2G3XoAAjfB4.jpg:large">
     </div>
     <div class="card-description">
       <div class="author">
-        <div class="author-image"><img class="author-image__item" src="https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg"></div>
+        <div class="author-image"><img class="author-image__item" Src="https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg"></div>
         <div class="author-name"><span class="author-name__text">Chris</span></div>
         <div class="author-type"><span class="author-type__text">PRO</span></div>
       </div>

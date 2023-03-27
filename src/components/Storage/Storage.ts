@@ -1,21 +1,19 @@
 import { LocalStorage, type Server } from '../Components';
 
 export default class Storage {
-  private state: CardData[] | null;
+  private state: CardData[] | null = null;
   private readonly localStorage: LocalStorage;
   private readonly server: Server;
 
-  constructor(server) {
-    this.state = null;
-    this.localStorage = new LocalStorage();
+  constructor(server: Server, localStorage: LocalStorage) {
+    this.localStorage = localStorage;
     this.server = server;
     this.setStateOnInit();
   }
 
   private setStateOnInit() {
     if (this.localStorage.hasItemInLocalStorage('card')) {
-      const cards: CardData[] = JSON.parse(this.localStorage.getItemFromLocalStorage('card'));
-      this.state = cards;
+      this.state = JSON.parse(this.localStorage.getItemFromLocalStorage('card'));
     } else {
       this.getCardsFromServer();
     }

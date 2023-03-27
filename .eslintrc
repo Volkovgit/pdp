@@ -15,7 +15,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["prettier","@typescript-eslint"],
+  "plugins": ["prettier", "@typescript-eslint"],
   "rules": {
     "comma-dangle": ["warn", "never"],
     "quotes": ["error", "single"],
@@ -26,7 +26,8 @@
     "linebreak-style": ["error", "windows"],
     "max-len": "off",
     "object-curly-spacing": ["error", "always"],
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }
-

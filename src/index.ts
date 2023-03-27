@@ -1,8 +1,9 @@
-import './index.scss';
-import './components/Types';
-import { Application, Server, Storage } from './components/Components';
+import './Index.scss';
+import './Components/Types';
+import { Application, LocalStorage, Server, Storage } from './Components/Components';
 const server = new Server();
-const storage = new Storage(server);
+const localStorage = new LocalStorage();
+const storage = new Storage(server, localStorage);
 
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {

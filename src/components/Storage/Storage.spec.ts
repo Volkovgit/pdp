@@ -1,4 +1,4 @@
-import { Storage, Server } from '../Components';
+import { Storage, Server, LocalStorage } from '../Components';
 jest.mock('node-fetch');
 
 const testData = [
@@ -311,6 +311,7 @@ const testData = [
 describe('Storage', () => {
   let storage;
   let server;
+  let localStorage;
   beforeEach(() => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
@@ -320,7 +321,8 @@ describe('Storage', () => {
       })
     ) as jest.Mock;
     server = new Server();
-    storage = new Storage(server);
+    localStorage = new LocalStorage();
+    storage = new Storage(server, localStorage);
   });
 
   test('Should return array with cardList', () => {
