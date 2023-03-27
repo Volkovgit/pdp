@@ -22,7 +22,6 @@
 
 
 # Сборка и запуск в докере
-* npm run prode - собрать prode версию проекта
 * docker-compose build
 * docker-compose run 
 
