@@ -1,0 +1,7 @@
+#STAGE 1 Server
+FROM node:19-alpine as server-build
+WORKDIR /server
+RUN npm install json-server
+COPY ./Server .
+EXPOSE 3000
+CMD ["node","server.js"]

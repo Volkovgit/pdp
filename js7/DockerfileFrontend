@@ -1,0 +1,15 @@
+#STAGE 1 Frontend
+FROM node:19-alpine as front-build
+WORKDIR /usr
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run prode
+
+#STAGE 2 NGINX
+FROM nginx:1.23.3-alpine
+#Копируем статику, которую будем отдавать
+COPY --from=front-build usr/dist /usr/share/nginx/html
+COPY nginxFrontend.conf /etc/nginx/nginx.conf
+RUN mkdir /usr/share/nginx/cache
+RUN touch /usr/share/nginx/nginx-access.log

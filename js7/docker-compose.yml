@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  server:
+    build:
+      # откуда брать инструкции для сборки
+      context: ./
+      dockerfile: ./DockerfileServer
+    image: ${SERVER_IMAGE_NAME} # имя образа
+    container_name: ${SERVER_CONTAINER_NAME} # имя контейнера
+    restart: always # перезагрузка, если что-то пошло не так
+    stdin_open: true # интерактивная консоль
+    tty: true # для открытия терминала после старта
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT} # какой порт показывать снаружи
+  front:
+    build:
+      # откуда брать инструкции для сборки
+      context: ./
+      dockerfile: ./DockerfileFrontend
+    image: ${FRONTEND_IMAGE_NAME} # имя образа
+    container_name: ${FRONTEND_CONTAINER_NAME} # имя контейнера
+    restart: always # перезагрузка, если что-то пошло не так
+    stdin_open: true # интерактивная консоль
+    tty: true # для открытия терминала после старта
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT} # какой порт показывать снаружи
+    depends_on:
+      - server

@@ -1,0 +1,12 @@
+{
+  "include": ["./.eslintrc.js"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "compilerOptions": {
+    "target": "ES2015",
+    "rootDir": "./Src",
+    "sourceMap": true,
+    "lib": ["es5", "es6", "dom", "es2015.collection"],
+    "esModuleInterop":true
+  },
+  "files": ["Src/Index.ts"]
+}
