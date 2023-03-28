@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable max-len */
-import { type Application } from '../Components';
+import { Application } from '../Components';
 
 export default class Card extends HTMLElement {
   props: CardData;
