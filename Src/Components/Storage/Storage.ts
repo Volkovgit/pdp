@@ -1,4 +1,4 @@
-import { LocalStorage, type Server } from '../Components';
+import { LocalStorage, Server } from '../Components';
 
 export default class Storage {
   private state: CardData[] | null = null;
