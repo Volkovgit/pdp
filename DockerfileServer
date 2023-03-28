@@ -2,6 +2,6 @@
 FROM node:19-alpine as server-build
 WORKDIR /server
 RUN npm install json-server
-COPY ./server .
+COPY ./Server .
 EXPOSE 3000
 CMD ["node","server.js"]
