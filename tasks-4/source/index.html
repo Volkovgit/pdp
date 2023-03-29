@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <button>Do action</button>
+</div>
+<div class="action-target"></div>
+<script>
+    var actionTarget = document.querySelector('.action-target');
+    document.querySelector('button').addEventListener('click', doAction, false);
+
+    function doAction(){
+        actionTarget.innerHTML = '<div>action 1 was performed ' + doAction.i + ' times</div>';
+        actionTarget.querySelector('div').addEventListener('click', function(){
+            console.warn('action text is not clickable')
+        }, false);
+
+        doAction.i++;
+    }
+    doAction.i = 1;
+</script>
+</body>
+</html>
