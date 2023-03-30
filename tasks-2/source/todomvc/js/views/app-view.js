@@ -133,8 +133,8 @@ var app = app || {};
 	});
 
     // logger functions
-    function log(){
-        console.log(arguments);
+	function log(){
+        window.console.log(...[...arguments]);
     }
 
 })(jQuery);

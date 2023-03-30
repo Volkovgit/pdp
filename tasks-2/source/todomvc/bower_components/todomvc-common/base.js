@@ -141,8 +141,7 @@
 		}
 
 		var xhr = new XMLHttpRequest();
-
-		xhr.open('GET', findRoot() + file, true);
+		xhr.open('GET', findRoot(), true);
 		xhr.send();
 
 		xhr.onload = function () {
